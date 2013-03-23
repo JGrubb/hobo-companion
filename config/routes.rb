@@ -1,5 +1,7 @@
 RRE::Application.routes.draw do
 
+  resources :songs
+
   resources :shows
   
   resources :venues

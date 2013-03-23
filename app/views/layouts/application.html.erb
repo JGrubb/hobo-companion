@@ -7,10 +7,11 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-  <div id="header">
-    <h1><%= link_to "the Hobo's Companion", root_path %></h1>
+  <div class="container-narrow">
+    <div class="masthead">
+      <h1><%= link_to "the Hobo's Companion", root_path %></h1>
+    </div>
+  <%= yield %>
   </div>
-<%= yield %>
-
 </body>
 </html>

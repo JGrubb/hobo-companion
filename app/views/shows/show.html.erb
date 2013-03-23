@@ -3,10 +3,10 @@
 
 <div>
   <% @songs.each do |song| %>
-    <div><%= song.position %> <%= song.song.title %> <%= song.song_notes%></div>
+    <div><%= song.position %> <%= link_to song.song.title, song.song %> <%= song.song_notes%></div>
   <% end %>
 </div>
 
 <div>
-  <p><%= @show.show_notes %></p>
+  <p><%= simple_format @show.show_notes %></p>
 </div>
