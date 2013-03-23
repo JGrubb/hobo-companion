@@ -9,6 +9,8 @@ class VenuesController < ApplicationController
   end
 
   def show
+    @venue = Venue.find(params[:id])
+    @shows = Show.where(:venue_id => @venue.id)
   end
 
   def edit

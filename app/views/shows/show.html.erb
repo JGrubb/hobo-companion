@@ -1,5 +1,5 @@
 <h2><%= @show.date.strftime '%B %d, %Y' %></h2>
-<h3><%= "#{@venue.name} - #{@venue.city}, #{@venue.state}" %></h3>
+<h3><%= link_to "#{@venue.name} - #{@venue.city}, #{@venue.state}", @venue %></h3>
 
 <div>
   <% @songs.each do |song| %>

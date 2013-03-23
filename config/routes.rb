@@ -1,19 +1,8 @@
 RRE::Application.routes.draw do
-  get "venues/index"
-
-  get "venues/new"
-
-  get "venues/create"
-
-  get "venues/show"
-
-  get "venues/edit"
-
-  get "venues/update"
-
-  get "venues/destroy"
 
   resources :shows
+  
+  resources :venues
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

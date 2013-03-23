@@ -1,2 +1,9 @@
-<h1>Venues#show</h1>
-<p>Find me in app/views/venues/show.html.erb</p>
+<h2><%= @venue.name %></h2>
+
+<div>
+  <% @shows.each do |show| %>
+  <div class="show">
+    <%= link_to show.date, show %>
+  </div>
+  <% end %>
+</div>
