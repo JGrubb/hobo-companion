@@ -1,0 +1,9 @@
+<h1>Shows#index</h1>
+
+<div>
+<% @shows.each do |show| %>
+<div>
+  <%= show.date %> - <%= link_to show.venue.name, show %>
+</div>
+<% end %>
+</div>

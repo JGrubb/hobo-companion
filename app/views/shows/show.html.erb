@@ -1,0 +1,12 @@
+<h2><%= @show.date.strftime '%B %d, %Y' %></h2>
+<h3><%= "#{@venue.name} - #{@venue.city}, #{@venue.state}" %></h3>
+
+<div>
+  <% @songs.each do |song| %>
+    <div><%= song.position %> <%= song.song.title %> <%= song.song_notes%></div>
+  <% end %>
+</div>
+
+<div>
+  <p><%= @show.show_notes %></p>
+</div>
