@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130322205652) do
+ActiveRecord::Schema.define(:version => 20130323111027) do
 
   create_table "shows", :force => true do |t|
     t.date    "date"
@@ -27,6 +27,9 @@ ActiveRecord::Schema.define(:version => 20130322205652) do
     t.boolean "transition"
     t.string  "song_notes", :limit => 500
   end
+
+  add_index "song_instances", ["show_id"], :name => "index_on_show_id"
+  add_index "song_instances", ["song_id"], :name => "index_on_song_id"
 
   create_table "songs", :force => true do |t|
     t.string  "title"

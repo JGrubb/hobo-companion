@@ -1,0 +1,9 @@
+<h2>Songs#index</h2>
+
+<div id="songs">
+  <% @songs.each do |song| %>
+  <div class="song">
+    <%= link_to song.title, song %>
+  </div>
+  <% end %>
+</div>
