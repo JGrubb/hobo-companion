@@ -10,6 +10,14 @@
   <div class="container-narrow">
     <div class="masthead">
       <h1><%= link_to "the Hobo's Companion", root_path %></h1>
+      <%= debug current_user %>
+    </div>
+    <div id="messages">
+      <% flash.each do |key, value| %>
+        <div class='flash' id='<%= key %>'>
+          <%= value %>
+        </div>
+      <% end %>
     </div>
   <%= yield %>
   </div>
