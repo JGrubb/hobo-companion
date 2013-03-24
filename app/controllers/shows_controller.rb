@@ -6,7 +6,7 @@ class ShowsController < ApplicationController
   def show
     @show = Show.find(params[:id])
     @venue = Venue.find(@show.venue_id)
-    @possible_sets = ['1', '2', '3', 'Encore']
+    @possible_sets = SongInstance.select(:set_number).uniq
     @songs = SongInstance.where(:show_id => @show.id).joins(:song).order('position asc')
   end
 
