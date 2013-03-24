@@ -1,5 +1,5 @@
-<h2>Shows#index</h2>
-
+<h2>All shows</h2>
+<p><em>Total shows from <%= @shows.last.date.strftime '%b %d, %Y'%> to <%= @shows.first.date.strftime '%b %d, %Y'%></em> - <strong><%= @shows.count %></strong></p>
 <div>
 <% @shows.each do |show| %>
 <div>
