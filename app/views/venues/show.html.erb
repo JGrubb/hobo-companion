@@ -1,6 +1,6 @@
-<h2><%= @venue.name %></h2>
-
-<div>
+<h2><%= @venue.name %><small> - <%= "#{@venue.city}, #{@venue.state}" %></small></h2>
+<div id="dates-played">
+  <h5>Dates played</h5>
   <% @shows.each do |show| %>
   <div class="show">
     <%= link_to show.date, show %>

@@ -1,5 +1,7 @@
 class VenuesController < ApplicationController
   def index
+    @venues = Venue.where(:country => 'USA').order(:state, :city)
+    @states = Venue.select(:state).uniq.order(:state)
   end
 
   def new
