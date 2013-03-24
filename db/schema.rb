@@ -31,7 +31,29 @@ ActiveRecord::Schema.define(:version => 20130324113109) do
   add_index "song_instances", ["show_id"], :name => "index_on_show_id"
   add_index "song_instances", ["song_id"], :name => "index_on_song_id"
 
+  create_table "song_instances_old", :id => false, :force => true do |t|
+    t.integer "ShowID",                                       :null => false
+    t.integer "SongNumber",                                   :null => false
+    t.string  "Set",        :limit => 10,                     :null => false
+    t.string  "SongID",     :limit => 15,                     :null => false
+    t.boolean "Transition",                :default => false
+    t.string  "SongNotes",  :limit => 500
+  end
+
+  add_index "song_instances_old", ["ShowID"], :name => "fkShowID_idx"
+  add_index "song_instances_old", ["SongID"], :name => "fkSongID_idx"
+
+  create_table "song_int_copy", :id => false, :force => true do |t|
+    t.integer "ShowID",                    :null => false
+    t.integer "SongNumber"
+    t.string  "set_number", :limit => 10
+    t.string  "SongID",     :limit => 15
+    t.boolean "Transition"
+    t.string  "SongNotes",  :limit => 500
+  end
+
   create_table "songs", :force => true do |t|
+    t.string  "SongID",  :limit => 15
     t.string  "title"
     t.string  "author"
     t.boolean "is_song"
