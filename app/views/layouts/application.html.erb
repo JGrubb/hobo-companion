@@ -5,12 +5,27 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-  <div class="container-narrow">
-    <div class="masthead">
-      <h1><%= link_to "the Hobo's Companion", root_path %></h1>
-      <%= debug current_user %>
+  <div class="container">
+    <div class="navbar">
+      <div class="navbar-inner">
+        <%= link_to "the Hobo's Companion", root_path, :class => "brand" %>
+        <ul class="nav">
+          <%= content_tag :li, link_to("Songs", songs_path) %>
+          <%= content_tag :li, link_to("Shows", shows_path) %>
+          <%= content_tag :li, link_to("Venues", venues_path) %>
+        </ul>
+        <ul class="nav pull-right">
+          <% if current_user %>
+            <%= content_tag :li, link_to("Log out", destroy_user_session_path, :method => :delete) %>
+          <% else %>
+            <%= content_tag :li, link_to("Sign up", new_user_registration_path) %>
+            <%= content_tag :li, link_to("Sign in", new_user_session_path) %>
+          <% end %>
+        </ul>
+      </div>
     </div>
     <div id="messages">
       <% flash.each do |key, value| %>
