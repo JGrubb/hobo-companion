@@ -3,7 +3,7 @@
 
 <div>
   <% @songs.each do |song| %>
-    <div><%= song.position %> <%= link_to song.song.title, song.song %> <%= song.song_notes%></div>
+    <div><%= song.position %> <%= link_to song.song.title, song.song %> <%= "->" if song.transition %> <%= song.song_notes%></div>
   <% end %>
 </div>
 
