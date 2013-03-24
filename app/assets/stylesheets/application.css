@@ -11,8 +11,3 @@
  *= require_self
  *= require_tree .
  */
-
-.container-narrow {
-  max-width: 700px;
-  margin: 0 auto;
-}
