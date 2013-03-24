@@ -18,3 +18,4 @@
 /config/unicorn.rb
 /public/assets
 public/googleafcbed191cb2a5ef.html
+/config/email.rb
