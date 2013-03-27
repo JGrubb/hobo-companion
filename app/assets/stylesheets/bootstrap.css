@@ -77,10 +77,6 @@ a:focus {
   outline-offset: -2px;
 }
 
-a:visited {
-  color: ;
-}
-
 a:hover,
 a:active {
   outline: 0;
