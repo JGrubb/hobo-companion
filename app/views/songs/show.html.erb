@@ -4,8 +4,17 @@
 <p>Last played: <%= link_to(@versions.last.show.date.strftime('%B %d, %Y'), @versions.last.show) %></p>
 <p>Times played: <strong><%= @versions.count %></strong></p>
 
+<div id="lyrics">
+  <h4>Lyrics/Notes</h4>
+  <% if @song.notes %>
+    <%= simple_format @song.notes %>
+  <% else %>
+    <p>There are none!  <%= link_to "Please add some!", edit_song_path(@song) %></p>
+  <% end %>
+</div>
+
 <div id="shows-played">
-  <h3>Shows played</h3>
+  <h4>Shows played</h4>
   <% @versions.each do |v| %>
     <div><%= v.show.date %> - <%= link_to v.show.venue.name, v.show %></div>
   <% end %>

@@ -7,7 +7,8 @@ gem 'rails', '3.2.13'
 
 gem 'mysql2'
 gem 'devise'
-
+gem 'simple_form'
+gem 'awesome_nested_fields'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -30,7 +31,7 @@ gem 'jquery-rails'
 # gem 'jbuilder'
 
 # Use unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
 
 # Deploy with Capistrano
 # gem 'capistrano'

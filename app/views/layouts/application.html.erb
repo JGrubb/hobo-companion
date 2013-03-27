@@ -17,31 +17,30 @@
         <span class="icon-bar"></span>
       </a>
       <%= link_to "the Hobo's Companion", root_path, :class => "brand" %>
-      <div class="nav-collapse collapse">
-        <ul class="nav">
-          <%= content_tag :li, link_to("Songs", songs_path) %>
-          <%= content_tag :li, link_to("Shows", shows_path) %>
-          <%= content_tag :li, link_to("Venues", venues_path) %>
-        </ul>
-        <ul class="nav pull-right">
-        <% if current_user %>
-          <%= content_tag :li, link_to("Log out", destroy_user_session_path, :method => :delete) %>
-        <% else %>
-          <%= content_tag :li, link_to("Sign up", new_user_registration_path) %>
-          <%= content_tag :li, link_to("Sign in", new_user_session_path) %>
-        <% end %>
-        </ul>
+        <div class="nav-collapse collapse">
+          <ul class="nav">
+            <%= content_tag :li, link_to("Songs", songs_path) %>
+            <%= content_tag :li, link_to("Shows", shows_path) %>
+            <%= content_tag :li, link_to("Venues", venues_path) %>
+          </ul>
+          <ul class="nav pull-right">
+          <% if current_user %>
+            <%= content_tag :li, link_to("Log out", destroy_user_session_path, :method => :delete) %>
+          <% else %>
+            <%= content_tag :li, link_to("Sign up", new_user_registration_path) %>
+            <%= content_tag :li, link_to("Sign in", new_user_session_path) %>
+          <% end %>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
   <div class="container">
-    <div id="messages">
-      <% flash.each do |key, value| %>
-        <div class='flash' id='<%= key %>'>
-          <%= value %>
-        </div>
-      <% end %>
-    </div>
+    <% flash.each do |key, value| %>
+      <div class="alert alert-<%= key %>">
+        <%= value %>
+      </div>
+    <% end %>
   <%= yield %>
   </div>
 </body>
