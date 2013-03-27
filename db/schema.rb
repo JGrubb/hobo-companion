@@ -56,9 +56,9 @@ ActiveRecord::Schema.define(:version => 20130327013103) do
     t.string  "SongID",  :limit => 15
     t.string  "title"
     t.string  "author"
-    t.boolean "is_song", :default => true
+    t.boolean "is_song",               :default => true
     t.text    "notes"
-    t.boolean "deleted", :default => false
+    t.boolean "deleted",               :default => false
   end
 
   create_table "users", :force => true do |t|
