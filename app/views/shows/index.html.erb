@@ -1,4 +1,11 @@
-<h2>All shows</h2>
+<div class="hero-unit">
+  <h2>Hello, Railroad Earth fan!  Thanks for caring!</h2> 
+  <p>So, right now this database needs folks who can help add lyrics and other interesting info to <a href="/songs">the songs we've already got in the DB</a>.</p>
+  <p>After that, we're going to need some generous souls to help us add all the setlists that are missing from this database (<a href="http://railroadearth.net/forum/viewforum.php?f=16&sid=ddc0f081abb782fb79931b29d5002663">Papa Phil's list of lists</a> has an immaculate list of almost everything that is blatantly missing from this compilation so far), to verify that the setlists that are in here are accurate (against Rob Scalcione's <a href="http://setlist.com/">setlist.com</a> database), and then who knows what???</p>
+
+  <p>If you are interested in being a setlist editor, <%= link_to "please sign up", new_user_registration_path %>, then email me at therealjohnnygrubb at gmail dot com and I'll make you one.  That'll give you the juice to HELP!</p>
+  <%= link_to "sign me up!", new_user_registration_path, :class=> "btn btn-primary btn-large" %>
+</div>
 <p><em>Total shows from <%= @shows.last.date.strftime '%b %d, %Y'%> to <%= @shows.first.date.strftime '%b %d, %Y'%></em> - <strong><%= @shows.count %></strong></p>
 <div>
 <% @shows.each do |show| %>

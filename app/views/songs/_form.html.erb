@@ -1,0 +1,10 @@
+<%= simple_form_for(@song, :defaults => { :input_html => { :class => 'input-xlarge' } }, :html => { :class => 'form-horizontal' }) do |f| %>
+  
+  <%= f.input :title %>
+  <%= f.input :author %>
+  <%= f.input :is_song, :label => "Is this a song?" %>
+  <%= f.input :notes, :label => "Notes/Lyrics", :input_html => { :class => 'input-xxlarge' } %>
+  
+  <%= f.button :submit, :class => "btn btn-primary" %>
+  
+<% end %>

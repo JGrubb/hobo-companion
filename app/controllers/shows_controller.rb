@@ -1,4 +1,6 @@
 class ShowsController < ApplicationController
+  
+  
   def index
     @shows = Show.includes(:venue).order('date desc')
   end
