@@ -1,5 +1,7 @@
 RRE::Application.routes.draw do
 
+  get "users", :to => 'users#index'
+
   devise_for :users
 
   resources :songs

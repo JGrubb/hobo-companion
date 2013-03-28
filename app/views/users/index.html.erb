@@ -1,0 +1,15 @@
+<h3>Users</h3>
+<table class="table">
+  <tr>
+    <th>User</th>
+    <th>Editor?</th>
+    <th>Admin?</th>
+  </tr>
+  <% @users.each do |user| %>
+  <tr>
+    <td><%= user.email %></td>
+    <td><%= user.is_editor %></td>
+    <td><%= user.is_admin %></td>
+  </tr>
+  <% end %>
+</table>
