@@ -12,7 +12,13 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require cocoon
+//= require chosen-jquery
+//= require jquery.nested-fields
+//= require jquery.ui.autocomplete
+//= require jquery.ui.datepicker
 //= require_tree .
+
 var _gaq = _gaq || [];
 _gaq.push(['_setAccount', 'UA-8646459-8']);
 _gaq.push(['_trackPageview']);

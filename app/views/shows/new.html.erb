@@ -1,2 +1,24 @@
-<h1>Shows#new</h1>
-<p>Find me in app/views/shows/new.html.erb</p>
+<h2>Add a new show</h2>
+
+  <p class="alert">This is the section to create a new Venue.  You'll only need to do this is you don't find the venue you're looking for in the "Venue" input below the date.</p>
+  <% if @venue.errors.any? %>
+    <div id="error_explanation">
+      <ul>
+      <% @venue.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+<%= simple_form_for @venue,:defaults => { :input_html => { :class => 'input-large' } }, :html => { :class => 'form-horizontal' } do |f| %>
+  <%= f.input :name %>
+  <%= f.input :city %>
+  <%= f.input :state %>
+  <%= f.input :country, :as => :string %>
+  <%= f.button :submit %>
+<% end %>
+
+<%= render 'form' %>
+
+<%= link_to "back", shows_path %>

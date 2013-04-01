@@ -1,0 +1,32 @@
+<%= simple_form_for @show, :defaults => { :input_html => { :class => 'input-xlarge' } }, :html => { :class => 'form-vertical setlist-form' } do |f| %>
+  
+  <%= label_tag "Date" %>
+  <%= f.text_field :date, :class => 'datepicker' %>
+
+  <%= f.association :venue, :input_html => { :class => "chosen-select" } %>
+  
+  <div>
+    <table class="table">
+      <tr>
+        <th>Title</tdh>
+        <th>Transition?</th>
+        <th>Set</th>
+        <th></th>
+        <th>Song notes</th>
+        <th></th>
+      </tr>
+      <%= f.simple_fields_for :song_instances do |f| %>
+        <%= render 'song_instance_fields', :f => f %>
+      <% end %>
+      <tr></tr>
+    </table>
+    <%= link_to_add_association "Add song", f, :song_instances, 
+    :"data-association-insertion-node" => "table.table tr:last",
+    :"data-association-insertion-method" => "after", 
+    :partial => "song_instance_fields" %>
+  </div>
+  <%= f.input :show_notes, :as => :text, :input_html => { :class => "input-xxlarge", :rows => 5 } %>
+  
+  
+  <%= f.button :submit, :class => "btn btn-primary" %>
+<% end %>

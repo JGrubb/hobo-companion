@@ -8,7 +8,10 @@ gem 'rails', '3.2.13'
 gem 'mysql2'
 gem 'devise'
 gem 'simple_form'
+gem 'jquery-ui-rails', '~> 4.0.2'
 gem 'awesome_nested_fields'
+gem 'chosen-rails'
+gem 'cocoon'
 
 # Gems used only for assets and not required
 # in production environments by default.

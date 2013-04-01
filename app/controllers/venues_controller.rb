@@ -8,6 +8,13 @@ class VenuesController < ApplicationController
   end
 
   def create
+    @venue = Venue.new(params[:venue])
+    if @venue.save
+      flash[:notice] = "Nice job #{current_user.email}. You added #{@venue.name}"
+      redirect_to new_show_path
+    else
+      redirect_to new_show_path
+    end
   end
 
   def show
