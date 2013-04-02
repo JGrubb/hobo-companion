@@ -12,6 +12,7 @@ gem 'jquery-ui-rails', '~> 4.0.2'
 gem 'awesome_nested_fields'
 gem 'chosen-rails'
 gem 'cocoon'
+gem 'acts_as_list'
 
 # Gems used only for assets and not required
 # in production environments by default.

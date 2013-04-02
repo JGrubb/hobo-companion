@@ -25,6 +25,13 @@ class ShowsController < ApplicationController
 
   def create
     @show = Show.new(params[:show])
+    songs = params[:show][:song_instances_attributes]
+    songs.each do |song|
+      if (song[1][:song_id].empty? || song[1][:song_id].to_i == 0)
+        tune = Song.find_or_create_by_title(song[1][:song_id])
+        params[:show][:song_instances_attributes][song[0]][:song_id] = tune.id
+      end
+    end
     if @show.save
       redirect_to @show
     else
@@ -45,6 +52,13 @@ class ShowsController < ApplicationController
 
   def update
     @show = Show.find(params[:id])
+    songs = params[:show][:song_instances_attributes]
+    songs.each do |song|
+      if (song[1][:song_id].empty? || song[1][:song_id].to_i == 0)
+        tune = Song.find_or_create_by_title(song[1][:song_id])
+        params[:show][:song_instances_attributes][song[0]][:song_id] = tune.id
+      end
+    end
     respond_to do |format|
       if @show.update_attributes(params[:show])
         format.html { redirect_to @show, notice:  "#{@show.date} was successfully updated." }

@@ -17,6 +17,7 @@
 //= require jquery.nested-fields
 //= require jquery.ui.autocomplete
 //= require jquery.ui.datepicker
+//= require jquery.ui.sortable
 //= require_tree .
 
 var _gaq = _gaq || [];

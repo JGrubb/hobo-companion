@@ -6,27 +6,31 @@
   <%= f.association :venue, :input_html => { :class => "chosen-select" } %>
   
   <div>
-    <table class="table">
-      <tr>
-        <th>Title</tdh>
-        <th>Transition?</th>
-        <th>Set</th>
-        <th></th>
-        <th>Song notes</th>
-        <th></th>
-      </tr>
-      <%= f.simple_fields_for :song_instances do |f| %>
-        <%= render 'song_instance_fields', :f => f %>
-      <% end %>
-      <tr></tr>
+    <table class="table" id="setlist">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Title</tdh>
+          <th>--></th>
+          <th>Set</th>
+          <th></th>
+          <th>Song notes</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <%= f.simple_fields_for :song_instances do |f| %>
+          <%= render 'song_instance_fields', :f => f %>
+        <% end %>
+      </tbody>
     </table>
     <%= link_to_add_association "Add song", f, :song_instances, 
     :"data-association-insertion-node" => "table.table tr:last",
     :"data-association-insertion-method" => "after", 
-    :partial => "song_instance_fields" %>
+    :partial => "song_instance_fields", :class => "btn btn-info btn-small" %>
   </div>
   <%= f.input :show_notes, :as => :text, :input_html => { :class => "input-xxlarge", :rows => 5 } %>
   
   
-  <%= f.button :submit, :class => "btn btn-primary" %>
+  <%= f.button :submit, :class => "btn btn-success" %>
 <% end %>

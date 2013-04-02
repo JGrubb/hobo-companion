@@ -2,10 +2,19 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
-jQuery(document).ready ($) ->
+jQuery ->
   $('.datepicker').datepicker
     dateFormat: "yy-mm-dd"
-  $('.chosen-select').chosen()
-  $('body').bind 'cocoon:after-insert', (e, insertedItem) ->
+  $('.chosen-select').chosen
+    create_option: true
+  $('table#setlist tbody').sortable
+    axis: 'y'
+    handle: '.handle'
+    update: (e) ->
+      $('#setlist tbody tr').each (index, val) ->
+        console.log(this)
+        $('input.order', this).val(index + 1)
+  $('table#setlist').bind 'cocoon:after-insert', (e, insertedItem) ->
     $('.show_song_instances_song select', insertedItem).chosen()
-    $('.show_song_instances_position input.hidden').val($('tr.tune').length)
+  $('table#setlist').bind 'cocoon:before-insert', (e, insertedItem) ->
+    $('input.order', insertedItem).val($('tr.tune').length)
