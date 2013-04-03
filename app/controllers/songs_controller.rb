@@ -12,10 +12,16 @@ class SongsController < ApplicationController
 
   def new
     @song = Song.new
-    
+    User.bump_karma(50, current_user)
+    @song.updated_by = current_user.id
     respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @song }
+      if @song.save
+        format.html { redirect_to @song, notice:  "#{@song.title} was successfully updated." }
+        format.json { render json: @song }
+      else
+        format.html { render action: "new" }
+        format.json { render json: @song.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -28,7 +34,10 @@ class SongsController < ApplicationController
 
   def update
     @song = Song.find(params[:id])
-    @song.updated_by = current_user.id
+    unless @song.updated_by == current_user.id
+      User.bump_karma(50, current_user)
+      @song.updated_by = current_user.id
+    end
     respond_to do |format|
       if @song.update_attributes(params[:song])
         format.html { redirect_to @song, notice:  "#{@song.title} was successfully updated." }
