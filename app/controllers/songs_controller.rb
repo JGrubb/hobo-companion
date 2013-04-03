@@ -28,6 +28,7 @@ class SongsController < ApplicationController
 
   def update
     @song = Song.find(params[:id])
+    @song.updated_by = current_user.id
     respond_to do |format|
       if @song.update_attributes(params[:song])
         format.html { redirect_to @song, notice:  "#{@song.title} was successfully updated." }

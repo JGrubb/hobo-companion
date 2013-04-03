@@ -4,12 +4,19 @@
     <th>User</th>
     <th>Editor?</th>
     <th>Admin?</th>
+    <th></th>
   </tr>
   <% @users.each do |user| %>
   <tr>
     <td><%= user.email %></td>
     <td><%= user.is_editor %></td>
     <td><%= user.is_admin %></td>
+    <td>
+      <% if user.is_editor %>
+      <% else %>
+        <%= link_to "make editor", make_editor_path(:user_id => user.id), :method => :post, :class => "btn btn-small btn-info" %>
+      <% end %>
+    </td>
   </tr>
   <% end %>
 </table>

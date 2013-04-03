@@ -11,13 +11,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130403010229) do
+ActiveRecord::Schema.define(:version => 20130403020407) do
 
   create_table "shows", :force => true do |t|
     t.date    "date"
     t.integer "venue_id"
     t.string  "show_notes", :limit => 1000
-    t.boolean "verified"
+    t.boolean "verified",                   :default => false
+    t.integer "updated_by"
   end
 
   add_index "shows", ["venue_id"], :name => "index_shows_on_venue_id"
@@ -36,12 +37,13 @@ ActiveRecord::Schema.define(:version => 20130403010229) do
   add_index "song_instances", ["song_id"], :name => "index_on_song_id"
 
   create_table "songs", :force => true do |t|
-    t.string  "SongID",  :limit => 15
+    t.string  "SongID",     :limit => 15
     t.string  "title"
     t.string  "author"
-    t.boolean "is_song",               :default => true
+    t.boolean "is_song",                  :default => true
     t.text    "notes"
-    t.boolean "deleted",               :default => false
+    t.boolean "deleted",                  :default => false
+    t.integer "updated_by"
   end
 
   create_table "users", :force => true do |t|
@@ -63,6 +65,7 @@ ActiveRecord::Schema.define(:version => 20130403010229) do
     t.datetime "updated_at",                             :null => false
     t.boolean  "is_admin"
     t.boolean  "is_editor"
+    t.integer  "karma",                  :default => 10
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
@@ -70,10 +73,11 @@ ActiveRecord::Schema.define(:version => 20130403010229) do
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
   create_table "venues", :force => true do |t|
-    t.string "name"
-    t.string "city"
-    t.string "state"
-    t.string "country", :default => "USA"
+    t.string  "name"
+    t.string  "city"
+    t.string  "state"
+    t.string  "country",    :default => "USA"
+    t.integer "updated_by"
   end
 
 end

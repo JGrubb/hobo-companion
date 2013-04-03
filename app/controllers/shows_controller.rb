@@ -32,6 +32,8 @@ class ShowsController < ApplicationController
         params[:show][:song_instances_attributes][song[0]][:song_id] = tune.id
       end
     end
+    User.bump_karma(100, current_user)
+    @show.updated_by = current_user.id
     if @show.save
       redirect_to @show
     else
@@ -58,6 +60,10 @@ class ShowsController < ApplicationController
         tune = Song.find_or_create_by_title(song[1][:song_id])
         params[:show][:song_instances_attributes][song[0]][:song_id] = tune.id
       end
+    end
+    unless @show.updated_by == current_user.id
+      @show.updated_by = current_user.id
+      User.bump_karma(50, current_user)
     end
     respond_to do |format|
       if @show.update_attributes(params[:show])

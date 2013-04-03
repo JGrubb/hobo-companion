@@ -24,8 +24,24 @@
             <%= content_tag :li, link_to("Venues", venues_path) %>
           </ul>
           <ul class="nav pull-right">
+          <% if current_user && current_user.is_editor %>
+            <%= content_tag :li, :class => "dropdown" do %>
+              <%= link_to("Editors", '', :class => "dropdown-toggle", :data => { :toggle => "dropdown" }) %>
+              <%= content_tag :ul, :class => "dropdown-menu" do %>
+                <%= content_tag :li, link_to("Add a setlist!", new_show_path) %>
+              <% end %>
+            <% end %>
+          <% end %>
+          <% if current_user && current_user.is_admin %>
+            <%= content_tag :li, :class => "dropdown" do %>
+              <%= link_to("Admin", '', :class => "dropdown-toggle", :data => { :toggle => "dropdown" }) %>
+              <%= content_tag :ul, :class => "dropdown-menu" do %>
+                <%= content_tag :li, link_to("Users", users_path) %>
+              <% end %>
+            <% end %>
+          <% end %>
           <% if current_user %>
-            <%= content_tag :li, link_to("Log out", destroy_user_session_path, :method => :delete) %>
+            <%= content_tag :li, link_to("Log out (#{current_user.karma})", destroy_user_session_path, :method => :delete) %>
           <% else %>
             <%= content_tag :li, link_to("Sign up", new_user_registration_path) %>
             <%= content_tag :li, link_to("Sign in", new_user_session_path) %>
