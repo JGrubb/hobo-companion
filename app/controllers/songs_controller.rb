@@ -65,6 +65,7 @@ class SongsController < ApplicationController
   
   def deleted_songs
     @songs = Song.where(:deleted => true)
+    User.bump_karma(10, current_user)
     render :index
   end
 end
