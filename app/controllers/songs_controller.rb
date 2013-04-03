@@ -52,8 +52,19 @@ class SongsController < ApplicationController
 
   def destroy
     @song = Song.find(params[:id])
+    @song.destroy
+    redirect_to songs_path
+  end
+  
+  def soft_delete
+    @song = Song.find(params[:song_id])
     @song.deleted = true
     @song.save
     redirect_to songs_path
+  end
+  
+  def deleted_songs
+    @songs = Song.where(:deleted => true)
+    render :index
   end
 end

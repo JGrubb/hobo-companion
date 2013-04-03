@@ -1,9 +1,18 @@
-<h2>Songs#index</h2>
-
-<div id="songs">
-  <% @songs.each do |song| %>
-  <div class="song">
-    <%= link_to song.title, song %>
+<h2>All songs</h2>
+<div class="row-fluid">
+  <div id="songs" class="span6">
+    <% @songs.each do |song| %>
+    <div class="song">
+      <%= link_to song.title, song %>
+    </div>
+    <% end %>
+  </div>
+  <% if current_user %>
+  <div class="span6 well">
+    <p>So this is some low hanging fruit that could use some help.  There are a lot of songs in this list that are duplicates, and some that are misspelled, and some that aren't even songs.</p>
+    <p>Ones that are obviously out of place, please click on them.  If it's one of these at the top of the list that's obviously just between-song banter or something, you can edit these, and uncheck the "is this a song?" checkbox.  If it's one that's obviously cruft, just delete it.</p>
+    <p>A bunch of these are just misspellings of actual songs, or have an odd character that makes them register as a different song (<em>like most of these to the immediate left</em>).  IF(!) you see one of these, please click through on the show that song is attached to and edit the setlist to have the correct song in it's place.  THEN, you can delete it, and we're one tiny step closer to having the cleanest setlist database on the internet.</p>
+    <h4>Seriously, thank you..</h4>
   </div>
   <% end %>
 </div>

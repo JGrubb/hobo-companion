@@ -5,6 +5,8 @@ RRE::Application.routes.draw do
 
   devise_for :users
 
+  post "songs/soft_delete", :to => "songs#soft_delete", :as => :soft_delete
+  get "songs/deleted_list", :to => "songs#deleted_songs", :as => :deleted_songs
   resources :songs
   
   resources :venues
