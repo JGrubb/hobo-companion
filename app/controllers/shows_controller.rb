@@ -2,6 +2,7 @@ class ShowsController < ApplicationController
   
   def index
     @shows = Show.includes(:venue).order('date desc')
+    @description = "The definitive site for Railroad Earth community, RRE lyrics, show and lsetlist information, an who knows what else to come..."
   end
 
   def show
@@ -9,6 +10,8 @@ class ShowsController < ApplicationController
     @venue = Venue.find(@show.venue_id)
     @possible_sets = SongInstance.select(:set_number).uniq
     @songs = SongInstance.where(:show_id => @show.id).joins(:song).order('position asc')
+    @title = "Setlist for #{@show.date}"
+    @description = "Show and setlist info for Railroad Earth #{@show.date}"
   end
 
   def new
