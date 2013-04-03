@@ -29,6 +29,7 @@
               <%= link_to("Editors", '', :class => "dropdown-toggle", :data => { :toggle => "dropdown" }) %>
               <%= content_tag :ul, :class => "dropdown-menu" do %>
                 <%= content_tag :li, link_to("Add a setlist!", new_show_path) %>
+                <%= content_tag :li, link_to("Edit a song!", songs_path) %>
               <% end %>
             <% end %>
           <% end %>
