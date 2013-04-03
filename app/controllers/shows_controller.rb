@@ -11,7 +11,7 @@ class ShowsController < ApplicationController
     @possible_sets = SongInstance.select(:set_number).uniq
     @songs = SongInstance.where(:show_id => @show.id).joins(:song).order('position asc')
     @title = "Setlist for #{@show.date}"
-    @description = "Show and setlist info for Railroad Earth #{@show.date}"
+    @description = "Show and setlist info for Railroad Earth on #{@show.date} at #{@venue.name} - #{@venue.city}, #{@venue.state}"
   end
 
   def new
