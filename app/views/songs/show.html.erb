@@ -11,7 +11,7 @@
   <% if @song.notes %>
     <%= simple_format @song.notes %>
   <% else %>
-    <p>There are none!  <%= link_to "Please add some!", edit_song_path(@song) %></p>
+    <p>There are none!  <%= link_to "Please add some!", edit_song_path(@song), :class => "btn btn-mini btn-success" %></p>
   <% end %>
 </div>
 

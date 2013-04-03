@@ -2,7 +2,7 @@ class SongsController < ApplicationController
   before_filter :require_editor, :except => [:index, :show]
   
   def index
-    @songs = Song.order(:title).where(:is_song => true)
+    @songs = Song.order(:title).where(:is_song => true).where(:deleted => false)
   end
 
   def show
@@ -12,6 +12,10 @@ class SongsController < ApplicationController
 
   def new
     @song = Song.new
+  end
+
+  def create
+    @song.new(params[:song])
     User.bump_karma(50, current_user)
     @song.updated_by = current_user.id
     respond_to do |format|
@@ -25,9 +29,6 @@ class SongsController < ApplicationController
     end
   end
 
-  def create
-  end
-
   def edit
     @song = Song.find(params[:id])
   end
@@ -35,7 +36,7 @@ class SongsController < ApplicationController
   def update
     @song = Song.find(params[:id])
     unless @song.updated_by == current_user.id
-      User.bump_karma(50, current_user)
+      User.bump_karma(25, current_user)
       @song.updated_by = current_user.id
     end
     respond_to do |format|
@@ -51,8 +52,8 @@ class SongsController < ApplicationController
 
   def destroy
     @song = Song.find(params[:id])
-    if @song.destroy
-      redirect_to songs_path
-    end
+    @song.deleted = true
+    @song.save
+    redirect_to songs_path
   end
 end

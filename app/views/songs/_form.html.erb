@@ -6,6 +6,6 @@
   <%= f.input :notes, :label => "Notes/Lyrics", :input_html => { :class => 'input-xxlarge' } %>
   
   <%= f.button :submit, :class => "btn btn-primary" %>
-  <%= link_to "Delete song", @song, :method => :delete, :class => "btn btn-small btn-danger" %>
+  <%= link_to "Delete song", @song, :method => :delete, :class => "btn btn-small btn-danger", :data => { :confirm => "Are you SURE you want to delete this song?" } %>
   
 <% end %>

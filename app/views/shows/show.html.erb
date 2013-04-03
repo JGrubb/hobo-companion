@@ -17,5 +17,5 @@
   <p><%= simple_format @show.show_notes %></p>
 </div>
 <% if current_user.is_editor? %>
-  <%= link_to "edit show", edit_show_path(@show), :class => "btn btn-small" %>
+  <%= link_to "edit show", edit_show_path(@show), :class => "btn btn-small btn-success" %>
 <% end %>

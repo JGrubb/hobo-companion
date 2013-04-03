@@ -63,7 +63,7 @@ class ShowsController < ApplicationController
     end
     unless @show.updated_by == current_user.id
       @show.updated_by = current_user.id
-      User.bump_karma(50, current_user)
+      User.bump_karma(25, current_user)
     end
     respond_to do |format|
       if @show.update_attributes(params[:show])
