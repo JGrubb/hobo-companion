@@ -15,6 +15,7 @@ jQuery ->
         console.log(this)
         $('input.order', this).val(index + 1)
   $('table#setlist').bind 'cocoon:after-insert', (e, insertedItem) ->
-    $('.show_song_instances_song select', insertedItem).chosen()
+    $('.show_song_instances_song select', insertedItem).chosen
+      create_option: true
   $('table#setlist').bind 'cocoon:before-insert', (e, insertedItem) ->
     $('input.order', insertedItem).val($('tr.tune').length)

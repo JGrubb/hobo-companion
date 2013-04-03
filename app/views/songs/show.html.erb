@@ -1,8 +1,10 @@
 <h2><%= @song.title %></h2>
 
-<p>First played: <%= link_to(@versions.first.show.date.strftime('%B %d, %Y'), @versions.first.show) %></p>
-<p>Last played: <%= link_to(@versions.last.show.date.strftime('%B %d, %Y'), @versions.last.show) %></p>
-<p>Times played: <strong><%= @versions.count %></strong></p>
+<% if @versions.count > 1 %>
+  <p>First played: <%= link_to(@versions.first.show.date.strftime('%B %d, %Y'), @versions.first.show) %></p>
+  <p>Last played: <%= link_to(@versions.last.show.date.strftime('%B %d, %Y'), @versions.last.show) %></p>
+  <p>Times played: <strong><%= @versions.count %></strong></p>
+<% end %>
 
 <div id="lyrics">
   <h4>Lyrics/Notes</h4>

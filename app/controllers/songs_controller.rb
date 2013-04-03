@@ -7,7 +7,7 @@ class SongsController < ApplicationController
 
   def show
     @song = Song.find(params[:id])
-    @versions = SongInstance.where(:song_id => @song.id).joins(:show).order(:date).includes(:show)
+    @versions = SongInstance.where(:song_id => @song.id).joins(:show).order(:date)
   end
 
   def new
@@ -40,5 +40,9 @@ class SongsController < ApplicationController
   end
 
   def destroy
+    @song = Song.find(params[:id])
+    if @song.destroy
+      redirect_to songs_path
+    end
   end
 end

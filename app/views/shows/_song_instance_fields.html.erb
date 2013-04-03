@@ -3,7 +3,7 @@
   <td><%= f.association :song, :label => false, :input_html => { :class => "chosen-select" } %></td>
   <td><%= f.input :transition, :label => false %></td>
   <td><%= f.input :set_number, :label => false, :collection => @sets,
-    :input_html =>  { :class => "input-small" }%></td>
+    :input_html =>  { :class => "input-small set" }%></td>
   <td><%= f.input :position, :as => :hidden, :input_html => { :class => "order" } %></td>
   <td><%= f.input :song_notes, :label => false, :input_html => { :class => "input-small" } %></td>
   <td><%= link_to_remove_association "remove song", f %></td>
