@@ -6,7 +6,7 @@ class Show < ActiveRecord::Base
   has_many :song_instances, :dependent => :delete_all, :order => :position
   has_many :songs, :through => :song_instances
 
-  validates :date, :presence => true
+  validates :date, :venue_id, :presence => true
   
   accepts_nested_attributes_for :song_instances, :reject_if => lambda { |a| a[:song_id].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :venue

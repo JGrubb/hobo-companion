@@ -5,8 +5,13 @@
 jQuery ->
   $('.datepicker').datepicker
     dateFormat: "yy-mm-dd"
+    changeMonth: true
+    changeYear: true
+    maxDate: +0
   $('.chosen-select').chosen
     create_option: true
+  $('#show_venue_id').chosen
+    create_option: false
   $('table#setlist tbody').sortable
     axis: 'y'
     handle: '.handle'

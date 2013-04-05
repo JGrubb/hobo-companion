@@ -11,39 +11,46 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130403020407) do
+ActiveRecord::Schema.define(:version => 20130405114541) do
 
   create_table "shows", :force => true do |t|
-    t.date    "date"
-    t.integer "venue_id"
-    t.string  "show_notes", :limit => 1000
-    t.boolean "verified",                   :default => false
-    t.integer "updated_by"
+    t.date     "date"
+    t.integer  "venue_id"
+    t.string   "show_notes",   :limit => 1000
+    t.boolean  "verified",                     :default => false
+    t.integer  "updated_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.text     "archive_info"
   end
 
   add_index "shows", ["venue_id"], :name => "index_shows_on_venue_id"
   add_index "shows", ["verified"], :name => "index_shows_on_verified"
 
   create_table "song_instances", :force => true do |t|
-    t.integer "show_id"
-    t.integer "position"
-    t.string  "set_number", :limit => 16
-    t.integer "song_id"
-    t.boolean "transition"
-    t.string  "song_notes", :limit => 500
+    t.integer  "show_id"
+    t.integer  "position"
+    t.string   "set_number", :limit => 16
+    t.integer  "song_id"
+    t.boolean  "transition"
+    t.string   "song_notes", :limit => 500
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "song_instances", ["show_id"], :name => "index_on_show_id"
   add_index "song_instances", ["song_id"], :name => "index_on_song_id"
 
   create_table "songs", :force => true do |t|
-    t.string  "SongID",     :limit => 15
-    t.string  "title"
-    t.string  "author"
-    t.boolean "is_song",                  :default => true
-    t.text    "notes"
-    t.boolean "deleted",                  :default => false
-    t.integer "updated_by"
+    t.string   "SongID",     :limit => 15
+    t.string   "title"
+    t.string   "author"
+    t.boolean  "is_song",                  :default => true
+    t.text     "notes"
+    t.boolean  "deleted",                  :default => false
+    t.integer  "updated_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|
@@ -73,11 +80,13 @@ ActiveRecord::Schema.define(:version => 20130403020407) do
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
   create_table "venues", :force => true do |t|
-    t.string  "name"
-    t.string  "city"
-    t.string  "state"
-    t.string  "country",    :default => "USA"
-    t.integer "updated_by"
+    t.string   "name"
+    t.string   "city"
+    t.string   "state"
+    t.string   "country",    :default => "USA"
+    t.integer  "updated_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

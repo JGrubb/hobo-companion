@@ -1,24 +1,17 @@
-<h2>Add a new show</h2>
-
-  <p class="alert">This is the section to create a new Venue.  You'll only need to do this is you don't find the venue you're looking for in the "Venue" input below the date.</p>
-  <% if @venue.errors.any? %>
-    <div id="error_explanation">
-      <ul>
-      <% @venue.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
+<div class="row-fluid">
+  <h2>Add a new show</h2>
+  <div class="span6 pull-right well">
+    <h4>Add new venue</h4>
+  <%= simple_form_for @venue,:defaults => { :input_html => { :class => 'input-large' } }, :html => { :class => 'form-horizontal' } do |f| %>
+    <%= f.input :name %>
+    <%= f.input :city %>
+    <%= f.input :state %>
+    <%= f.input :country, :as => :string %>
+    <%= f.button :submit %>
   <% end %>
+  </div>
 
-<%= simple_form_for @venue,:defaults => { :input_html => { :class => 'input-large' } }, :html => { :class => 'form-horizontal' } do |f| %>
-  <%= f.input :name %>
-  <%= f.input :city %>
-  <%= f.input :state %>
-  <%= f.input :country, :as => :string %>
-  <%= f.button :submit %>
-<% end %>
+  <%= render 'form' %>
 
-<%= render 'form' %>
-
-<%= link_to "back", shows_path %>
+  <%= link_to "back", shows_path %>
+</div>
