@@ -10,4 +10,6 @@ class Show < ActiveRecord::Base
   
   accepts_nested_attributes_for :song_instances, :reject_if => lambda { |a| a[:song_id].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :venue
+  
+  after_save { |show| ArchiveWorker.perform_async(show.id) }
 end

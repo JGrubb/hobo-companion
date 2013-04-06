@@ -13,6 +13,8 @@ gem 'awesome_nested_fields'
 gem 'chosen-rails'
 gem 'cocoon'
 gem 'acts_as_list'
+gem 'sidekiq'
+
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -24,6 +26,10 @@ group :assets do
   # gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
+end
+
+group :development do
+  gem 'rack-mini-profiler'
 end
 
 gem 'jquery-rails'

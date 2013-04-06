@@ -18,7 +18,7 @@ class SongsController < ApplicationController
 
   def create
     @song.new(params[:song])
-    User.bump_karma(50, current_user)
+    karma_check(@song, current_user, 50)
     @song.updated_by = current_user.id
     respond_to do |format|
       if @song.save
@@ -37,10 +37,7 @@ class SongsController < ApplicationController
 
   def update
     @song = Song.find(params[:id])
-    unless @song.updated_by == current_user.id
-      User.bump_karma(25, current_user)
-      @song.updated_by = current_user.id
-    end
+    karma_check(@song, current_user, 25)
     respond_to do |format|
       if @song.update_attributes(params[:song])
         format.html { redirect_to @song, notice:  "#{@song.title} was successfully updated." }
