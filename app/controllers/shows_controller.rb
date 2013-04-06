@@ -57,7 +57,7 @@ class ShowsController < ApplicationController
     karma_check(@show, current_user, 25)
     respond_to do |format|
       if @show.update_attributes(params[:show])
-        #ArchiveWorker.perform_async(@show.id)
+        ArchiveWorker.perform_async(@show.id)
         format.html { redirect_to @show, info:  "#{@show.date} was successfully updated." }
         format.json { head :no_content }
       else
