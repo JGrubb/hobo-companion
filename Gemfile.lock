@@ -35,6 +35,8 @@ GEM
       rails (>= 3.0.0)
     bcrypt-ruby (3.0.1)
     builder (3.0.4)
+    bullet (4.5.0)
+      uniform_notifier
     celluloid (0.12.4)
       facter (>= 1.6.12)
       timers (>= 1.0.0)
@@ -144,6 +146,7 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    uniform_notifier (1.2.0)
     warden (1.2.1)
       rack (>= 1.0)
 
@@ -153,6 +156,7 @@ PLATFORMS
 DEPENDENCIES
   acts_as_list
   awesome_nested_fields
+  bullet
   chosen-rails
   cocoon
   coffee-rails (~> 3.2.1)
