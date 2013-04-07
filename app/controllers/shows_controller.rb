@@ -11,7 +11,7 @@ class ShowsController < ApplicationController
     @show = Show.find(params[:id])
     @venue = Venue.find(@show.venue_id)
     @possible_sets = SongInstance.select(:set_number).uniq
-    @songs = SongInstance.where(:show_id => @show.id).joins(:song).order('position asc')
+    @songs = SongInstance.where(:show_id => @show.id).includes(:song).order('position asc')
     @title = "Setlist for #{@show.date}"
     @description = "Show and setlist info for Railroad Earth on #{@show.date} at #{@venue.name} - #{@venue.city}, #{@venue.state}"
     if @show.archive_info
