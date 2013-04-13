@@ -9,7 +9,7 @@ class SongsController < ApplicationController
     @song = Song.find(params[:id])
     @title = @song.title
     @description = "Info and lyrics for #{@song.title}, Railroad Earth."
-    @versions = SongInstance.where(:song_id => @song.id).joins(:show).order(:date)
+    @versions = SongInstance.where(:song_id => @song.id).includes(:show)
   end
 
   def new
