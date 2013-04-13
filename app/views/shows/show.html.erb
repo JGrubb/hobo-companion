@@ -1,8 +1,8 @@
-<div class="row-fluid">
+<div class="row">
   <h2><%= @show.date.strftime '%B %d, %Y' %></h2>
   <h3><%= link_to "#{@venue.name} - #{@venue.city}, #{@venue.state}", @venue %></h3>
 
-  <div id="setlist" class="span6">
+  <div id="setlist" class="span4">
     <% @possible_sets.each do |set| %>
       <% unless @songs.select { |s| s.set_number == set.set_number }.empty? %>
         <h5><%= x = set.set_number.to_i > 0 ? "Set #{set.set_number}" : "#{set.set_number}" %></h5>
@@ -17,25 +17,17 @@
     <% end %>
   </div>
   
-  <div id="show-notes" class="well span5">
-    <h4>Show notes</h4>
-    <p><%= simple_format @show.show_notes %></p>
+  <div id="show-notes" class="well span7">
     <div>
       <% if @archive_info %>
-        <h4>Archive recordings</h4>
-        <% @archive_info["docs"].each do |show| %>
-        <p><%= content_tag :strong, link_to("http://archive.org/details/#{show['identifier']}", "http://archive.org/details/#{show['identifier']}", :target => "_new") %><br />
-        <em>Average rating: <%= show["avg_rating"]%></em></p>
-        <% end %>
+        <%= render 'archive_recordings' %>
       <% end %>
+      <div id="recording"></div>
     </div>
+    <h4>Show notes</h4>
+    <p><%= simple_format @show.show_notes %></p>
     
-    <% if current_user && current_user.is_editor? %>
-      <%= link_to "edit show", edit_show_path(@show), :class => "btn btn-small btn-success" %>
-    <% end %>  
-    <% if is_admin? %>
-      <%= link_to "delete show", show_path(@show), :class => "btn btn-small btn-danger", :data => { :method => :delete, :confirm => "Are you sure?" }%>
-    <% end %>
+    <%= render 'admin_links' %>
   </div>
 
 </div>

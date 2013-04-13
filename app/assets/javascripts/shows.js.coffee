@@ -24,3 +24,12 @@ jQuery ->
       create_option: true
   $('table#setlist').bind 'cocoon:before-insert', (e, insertedItem) ->
     $('input.order', insertedItem).val($('tr.tune').length)
+  $('.play-show').click ->
+    $('#recording iframe').remove() if $('#recording iframe')
+    playlist = document.createElement('iFrame')
+    playlist.src = "http://archive.org/embed/#{$(this).data('source')}"
+    playlist.width = "100%"
+    playlist.height = "28px"
+    playlist.style.border = "none"
+    div = document.getElementById('recording')
+    div.insertBefore(playlist)

@@ -1,0 +1,6 @@
+<% if current_user && current_user.is_editor? %>
+  <%= link_to "edit show", edit_show_path(@show), :class => "btn btn-small btn-success" %>
+<% end %>  
+<% if is_admin? %>
+  <%= link_to "delete show", show_path(@show), :class => "btn btn-small btn-danger", :data => { :method => :delete, :confirm => "Are you sure?" }%>
+<% end %>
