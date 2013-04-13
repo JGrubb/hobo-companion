@@ -39,7 +39,7 @@ class ShowsController < ApplicationController
       format.json { head :no_content }
       redirect_to @show
     else
-      redirect_to edit_show_path(@show)
+      redirect_to shows_path
     end
   end
 
