@@ -7,6 +7,7 @@ class Show < ActiveRecord::Base
   has_many :songs, :through => :song_instances
 
   validates :date, :venue_id, :presence => true
+  validates :venue_id, :uniqueness => { :scope => :date }
   
   accepts_nested_attributes_for :song_instances, :reject_if => lambda { |a| a[:song_id].blank? }, :allow_destroy => true
   accepts_nested_attributes_for :venue
