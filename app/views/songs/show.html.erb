@@ -6,22 +6,21 @@
   <p>Times played: <strong><%= @versions.count %></strong></p>
 <% end %>
 
-<% if current_user %>
-  <%= link_to "Edit", edit_song_path(@song), :class => "btn btn-small btn-success" %>
-<% end %>
+<div id="shows-played" class="span5">
+  <h4>Shows played</h4>
+  <% @versions.each do |v| %>
+    <div><%= v.show.date %> - <%= link_to v.venue_name, v.show %></div>
+  <% end %>
+</div>
 
-<div id="lyrics">
+<div id="lyrics" class="span6 well">
   <h4>Lyrics/Notes</h4>
   <% if @song.notes %>
     <%= simple_format @song.notes %>
   <% else %>
     <p>There are none!  <%= link_to "Please add some!", edit_song_path(@song), :class => "btn btn-mini" %></p>
   <% end %>
-</div>
-
-<div id="shows-played">
-  <h4>Shows played</h4>
-  <% @versions.each do |v| %>
-    <div><%= v.show.date %> - <%= link_to v.venue_name, v.show %></div>
+  <% if current_user %>
+    <%= link_to "Edit", edit_song_path(@song), :class => "btn btn-small btn-success" %>
   <% end %>
 </div>
