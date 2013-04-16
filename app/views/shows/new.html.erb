@@ -5,7 +5,7 @@
   <%= simple_form_for @venue,:defaults => { :input_html => { :class => 'input-large' } }, :html => { :class => 'form-horizontal' } do |f| %>
     <%= f.input :name %>
     <%= f.input :city %>
-    <%= f.input :state %>
+    <%= f.input :state, :collection => Venue.states_abbr.invert %>
     <%= f.input :country, :as => :string %>
     <%= f.button :submit %>
   <% end %>

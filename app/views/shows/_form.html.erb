@@ -6,7 +6,7 @@
     <strong>Step 1.</strong><br />
     If you don't find the venue you're looking for (ie. this is the first time they've played there), add the venue in right there --->>, then do this.
   </p>
-  <%= f.association :venue, :label => "Choose an existing venue" %>
+  <%= f.association :venue, :collection => Venue.all(:order => 'name'), :label => "Choose an existing venue" %>
   
   <%= label_tag "Date" %>
   <%= f.text_field :date, :class => 'datepicker' %>

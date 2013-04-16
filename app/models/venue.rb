@@ -4,11 +4,10 @@ class Venue < ActiveRecord::Base
 
   validates :name, :city, :state, :presence => true
   
-  def self.state_abbr
+  def self.states_abbr
     {
       'AL' => 'Alabama',
       'AK' => 'Alaska',
-      'AS' => 'America Samoa',
       'AZ' => 'Arizona',
       'AR' => 'Arkansas',
       'CA' => 'California',
@@ -16,10 +15,8 @@ class Venue < ActiveRecord::Base
       'CT' => 'Connecticut',
       'DE' => 'Delaware',
       'DC' => 'District of Columbia',
-      'FM' => 'Micronesia1',
       'FL' => 'Florida',
       'GA' => 'Georgia',
-      'GU' => 'Guam',
       'HI' => 'Hawaii',
       'ID' => 'Idaho',
       'IL' => 'Illinois',
@@ -29,7 +26,6 @@ class Venue < ActiveRecord::Base
       'KY' => 'Kentucky',
       'LA' => 'Louisiana',
       'ME' => 'Maine',
-      'MH' => 'Islands1',
       'MD' => 'Maryland',
       'MA' => 'Massachusetts',
       'MI' => 'Michigan',
@@ -48,7 +44,6 @@ class Venue < ActiveRecord::Base
       'OH' => 'Ohio',
       'OK' => 'Oklahoma',
       'OR' => 'Oregon',
-      'PW' => 'Palau',
       'PA' => 'Pennsylvania',
       'PR' => 'Puerto Rico',
       'RI' => 'Rhode Island',
@@ -58,7 +53,6 @@ class Venue < ActiveRecord::Base
       'TX' => 'Texas',
       'UT' => 'Utah',
       'VT' => 'Vermont',
-      'VI' => 'Virgin Island',
       'VA' => 'Virginia',
       'WA' => 'Washington',
       'WV' => 'West Virginia',
