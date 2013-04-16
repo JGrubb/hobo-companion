@@ -21,3 +21,4 @@ public/googleafcbed191cb2a5ef.html
 /config/email.rb
 *.DS_Store
 db/database.yml
+config/initializers/smtp.rb
