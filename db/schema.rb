@@ -11,13 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130416013956) do
+ActiveRecord::Schema.define(:version => 20130416113158) do
 
   create_table "recordings", :force => true do |t|
     t.integer  "show_id_id"
     t.text     "playlist"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+    t.integer  "updated_by"
+    t.integer  "created_by"
   end
 
   create_table "shows", :force => true do |t|
@@ -29,6 +31,7 @@ ActiveRecord::Schema.define(:version => 20130416013956) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "archive_info"
+    t.integer  "created_by"
   end
 
   add_index "shows", ["venue_id"], :name => "index_shows_on_venue_id"
@@ -43,6 +46,8 @@ ActiveRecord::Schema.define(:version => 20130416013956) do
     t.string   "song_notes", :limit => 500
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "created_by"
+    t.integer  "updated_by"
   end
 
   add_index "song_instances", ["show_id"], :name => "index_on_show_id"
@@ -58,6 +63,7 @@ ActiveRecord::Schema.define(:version => 20130416013956) do
     t.integer  "updated_by"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "created_by"
   end
 
   create_table "users", :force => true do |t|
@@ -94,6 +100,7 @@ ActiveRecord::Schema.define(:version => 20130416013956) do
     t.integer  "updated_by"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "created_by"
   end
 
 end
