@@ -25,7 +25,7 @@ RRE::Application.configure do
 
   # Specifies the header that your server uses for sending files
   # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache
-  # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
+  config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
@@ -65,4 +65,11 @@ RRE::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
   config.action_mailer.default_url_options = { :host => 'hobocompanion.org' }
+  
+  config.action_mailer.delivery_method = :smtp
+  
+  config.middleware.use ExceptionNotifier,
+    sender_address: 'noreply@hobocompanion.org',
+    exception_recipients: 'therealjohnnygrubb@gmail.com',
+    ignore_exceptions: ExceptionNotifier.default_ignore_exceptions
 end

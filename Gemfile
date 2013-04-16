@@ -14,6 +14,7 @@ gem 'chosen-rails'
 gem 'cocoon'
 gem 'acts_as_list'
 gem 'sidekiq'
+gem 'exception_notification'
 
 
 # Gems used only for assets and not required

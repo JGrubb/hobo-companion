@@ -59,6 +59,8 @@ GEM
       railties (~> 3.1)
       warden (~> 1.2.1)
     erubis (2.7.0)
+    exception_notification (3.0.1)
+      actionmailer (>= 3.0.4)
     execjs (1.4.0)
       multi_json (~> 1.0)
     facter (1.6.18)
@@ -161,6 +163,7 @@ DEPENDENCIES
   cocoon
   coffee-rails (~> 3.2.1)
   devise
+  exception_notification
   jquery-rails
   jquery-ui-rails (~> 4.0.2)
   mysql2
