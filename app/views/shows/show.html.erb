@@ -7,10 +7,10 @@
       <% unless @songs.select { |s| s.set_number == set.set_number }.empty? %>
         <h5><%= x = set.set_number.to_i > 0 ? "Set #{set.set_number}" : "#{set.set_number}" %></h5>
         <% @songs.select { |s| s.set_number == set.set_number }.each do |song| %>
-          <% if (song.song && song.song.is_song) %>
+          <% if song.song.is_song %>
             <div><%= link_to song.song.title, song.song %> <%= "->" if song.transition %> <%= song.song_notes%></div>
           <% else %>
-            <div><%= song.song.title if song.song %></div>
+            <div><%= song.song.title %></div>
           <% end %>  
         <% end %>
       <% end %>

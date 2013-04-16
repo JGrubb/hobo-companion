@@ -22,6 +22,6 @@
 <div id="shows-played">
   <h4>Shows played</h4>
   <% @versions.each do |v| %>
-    <div><%= v.show.date %> - <%= link_to v.show.venue.name, v.show %></div>
+    <div><%= v.show.date %> - <%= link_to v.venue_name, v.show %></div>
   <% end %>
 </div>

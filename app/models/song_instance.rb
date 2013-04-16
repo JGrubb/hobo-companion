@@ -3,4 +3,5 @@ class SongInstance < ActiveRecord::Base
   belongs_to :show
   belongs_to :song
   acts_as_list :scope => :show
+
 end
