@@ -1,6 +1,6 @@
 <h1>Venues#index</h1>
 <% @states.each do |state| %>
-  <%= content_tag :h4, Venue::STATE_ABBR[state.state] %>
+  <%= content_tag :h4, Venue.states_abbr[state.state] %>
   <ul>
   <% @venues.select { |v| v.state == state.state }.each do |v| %>
     <%= content_tag :li, link_to("#{v.city} - #{v.name}", v) %>
