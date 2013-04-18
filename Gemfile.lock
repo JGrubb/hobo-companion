@@ -72,6 +72,9 @@ GEM
       orm_adapter (~> 0.1)
       railties (~> 3.1)
       warden (~> 1.2.1)
+    devise_rpx_connectable (0.2.2)
+      devise (>= 1.1.2)
+      rpx_now (>= 0.6.23)
     diff-lcs (1.2.3)
     erubis (2.7.0)
     exception_notification (3.0.1)
@@ -104,6 +107,7 @@ GEM
       jquery-rails
       railties (>= 3.1.0)
     json (1.7.7)
+    json_pure (1.7.7)
     kgio (2.8.0)
     listen (0.7.3)
     lumberjack (1.0.3)
@@ -153,6 +157,8 @@ GEM
     redis (3.0.3)
     redis-namespace (1.2.1)
       redis (~> 3.0.0)
+    rpx_now (0.6.24)
+      json_pure
     rspec (2.13.0)
       rspec-core (~> 2.13.0)
       rspec-expectations (~> 2.13.0)
@@ -221,6 +227,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   debugger
   devise
+  devise_rpx_connectable
   exception_notification
   factory_girl_rails
   guard-rspec

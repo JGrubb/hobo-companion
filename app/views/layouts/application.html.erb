@@ -48,6 +48,7 @@
           <% else %>
             <%= content_tag :li, link_to("Sign up", new_user_registration_path) %>
             <%= content_tag :li, link_to("Sign in", new_user_session_path) %>
+            <%= content_tag :li, link_to_rpx("Sign in w FB", user_session_url) %>
           <% end %>
           </ul>
         </div>
@@ -62,6 +63,6 @@
     <% end %>
   <%= yield %>
   </div>
-  <%= yield :json_data %>
+  <%= javascript_include_rpx user_session_url %>
 </body>
 </html>

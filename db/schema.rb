@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130416113158) do
+ActiveRecord::Schema.define(:version => 20130418192723) do
 
   create_table "recordings", :force => true do |t|
     t.integer  "show_id_id"
@@ -86,6 +86,7 @@ ActiveRecord::Schema.define(:version => 20130416113158) do
     t.boolean  "is_admin"
     t.boolean  "is_editor"
     t.integer  "karma",                  :default => 10
+    t.string   "rpx_identifier"
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
