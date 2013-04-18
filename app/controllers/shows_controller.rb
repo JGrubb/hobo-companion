@@ -35,8 +35,6 @@ class ShowsController < ApplicationController
     @show.updated_by = current_user.id
     if @show.save
       ArchiveWorker.perform_async(@show.id)
-      format.html { redirect_to @show, info:  "#{@show.date} was successfully created." }
-      format.json { head :no_content }
       redirect_to @show
     else
       redirect_to shows_path
