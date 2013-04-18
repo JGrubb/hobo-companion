@@ -25,16 +25,16 @@
             <%= content_tag :li, link_to("Venues", venues_path) %>
           </ul>
           <ul class="nav pull-right">
-          <% if current_user && current_user.is_editor %>
+          <% if current_user %>
             <%= content_tag :li, :class => "dropdown" do %>
-              <%= link_to("Editors", '', :class => "dropdown-toggle", :data => { :toggle => "dropdown" }) %>
+              <%= link_to("Contribute", '', :class => "dropdown-toggle", :data => { :toggle => "dropdown" }) %>
               <%= content_tag :ul, :class => "dropdown-menu" do %>
                 <%= content_tag :li, link_to("Add a setlist!", new_show_path) %>
                 <%= content_tag :li, link_to("Edit a song!", songs_path) %>
               <% end %>
             <% end %>
           <% end %>
-          <% if current_user && current_user.is_admin %>
+          <% if is_admin? %>
             <%= content_tag :li, :class => "dropdown" do %>
               <%= link_to("Admin", '', :class => "dropdown-toggle", :data => { :toggle => "dropdown" }) %>
               <%= content_tag :ul, :class => "dropdown-menu" do %>
@@ -48,7 +48,6 @@
           <% else %>
             <%= content_tag :li, link_to("Sign up", new_user_registration_path) %>
             <%= content_tag :li, link_to("Sign in", new_user_session_path) %>
-            <%= content_tag :li, link_to_rpx("Sign in w FB", user_session_url) %>
           <% end %>
           </ul>
         </div>
