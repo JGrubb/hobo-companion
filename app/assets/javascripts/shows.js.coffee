@@ -22,6 +22,8 @@ jQuery ->
   $('table#setlist').bind 'cocoon:after-insert', (e, insertedItem) ->
     $('.show_song_instances_song select', insertedItem).chosen
       create_option: true
+    set = $(insertedItem).prev('tr').find('select.set').val()
+    $('select.set', insertedItem).val(set)
     $('input.order').each (index) ->
       $(this).val(index + 1)
   $('.play-show').click (e) ->
