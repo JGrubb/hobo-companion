@@ -22,3 +22,4 @@ public/googleafcbed191cb2a5ef.html
 *.DS_Store
 db/database.yml
 config/initializers/smtp.rb
+config/initializers/rpx.rb

@@ -3,6 +3,10 @@ class ApplicationController < ActionController::Base
   
   protected
   
+  def require_user
+    authenticate_user!
+  end
+  
   def require_editor
     authenticate_user!
     unless current_user.is_editor || current_user.is_admin
