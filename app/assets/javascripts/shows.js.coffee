@@ -26,6 +26,7 @@ jQuery ->
     $('select.set', insertedItem).val(set)
     $('input.order').each (index) ->
       $(this).val(index + 1)
+    $('.chzn-search input', insertedItem).focus()
   $('.play-show').click (e) ->
     $('#recording iframe').remove() if $('#recording iframe')
     playlist = document.createElement('iFrame')
