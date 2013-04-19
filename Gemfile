@@ -15,7 +15,7 @@ gem 'cocoon'
 gem 'acts_as_list'
 gem 'sidekiq'
 gem 'exception_notification'
-gem 'devise_rpx_connectable'
+#gem 'devise_rpx_connectable'
 
 
 # Gems used only for assets and not required

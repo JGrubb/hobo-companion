@@ -22,8 +22,8 @@ jQuery ->
   $('table#setlist').bind 'cocoon:after-insert', (e, insertedItem) ->
     $('.show_song_instances_song select', insertedItem).chosen
       create_option: true
-  $('table#setlist').bind 'cocoon:before-insert', (e, insertedItem) ->
-    $('input.order', insertedItem).val($('tr.tune').length)
+    $('input.order').each (index) ->
+      $(this).val(index + 1)
   $('.play-show').click (e) ->
     $('#recording iframe').remove() if $('#recording iframe')
     playlist = document.createElement('iFrame')
