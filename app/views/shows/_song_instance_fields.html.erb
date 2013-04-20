@@ -1,6 +1,6 @@
 <tr class="tune nested-fields">
   <td class="handle">[drag to reorder]</td>
-  <td><%= f.association :song, :label => false, :input_html => { :class => "chosen-select" } %></td>
+  <td><%= f.association :song, :collection => Song.where(:deleted => false, :is_song => true),:label => false, :input_html => { :class => "chosen-select" } %></td>
   <td><%= f.input :transition, :label => false %></td>
   <td><%= f.input :set_number, :label => false, :collection => @sets,
     :input_html =>  { :class => "input-small set" }%></td>
