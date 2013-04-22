@@ -1,5 +1,7 @@
 class Show < ActiveRecord::Base
   attr_accessible :date, :show_notes, :venue_id, :song_instances_attributes
+  extend FriendlyId
+  friendly_id :date, :use => :slugged
 
   belongs_to :venue
   

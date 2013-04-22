@@ -16,7 +16,7 @@ gem 'acts_as_list'
 gem 'sidekiq'
 gem 'exception_notification'
 #gem 'devise_rpx_connectable'
-
+gem 'friendly_id', '~> 4.0.9'
 
 # Gems used only for assets and not required
 # in production environments by default.
