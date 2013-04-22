@@ -11,11 +11,9 @@ RRE::Application.routes.draw do
   
   resources :venues
 
-  resources :shows do
-    get :autocomplete_venue_name, :on => :collection
-    get :autocomplete_song_name, :on => :collection
-  end
+  resources :shows
 
+  get 'shows/year/:year', :to => 'shows#year'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
