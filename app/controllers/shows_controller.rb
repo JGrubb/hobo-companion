@@ -72,6 +72,12 @@ class ShowsController < ApplicationController
       redirect_to shows_path
     end
   end
+
+
+  def year
+    @shows = Show.where('extract(year from date) = ?', params[:year]).includes(:venue)
+    render :index
+  end
   
   private
   
