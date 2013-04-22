@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130421214625) do
+ActiveRecord::Schema.define(:version => 20130422010444) do
 
   create_table "recordings", :force => true do |t|
     t.integer  "show_id_id"
@@ -32,8 +32,10 @@ ActiveRecord::Schema.define(:version => 20130421214625) do
     t.datetime "updated_at"
     t.text     "archive_info"
     t.integer  "created_by"
+    t.string   "slug"
   end
 
+  add_index "shows", ["slug"], :name => "index_shows_on_slug", :unique => true
   add_index "shows", ["venue_id"], :name => "index_shows_on_venue_id"
   add_index "shows", ["verified"], :name => "index_shows_on_verified"
 
@@ -64,7 +66,10 @@ ActiveRecord::Schema.define(:version => 20130421214625) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "created_by"
+    t.string   "slug"
   end
+
+  add_index "songs", ["slug"], :name => "index_songs_on_slug", :unique => true
 
   create_table "users", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
