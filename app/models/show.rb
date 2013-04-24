@@ -5,7 +5,7 @@ class Show < ActiveRecord::Base
 
   belongs_to :venue
   
-  has_many :song_instances, :dependent => :delete_all, :order => :position
+  has_many :song_instances, :dependent => :destroy_all, :order => :position
   has_many :songs, :through => :song_instances
 
   validates :date, :venue_id, :presence => true
