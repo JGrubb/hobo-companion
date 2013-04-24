@@ -68,7 +68,7 @@ class ShowsController < ApplicationController
 
   def destroy
     @show = Show.find(params[:id])
-    if @show.delete
+    if @show.destroy
       redirect_to shows_path
     end
   end
