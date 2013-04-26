@@ -91,10 +91,6 @@ class ShowsController < ApplicationController
   end
   
   def load_sets
-    @sets_objs = SongInstance.select(:set_number).uniq.order(:set_number)
-    @sets ||= []
-    @sets_objs.each do |s|
-      @sets << s.set_number unless s.set_number.blank?
-    end
+    @sets = Show.possible_sets
   end
 end

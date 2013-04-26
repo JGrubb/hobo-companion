@@ -5,7 +5,7 @@ class Show < ActiveRecord::Base
 
   belongs_to :venue
   
-  has_many :song_instances, :dependent => :destroy_all, :order => :position
+  has_many :song_instances, :dependent => :destroy, :order => :position
   has_many :songs, :through => :song_instances
 
   validates :date, :venue_id, :presence => true
@@ -13,5 +13,9 @@ class Show < ActiveRecord::Base
   
   accepts_nested_attributes_for :song_instances, :reject_if => lambda { |a| a[:song_id].blank? || a[:song_id].to_i < 1 }, :allow_destroy => true
   accepts_nested_attributes_for :venue
+
+  def self.possible_sets
+    ['1', '2', '3', 'Encore', '1st Encore', '2nd Encore']
+  end
   
 end
