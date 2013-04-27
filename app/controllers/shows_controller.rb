@@ -1,5 +1,5 @@
 class ShowsController < ApplicationController
-  before_filter :require_user, :except => [:show, :index]
+  before_filter :require_user, :except => [:show, :index, :welcome]
   
   require 'yaml'
   
