@@ -78,6 +78,13 @@ class ShowsController < ApplicationController
     @shows = Show.where('extract(year from date) = ?', params[:year]).includes(:venue)
     render :index
   end
+
+  def welcome
+    @most_recent = Show.order('date DESC').first
+    @recently_added = Show.order('created_at desc').includes(:venue).limit(5)
+    @first_show = Show.order('date ASC').first
+    @recently_updated_songs = Song.order('updated_at desc').limit(5)
+  end
   
   private
   

@@ -1,0 +1,33 @@
+<div id="welcome">
+  <p>Hello, Railroad Earth fan.  Welcome to this work in progress.</p>
+  <p>The idea here is...</p>
+  <p>Actually, the idea here is as widely varied as the music this band makes.  Currently it's a collection of setlists and lyrics to songs, and other more or less factual information about what this band has been doing for <%= distance_of_time_in_words_to_now(@first_show.date) %> now.  This will most likely change over time to include stuff that's a little more interesting and relevant to <strong>you</strong>.  Of course, to tap into all this wonderful goodness, at some point, you're going to have to <%= link_to "sign up", new_user_registration_path, :class => "btn btn-mini btn-success" %>.</p>
+  <p>Thanks for stopping by,<br />
+  Us Hobos</p>
+
+</div>
+
+
+<div id="most-recent">
+  <h3>Last show</h3>
+  <h5><%= link_to "#{@most_recent.venue.name} - #{@most_recent.venue.city}, #{@most_recent.venue.state}", @most_recent %></h5>
+  <ul class="songs">
+  <% @most_recent.songs.each do |song| %>
+    <li><%= song.title %></li>
+  <% end %>
+  </ul>
+</div>
+
+<div id="recently-added">
+  <h3>Recently added setlists</h3>
+  <% @recently_added.each do |show| %>
+    <h5><%= link_to "#{show.date} - #{show.venue.city}, #{show.venue.state}", show %></h5>
+  <% end %>
+</div>
+
+<div id="recent-songs">
+  <h3>Recently updated songs</h3>
+  <% @recently_updated_songs.each do |song| %>
+    <h5><%= link_to song.title, song %></h5>
+  <% end %>
+</div>
