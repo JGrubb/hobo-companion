@@ -3,16 +3,16 @@
 // Pixels work just as well (ie 960 px).  I'm just on a fluid grid kick right now.
 
 // these are defaults and be overridden higher up in your actual stylesheets.
-$width: 960px
+$width: 100%
 $grid_cols: 12
-$gutters: 10px
+$gutters: 2%
 $tablet: 768px
 $handheld: 480px
 
 // Lib
 
 @mixin container()
-  width: $width
+  max-width: $width
   margin: 0 auto
 
 @mixin grid($cols, $alpha: false, $omega: false)
