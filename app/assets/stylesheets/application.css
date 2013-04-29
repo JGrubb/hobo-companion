@@ -11,6 +11,7 @@
  *= require_self
  *= require lib/style
  *= require bootstrap
+ *= require shows
  *= require jquery.ui.autocomplete
  *= require jquery.ui.datepicker
  *= require chosen
