@@ -81,8 +81,8 @@ class ShowsController < ApplicationController
 
   def welcome
     @shows = Show.joins(:venue).select('shows.*, venues.*').sort { |s, t| s.date <=> t.date }
-    @most_recent = Show.order('date desc').first
-    @recently_added = Show.order('created_at desc').includes(:venue).limit(5)
+    @most_recent = @shows.last
+    @recently_added = @shows.select { |s| s.created_at }.sort { |s, t| s.created_at <=> t.created_at}.slice(-5..-1).reverse
     @first_show = @shows.first
     @recently_updated_songs = Song.order('updated_at desc').limit(5)
     @years = @shows.map { |s| s.date.year }.uniq.sort
