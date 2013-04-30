@@ -11,7 +11,7 @@
 <div id="recently-added">
   <h3>Recently added setlists</h3>
   <% @recently_added.each do |show| %>
-    <h5><%= link_to "#{show.date.strftime('%D')} - #{show.venue.city}, #{show.venue.state}", show %></h5>
+    <h5><%= link_to "#{show.date.strftime('%D')} - #{show.city}, #{show.state}", show %></h5>
   <% end %>
 </div>
 
@@ -24,8 +24,8 @@
 
 <div id="most-recent">
   <h3>Last show</h3>
-  <h4><em><%= link_to "#{@most_recent.venue.name}", @most_recent %></em></h5>
-  <h5><em><%= "#{@most_recent.venue.city}, #{@most_recent.venue.state}" %></em><br />
+  <h4><em><%= link_to "#{@most_recent.name}", @most_recent %></em></h4>
+  <h5><em><%= "#{@most_recent.city}, #{@most_recent.state}" %></em><br />
     <%= @most_recent.date.strftime('%D') %>
   </h5>
 </div>
@@ -39,11 +39,15 @@
   </ul>
   <div class="tab-content">
     <% @years.each do |year| %>
-    <div id="<%= year %>" class="hide">
+    <table id="<%= year %>" class="hide table">
       <% @shows.select {|s| s.date.year == year }.each do |show| %>
-      <div class="show"><%= link_to "#{show.date.strftime('%D')} - #{show.city}, #{show.state}", show %></div>
+      <tr>
+        <td><%= show.date.strftime('%D') %></td>
+        <td><%= "#{show.city}, #{show.state}" %></td>
+        <td><%= link_to show.name, show %>
+      </tr>
       <% end %>
     </div>
     <% end %>
-  </div>
+  </table>
 </div>

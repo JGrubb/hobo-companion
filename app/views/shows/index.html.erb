@@ -1,8 +1,10 @@
-<p><em>Total shows from <%= @shows.last.date.strftime '%b %d, %Y'%> to <%= @shows.first.date.strftime '%b %d, %Y'%></em> - <strong><%= @shows.count %></strong></p>
-<div>
+<h4><em>Total shows from <%= @shows.last.date.strftime '%b %d, %Y'%> to <%= @shows.first.date.strftime '%b %d, %Y'%></em> - <strong><%= @shows.count %></strong></h4>
+<table class="table">
 <% @shows.each do |show| %>
-<div>
-  <%= show.date %> - <%= link_to show.venue.name, show %>
-</div>
+<tr>
+  <td><%= show.date.strftime('%D') %></td>
+  <td><%= "#{show.venue.city}, #{show.venue.state}" %></td>
+  <td><%= link_to show.venue.name, show %></td>
+</tr>
 <% end %>
-</div>
+</table>
