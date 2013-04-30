@@ -13,6 +13,13 @@
 #recently-added
   @include grid(4)
 
+#all-tabbed
+  @include grid(12)
+
+.tab-content .hide
+  display: none
+  &.active
+    display: block
 
 a.btn-success, a.btn-danger, a.btn-primary
   color: white
