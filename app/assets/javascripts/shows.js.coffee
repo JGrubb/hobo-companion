@@ -3,6 +3,7 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 jQuery ->
+  $('.nav-tabs li:first a').click()
   $('.datepicker').datepicker
     dateFormat: "yy-mm-dd"
     changeMonth: true

@@ -8,16 +8,6 @@
 </div>
 
 
-<div id="most-recent">
-  <h3>Last show</h3>
-  <h5><%= link_to "#{@most_recent.venue.name} - #{@most_recent.venue.city}, #{@most_recent.venue.state}", @most_recent %></h5>
-  <ul class="songs">
-  <% @most_recent.songs.each do |song| %>
-    <li><%= song.title %></li>
-  <% end %>
-  </ul>
-</div>
-
 <div id="recently-added">
   <h3>Recently added setlists</h3>
   <% @recently_added.each do |show| %>
@@ -30,4 +20,30 @@
   <% @recently_updated_songs.each do |song| %>
     <h5><%= link_to song.title, song %></h5>
   <% end %>
+</div>
+
+<div id="most-recent">
+  <h3>Last show</h3>
+  <h4><em><%= link_to "#{@most_recent.venue.name}", @most_recent %></em></h5>
+  <h5><em><%= "#{@most_recent.venue.city}, #{@most_recent.venue.state}" %></em><br />
+    <%= @most_recent.date.strftime('%D') %>
+  </h5>
+</div>
+
+<div id="all-tabbed">
+  <h3>All shows</h3>
+  <ul class="nav nav-tabs">
+    <% @years.each do |year| %>
+    <li><%= link_to year, "##{year}", :data => { :toggle => "tab" } %></li>
+    <% end %>
+  </ul>
+  <div class="tab-content">
+    <% @years.each do |year| %>
+    <div id="<%= year %>" class="hide">
+      <% @shows.select {|s| s.date.year == year }.each do |show| %>
+      <div class="show"><%= link_to "#{show.date.strftime('%D')} - #{show.city}, #{show.state}", show %></div>
+      <% end %>
+    </div>
+    <% end %>
+  </div>
 </div>
