@@ -1,18 +1,16 @@
 <div class="row">
   <h2><%= @show.date.strftime '%B %d, %Y' %></h2>
-  <h3><%= link_to "#{@venue.name} - #{@venue.city}, #{@venue.state}", @venue %></h3>
+  <h3><%= link_to "#{@show.name} - #{@show.city}, #{@show.state}", venue_path(@show.venue_id) %></h3>
 
   <div id="setlist" class="span4">
     <% @possible_sets.each do |set| %>
       <% unless @songs.select { |s| s.set_number == set.set_number }.empty? %>
         <h5><%= x = set.set_number.to_i > 0 ? "Set #{set.set_number}" : "#{set.set_number}" %></h5>
         <% @songs.select { |s| s.set_number == set.set_number }.each do |song| %>
-          <% if !song.song %>
-            <%= debug song %>
-          <% elsif song.song.is_song %>
-            <div><%= link_to song.song.title, song.song %> <%= "->" if song.transition %> <%= song.song_notes%></div>
+          <% if song.is_song %>
+            <div><%= link_to song.title, song_path(song.id) %> <%= "->" if song.transition %> <%= song.song_notes %></div>
           <% else %>
-            <div><%= song.song.title %></div>
+            <div><%= song.title %></div>
           <% end %>  
         <% end %>
       <% end %>
