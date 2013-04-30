@@ -3,8 +3,8 @@
 <% @shows.each do |show| %>
 <tr>
   <td><%= show.date.strftime('%D') %></td>
-  <td><%= "#{show.venue.city}, #{show.venue.state}" %></td>
-  <td><%= link_to show.venue.name, show %></td>
+  <td><%= "#{show.city}, #{show.state}" %></td>
+  <td><%= link_to show.name, show %></td>
 </tr>
 <% end %>
 </table>
