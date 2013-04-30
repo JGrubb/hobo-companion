@@ -11,7 +11,7 @@
 <div id="recently-added">
   <h3>Recently added setlists</h3>
   <% @recently_added.each do |show| %>
-    <h5><%= link_to "#{show.date} - #{show.venue.city}, #{show.venue.state}", show %></h5>
+    <h5><%= link_to "#{show.date.strftime('%D')} - #{show.venue.city}, #{show.venue.state}", show %></h5>
   <% end %>
 </div>
 
