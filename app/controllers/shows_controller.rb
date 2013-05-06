@@ -1,6 +1,5 @@
 class ShowsController < ApplicationController
   before_filter :require_user, :except => [:show, :index, :welcome]
-  caches_page :index
   
   require 'yaml'
   
@@ -41,7 +40,6 @@ class ShowsController < ApplicationController
     @show.updated_by = current_user.id
     if @show.save
       ArchiveWorker.perform_async(@show.id)
-      expire_page :action => :index
       redirect_to @show
     else
       redirect_to shows_path
@@ -63,7 +61,6 @@ class ShowsController < ApplicationController
     respond_to do |format|
       if @show.update_attributes(params[:show])
         ArchiveWorker.perform_async(@show.id)
-        expire_page :action => :index
         format.html { redirect_to @show, info:  "#{@show.date} was successfully updated." }
         format.json { head :no_content }
       else
