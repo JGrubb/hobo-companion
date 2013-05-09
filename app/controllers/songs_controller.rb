@@ -2,7 +2,11 @@ class SongsController < ApplicationController
   before_filter :require_editor, :except => [:index, :show]
   
   def index
-    @songs = Song.order(:title).where(:is_song => true).where(:deleted => false)
+    @songs = Song.joins(:song_instances)
+                .select('songs.title, songs.slug, songs.notes, count(*) as count')
+                .where(:is_song => true)
+                .group('songs.id')
+                .order('count desc')
   end
 
   def show
