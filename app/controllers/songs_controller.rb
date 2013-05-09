@@ -6,7 +6,7 @@ class SongsController < ApplicationController
                 .select('songs.title, songs.slug, songs.notes, count(*) as count')
                 .where(:is_song => true)
                 .group('songs.id')
-                .order('count desc')
+                .order('songs.title asc')
   end
 
   def show
