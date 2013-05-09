@@ -92,7 +92,7 @@ class ShowsController < ApplicationController
     @most_recent = @shows.last
     @recently_added = @shows.select { |s| s.created_at }.sort { |s, t| s.created_at <=> t.created_at}.slice(-5..-1).reverse
     @first_show = @shows.first
-    @recently_updated_songs = Song.order('updated_at desc').limit(5)
+    @recently_updated_songs = Song.order('updated_at desc').where(:is_song => true).limit(5)
     @years = @shows.map { |s| s.date.year }.uniq.sort
     respond_to do |format|
       format.html
