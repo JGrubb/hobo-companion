@@ -3,7 +3,7 @@ class SongsController < ApplicationController
   
   def index
     @songs = Song.joins(:song_instances)
-                .select('songs.title, songs.slug, songs.notes, count(*) as count')
+                .select('songs.title, songs.slug, songs.notes, songs.instrumental, count(*) as count')
                 .where(:is_song => true)
                 .group('songs.id')
                 .order('songs.title asc')

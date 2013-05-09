@@ -5,12 +5,14 @@
       <th>Title</th>
       <th>Times played</th>
       <th><th>
+      <th></th>
     </tr>
     <% @songs.each do |song| %>
     <tr class="song">
       <td><%= link_to song.title, song %></td>
       <td><%= song.count %></td>
       <td><%= link_to("Needs lyrics!", song) unless (song.notes || song.instrumental?) %></td>
+      <td><%= raw("<em>Instrumental</em>") if song.instrumental? %></td>
     </tr>
     <% end %>
   </table>
