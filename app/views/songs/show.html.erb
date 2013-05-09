@@ -14,7 +14,7 @@
 </div>
 
 <div id="lyrics" class="span6 well">
-  <h4>Lyrics/Notes</h4>
+  <h4><%= "Lyrics/Notes" unless @song.instrumental %><%= raw("<em>Instrumental</em> | Notes") if @song.instrumental %></h4>
   <% if @song.notes %>
     <%= simple_format @song.notes %>
   <% else %>

@@ -2,7 +2,8 @@
   
   <%= f.input :title %>
   <%= f.input :author %>
-  <%= f.input :is_song, :label => "Is this a song?" %>
+  <%= f.input :is_song, :label =>"Is this a song?" %>
+  <%= f.input :instrumental, :label => "Is this an instrumental?", :input_html => { :class => "inline" } %>
   <%= f.input :notes, :label => "Notes/Lyrics", :input_html => { :class => 'input-xxlarge' } %>
   
   <%= f.button :submit, :class => "btn btn-primary" %>

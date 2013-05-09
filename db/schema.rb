@@ -11,15 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130430110824) do
+ActiveRecord::Schema.define(:version => 20130509104528) do
 
   create_table "recordings", :force => true do |t|
-    t.integer  "show_id_id"
+    t.integer  "show_id"
     t.text     "playlist"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.integer  "updated_by"
-    t.integer  "created_by"
   end
 
   create_table "shows", :force => true do |t|
@@ -63,17 +61,18 @@ ActiveRecord::Schema.define(:version => 20130430110824) do
   add_index "song_instances", ["song_id"], :name => "index_on_song_id"
 
   create_table "songs", :force => true do |t|
-    t.string   "SongID",     :limit => 15
+    t.string   "SongID",       :limit => 15
     t.string   "title"
     t.string   "author"
-    t.boolean  "is_song",                  :default => true
+    t.boolean  "is_song",                    :default => true
     t.text     "notes"
-    t.boolean  "deleted",                  :default => false
+    t.boolean  "deleted",                    :default => false
     t.integer  "updated_by"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "created_by"
     t.string   "slug"
+    t.boolean  "instrumental"
   end
 
   add_index "songs", ["slug"], :name => "index_songs_on_slug", :unique => true

@@ -10,7 +10,7 @@
     <tr class="song">
       <td><%= link_to song.title, song %></td>
       <td><%= song.count %></td>
-      <td><%= link_to("Needs lyrics!", song) unless song.notes %></td>
+      <td><%= link_to("Needs lyrics!", song) unless (song.notes || song.instrumental?) %></td>
     </tr>
     <% end %>
   </table>

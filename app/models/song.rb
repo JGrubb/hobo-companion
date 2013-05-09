@@ -1,5 +1,5 @@
 class Song < ActiveRecord::Base
-  attr_accessible :author, :is_song, :title, :notes
+  attr_accessible :author, :is_song, :title, :notes, :instrumental
   extend FriendlyId
   friendly_id :title, :use => :slugged
 
