@@ -8,9 +8,9 @@
   <td id="button_<%= show.id %>">
   <% if current_user %>
     <% if show.user_id %>
-      <%= link_to "Just kidding, I wasn't actually there", delete_show_tag_path(show.id), :method => :delete, :remote => true, :class => "btn btn-mini", :id => "untag_show_#{show.id}" %>
+      <%= link_to "Just kidding, I wasn't actually there", delete_show_tag_path(show.id), :method => :delete, :remote => true, :class => "btn btn-mini", :id => "untag_show_#{show.id}", :disable_with => "Submitting..." %>
     <% else %>
-      <%= link_to "I was there", tag_show_path(show.id), :method => :post, :remote => true, :class => "btn btn-mini btn-primary", :id => "tag_show_#{show.id}" %>
+      <%= link_to "I was there", tag_show_path(show.id), :method => :post, :remote => true, :class => "btn btn-mini btn-primary", :id => "tag_show_#{show.id}", :disable_with => "Submitting..." %>
     <% end %>
   <% end %>
   </td>
