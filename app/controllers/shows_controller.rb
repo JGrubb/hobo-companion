@@ -112,7 +112,16 @@ class ShowsController < ApplicationController
   end
 
   def welcome
-    @shows = Show.joins(:venue).select('shows.*, venues.name, venues.city, venues.state').sort { |s, t| s.date <=> t.date }
+    if current_user
+      @shows = Show.joins('left outer join shows_users on shows_users.show_id = shows.id')
+                  .joins('left outer join users on users.id = shows_users.user_id')
+                  .joins(:venue)
+                  .select('shows.*, venues.name, venues.city, venues.state, shows_users.user_id')
+                  .where('users.id = ? or users.id is NULL', current_user.id)
+                  .order('shows.date desc')
+    else
+      @shows = Show.joins(:venue).select('shows.*, venues.name, venues.city, venues.state').order('shows.date desc')
+    end
     @most_recent = @shows.last
     @recently_added = @shows.select { |s| s.created_at }.sort { |s, t| s.created_at <=> t.created_at}.slice(-5..-1).reverse
     @first_show = @shows.first
