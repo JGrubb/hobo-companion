@@ -8,6 +8,8 @@ RRE::Application.routes.draw do
   post "songs/soft_delete", :to => "songs#soft_delete", :as => :soft_delete
   get "songs/deleted_list", :to => "songs#deleted_songs", :as => :deleted_songs
   resources :songs
+  post 'shows/tag_show/:id', :to => "shows#tag_show", :as => :tag_show
+  delete 'shows/tag_show/:id', :to => "shows#delete_tag", :as => :delete_show_tag
   
   resources :venues
 

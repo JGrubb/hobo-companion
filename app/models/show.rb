@@ -7,6 +7,7 @@ class Show < ActiveRecord::Base
   
   has_many :song_instances, :dependent => :destroy, :order => :position
   has_many :songs, :through => :song_instances
+  has_and_belongs_to_many :users
 
   validates :date, :venue_id, :presence => true
   validates :venue_id, :uniqueness => { :scope => :date, :message => "That show already exists." }

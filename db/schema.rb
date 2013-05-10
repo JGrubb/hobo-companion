@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130509104528) do
+ActiveRecord::Schema.define(:version => 20130509131920) do
 
   create_table "recordings", :force => true do |t|
     t.integer  "show_id"
@@ -38,11 +38,11 @@ ActiveRecord::Schema.define(:version => 20130509104528) do
   add_index "shows", ["verified"], :name => "index_shows_on_verified"
 
   create_table "shows_users", :id => false, :force => true do |t|
-    t.integer "shows_id"
-    t.integer "users_id"
+    t.integer "show_id"
+    t.integer "user_id"
   end
 
-  add_index "shows_users", ["shows_id", "users_id"], :name => "index_shows_users_on_shows_id_and_users_id"
+  add_index "shows_users", ["show_id", "user_id"], :name => "index_shows_users_on_shows_id_and_users_id"
 
   create_table "song_instances", :force => true do |t|
     t.integer  "show_id"

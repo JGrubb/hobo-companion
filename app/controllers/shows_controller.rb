@@ -4,12 +4,31 @@ class ShowsController < ApplicationController
   require 'yaml'
   
   def index
-    @shows = Show.joins(:venue).select('shows.*, venues.name, venues.city, venues.state').sort { |s, t| t.date <=> s.date }
-    @description = "The definitive site for Railroad Earth community, RRE lyrics, show and lsetlist information, an who knows what else to come..."
+    if current_user
+      @shows = Show.joins('left outer join shows_users on shows_users.show_id = shows.id')
+                  .joins('left outer join users on users.id = shows_users.user_id')
+                  .joins(:venue)
+                  .select('shows.*, venues.name, venues.city, venues.state, shows_users.user_id')
+                  .where('users.id = ? or users.id is NULL', current_user.id)
+                  .order('shows.date desc')
+    else
+      @shows = Show.joins(:venue).select('shows.*, venues.name, venues.city, venues.state').order('shows.date desc')
+    end
+    @description = "The definitive site for Railroad Earth community, RRE lyrics, show and setlist information, an who knows what else to come..."
     respond_to do |format|
       format.html
       format.json { render :json => @shows }
     end
+  end
+
+  def tag_show
+    current_user.shows << Show.find(params[:id])
+    render :nothing => true
+  end
+
+  def delete_tag
+    current_user.shows.delete(Show.find(params[:id]))
+    render :nothing => true
   end
 
   def show
