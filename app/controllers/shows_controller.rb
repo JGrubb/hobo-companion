@@ -22,13 +22,21 @@ class ShowsController < ApplicationController
   end
 
   def tag_show
-    current_user.shows << Show.find(params[:id])
-    render :nothing => true
+    @show = Show.find(params[:id])
+    current_user.shows << @show
+    respond_to do |format|
+      format.html { redirect_to shows_path }
+      format.js
+    end
   end
 
   def delete_tag
-    current_user.shows.delete(Show.find(params[:id]))
-    render :nothing => true
+    @show = Show.find(params[:id])
+    current_user.shows.delete(@show)
+    respond_to do |format|
+      format.html {redirect_to shows_path}
+      format.js
+    end
   end
 
   def show

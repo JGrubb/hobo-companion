@@ -1,0 +1,2 @@
+$("#tag_show_<%= @show.id %>").remove();
+$("td#button_<%= @show.id %>").append("<%= j link_to("Just kidding, I wasn't actually there", delete_show_tag_path(@show.id), :method => :delete, :remote => true, :class => "btn btn-mini", :id => "untag_show_#{@show.id}") %>");
