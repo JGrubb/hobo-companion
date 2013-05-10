@@ -122,7 +122,7 @@ class ShowsController < ApplicationController
     else
       @shows = Show.joins(:venue).select('shows.*, venues.name, venues.city, venues.state').order('shows.date desc')
     end
-    @most_recent = @shows.last
+    @most_recent = @shows.first
     @recently_added = @shows.select { |s| s.created_at }.sort { |s, t| s.created_at <=> t.created_at}.slice(-5..-1).reverse
     @first_show = @shows.first
     @recently_updated_songs = Song.order('updated_at desc').where(:is_song => true).limit(5)
