@@ -32,6 +32,7 @@
 
 <div id="all-tabbed">
   <h3>All shows</h3>
+  <% if current_user %><p class="alert alert-info">Obviously, I'm having some issues with the show tagging feature for logged in users right now.  Top men are on it.</p><% end %>
   <ul class="nav nav-tabs">
     <% @years.each do |year| %>
     <li><%= link_to year, "##{year}", :data => { :toggle => "tab" } %></li>
