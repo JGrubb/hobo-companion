@@ -5,18 +5,22 @@
   </div>
 
   <div id="setlist" class="span6">
+    <div class="row">
     <% @possible_sets.each do |set| %>
       <% unless @songs.select { |s| s.set_number == set }.empty? %>
-        <h5><%= x = set.to_i > 0 ? "Set #{set}" : "#{set}" %></h5>
+        <ol class="span3">
+        <h4><%= x = set.to_i > 0 ? "Set #{set}" : "#{set}" %></h4>
         <% @songs.select { |s| s.set_number == set }.each do |song| %>
           <% if song.is_song %>
-            <div><%= link_to song.title, song_path(song.id) %> <%= "->" if song.transition %> <%= song.song_notes %></div>
+            <li><%= link_to song.title, song_path(song.id) %> <%= "->" if song.transition %> <%= song.song_notes %></li>
           <% else %>
-            <div><%= song.title %></div>
+            <li><%= song.title %></li>
           <% end %>  
         <% end %>
+        </ol>
       <% end %>
     <% end %>
+    </div>
   </div>
   
   <div id="show-notes" class="span6">
