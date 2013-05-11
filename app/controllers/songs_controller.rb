@@ -1,5 +1,6 @@
 class SongsController < ApplicationController
   before_filter :require_editor, :except => [:index, :show]
+  before_filter :user_shows, :only => :show
   
   def index
     @songs = Song.joins(:song_instances)
@@ -14,6 +15,15 @@ class SongsController < ApplicationController
     @title = @song.title
     @description = "Info and lyrics for #{@song.title}, Railroad Earth."
     @versions = SongInstance.where(:song_id => @song.id).joins(:show => :venue).select("song_instances.*, venues.name as venue_name, shows.*").includes(:show).order('shows.date asc')
+    @you_saw = 0
+    if current_user
+      @versions.each do |v|
+        if @user_shows.include?(v.show_id)
+          @you_saw += 1
+        end
+      end
+    end
+    logger.debug "YOU SAW #{@you_saw}"
   end
 
   def new
@@ -71,4 +81,16 @@ class SongsController < ApplicationController
     User.bump_karma(10, current_user)
     render :index
   end
+
+  private
+
+  def user_shows
+    @user_shows = []
+    if current_user 
+      current_user.shows.each do |show|
+        @user_shows << show.id
+      end
+    end
+  end
+
 end

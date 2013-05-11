@@ -1,26 +1,50 @@
+<div class="row">
 <h2><%= @song.title %></h2>
 
 <% if @versions.count > 1 %>
-  <p>First played: <%= link_to(@versions.first.show.date.strftime('%B %d, %Y'), @versions.first.show) %></p>
-  <p>Last played: <%= link_to(@versions.last.show.date.strftime('%B %d, %Y'), @versions.last.show) %></p>
-  <p>Times played: <strong><%= @versions.count %></strong></p>
-<% end %>
-
-<div id="shows-played" class="span5">
-  <h4>Shows played</h4>
-  <% @versions.each do |v| %>
-    <div><%= v.show.date %> - <%= link_to v.venue_name, v.show %></div>
+  <div class="span3 song-stat">
+    <h3>First played</h3>
+    <p><%= link_to(@versions.first.show.date.strftime('%B %d, %Y'), @versions.first.show) %></p>
+  </div>
+  <div class="span3 song-stat">
+    <h3>Last played</h3>
+    <p><%= link_to(@versions.last.show.date.strftime('%B %d, %Y'), @versions.last.show) %></p>
+  </div>
+  <div class="span3 song-stat">
+    <h3>Times played</h3>
+    <p><%= @versions.count %></p>
+  </div>
+  <% if current_user %>
+  <div class="span3 song-stat">
+    <h3>You've personally heard this song</h3>
+    <p><%= "#{@you_saw} times" %></p>
+  </div>
   <% end %>
+<% end %>
 </div>
 
-<div id="lyrics" class="span6 well">
-  <h4><%= "Lyrics/Notes" unless @song.instrumental %><%= raw("<em>Instrumental</em> | Notes") if @song.instrumental %></h4>
-  <% if @song.notes %>
-    <%= simple_format @song.notes %>
-  <% else %>
-    <p>There are none!  <%= link_to "Please add some!", edit_song_path(@song), :class => "btn btn-mini" %></p>
-  <% end %>
-  <% if current_user %>
-    <%= link_to "Edit", edit_song_path(@song), :class => "btn btn-small btn-success" %>
-  <% end %>
+<div class="row">
+  <div id="shows-played" class="span6">
+    <h4>Shows played</h4>
+    <% @versions.each do |v| %>
+      <div>
+        <%= v.show.date %> - <%= link_to v.venue_name, v.show %>
+        <% if current_user && @user_shows.include?(v.show_id) %>
+          <em class="muted">You were there!</em>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
+  <div id="lyrics" class="span5 well">
+    <h4><%= "Lyrics/Notes" unless @song.instrumental %><%= raw("<em>Instrumental</em> | Notes") if @song.instrumental %></h4>
+    <% if @song.notes %>
+      <%= simple_format @song.notes %>
+    <% else %>
+      <p>There are none!  <%= link_to "Please add some!", edit_song_path(@song), :class => "btn btn-mini" %></p>
+    <% end %>
+    <% if current_user %>
+      <%= link_to "Edit", edit_song_path(@song), :class => "btn btn-small btn-success" %>
+    <% end %>
+  </div>
 </div>
