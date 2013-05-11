@@ -1,8 +1,10 @@
 <div class="row">
-  <h2><%= @show.date.strftime '%B %d, %Y' %></h2>
-  <h3><%= link_to "#{@show.name} - #{@show.city}, #{@show.state}", venue_path(@show.venue_id) %></h3>
+  <div class="span12">
+    <h2><%= @show.date.strftime '%B %d, %Y' %></h2>
+    <h3><%= link_to "#{@show.name} - #{@show.city}, #{@show.state}", venue_path(@show.venue_id) %></h3>
+  </div>
 
-  <div id="setlist" class="span4">
+  <div id="setlist" class="span6">
     <% @possible_sets.each do |set| %>
       <% unless @songs.select { |s| s.set_number == set }.empty? %>
         <h5><%= x = set.to_i > 0 ? "Set #{set}" : "#{set}" %></h5>
@@ -17,17 +19,17 @@
     <% end %>
   </div>
   
-  <div id="show-notes" class="well span7">
-    <div>
+  <div id="show-notes" class="span6">
+    <div class="well">
       <% if @archive_info %>
         <%= render 'archive_recordings' %>
       <% end %>
       <div id="recording"></div>
+      <h4>Show notes</h4>
+      <p><%= simple_format @show.show_notes %></p>
+      
+      <%= render 'admin_links' %>
     </div>
-    <h4>Show notes</h4>
-    <p><%= simple_format @show.show_notes %></p>
-    
-    <%= render 'admin_links' %>
   </div>
 
 </div>

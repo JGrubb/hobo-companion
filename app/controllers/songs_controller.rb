@@ -14,7 +14,7 @@ class SongsController < ApplicationController
     @song = Song.find(params[:id])
     @title = @song.title
     @description = "Info and lyrics for #{@song.title}, Railroad Earth."
-    @versions = SongInstance.where(:song_id => @song.id).joins(:show => :venue).select("song_instances.*, venues.name as venue_name, shows.date as date, shows.id").order('shows.date asc')
+    @versions = SongInstance.where(:song_id => @song.id).joins(:show => :venue).select("venues.name as venue_name, shows.date as date, shows.id as show_id").order('shows.date asc').uniq { |v| v.show_id }
     @you_saw = 0
     @years_played = @versions.map { |v| v.date.year }.uniq.sort
     if current_user
