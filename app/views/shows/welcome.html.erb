@@ -1,7 +1,7 @@
 <div id="welcome">
   <p>Hello, Railroad Earth fan.  Welcome to this work in progress.</p>
   <p>The idea here is...</p>
-  <p>Actually, the idea here is as widely varied as the music this band makes.  Currently it's a collection of setlists and lyrics to songs, and other more or less factual information about what this band has been doing for <%= distance_of_time_in_words_to_now(@first_show.date) %> now.  This will most likely change over time to include stuff that's a little more interesting and relevant to <strong>you</strong>.  Of course, to tap into all this wonderful goodness, at some point, you're going to have to <%= link_to "sign up", new_user_registration_path, :class => "btn btn-mini btn-success" %>.</p>
+  <p>Actually, the idea here is as widely varied as the music this band makes.  Currently it's a collection of setlists and lyrics to songs, and other more or less factual information about what this band has been doing for <%= distance_of_time_in_words_to_now(@first_show.date) %> now.  This will most likely change over time to include stuff that's a little more interesting and relevant to <strong>you</strong>.  Of course, to tap into all this wonderful goodness, at some point, you're going to have to <%= link_to "sign up", "#modal-signup", :class => "btn btn-mini btn-success", :data => { :toggle => "modal" } %>.</p>
   <p>Thanks for stopping by,<br />
   Us Hobos</p>
 

@@ -5,6 +5,7 @@ class ShowsController < ApplicationController
   require 'yaml'
   
   def index
+    @user = User.new
     @description = "The definitive site for Railroad Earth community, RRE lyrics, show and setlist information, an who knows what else to come..."
     respond_to do |format|
       format.html
@@ -108,6 +109,7 @@ class ShowsController < ApplicationController
     @first_show = @shows.first
     @recently_updated_songs = Song.order('updated_at desc').where(:is_song => true).limit(5)
     @years = @shows.map { |s| s.date.year }.uniq.sort
+    @user = User.new
     respond_to do |format|
       format.html
       format.json { render :json => @shows}
