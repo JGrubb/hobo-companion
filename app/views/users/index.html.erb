@@ -6,6 +6,7 @@
     <th>Karma</th>
     <th>Admin?</th>
     <th></th>
+    <th>Number of shows</th>
   </tr>
   <% @users.each do |user| %>
   <tr>
@@ -19,6 +20,7 @@
         <%= link_to "make editor", make_editor_path(:user_id => user.id), :method => :post, :class => "btn btn-small btn-info" %>
       <% end %>
     </td>
+    <td><%= user.shows.count %></td>
   </tr>
   <% end %>
 </table>
