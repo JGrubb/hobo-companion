@@ -1,16 +1,10 @@
 class ShowsController < ApplicationController
   before_filter :require_user, :except => [:show, :index, :welcome]
-  
+  before_filter :get_user_shows, :only => [:index, :welcome]
+ 
   require 'yaml'
   
   def index
-    @shows = Show.joins(:venue).select('shows.*, venues.name, venues.city, venues.state').order('shows.date desc')
-    @user_shows = []
-    if current_user 
-      current_user.shows.each do |show|
-        @user_shows << show.id
-      end
-    end
     @description = "The definitive site for Railroad Earth community, RRE lyrics, show and setlist information, an who knows what else to come..."
     respond_to do |format|
       format.html
@@ -109,13 +103,6 @@ class ShowsController < ApplicationController
   end
 
   def welcome
-    @shows = Show.joins(:venue).select('shows.*, venues.name, venues.city, venues.state').order('shows.date desc')
-    @user_shows = []
-    if current_user 
-      current_user.shows.each do |show|
-        @user_shows << show.id
-      end
-    end
     @most_recent = @shows.first
     @recently_added = @shows.select { |s| s.created_at }.sort { |s, t| s.created_at <=> t.created_at}.slice(-5..-1).reverse
     @first_show = @shows.first
@@ -129,6 +116,16 @@ class ShowsController < ApplicationController
   
   private
   
+  def get_user_shows
+    @shows = Show.joins(:venue).select('shows.*, venues.name, venues.city, venues.state').order('shows.date desc')
+    @user_shows = []
+    if current_user 
+      current_user.shows.each do |show|
+        @user_shows << show.id
+      end
+    end
+  end
+
   def check_song_id_for_new(songs, params)
     songs.each do |song|
       if (song[1][:song_id].empty? || song[1][:song_id].to_i == 0)

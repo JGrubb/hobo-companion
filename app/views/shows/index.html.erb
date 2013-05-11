@@ -1,6 +1,5 @@
 <h4><em>Total shows</em> - <strong><%= @shows.count %></strong></h4>
 <table class="table">
-<%= debug @user_shows %>
 <% @shows.each do |show| %>
 <tr>
   <td><%= show.date.strftime('%D') %></td>
