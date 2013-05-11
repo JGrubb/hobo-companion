@@ -54,6 +54,8 @@
             <% else %>
               <%= link_to "I was there", tag_show_path(show.id), :method => :post, :remote => true, :class => "btn btn-mini btn-primary", :id => "tag_show_#{show.id}", :disable_with => "Submitting..." %>
             <% end %>
+          <% else %>
+            <%= link_to "I was there", "#modal-signup", :class => "btn btn-mini btn-primary", :data => { :toggle => "modal" } %>
           <% end %>
           </td>
         </tr>
@@ -63,3 +65,4 @@
     </table>
   </div>
 </div>
+<%= render "modal_signup" %>
