@@ -1,10 +1,21 @@
-<div id="welcome">
-  <p>Hello, Railroad Earth fan.  Welcome to this work in progress.</p>
-  <p>The idea here is...</p>
-  <p>Actually, the idea here is as widely varied as the music this band makes.  Currently it's a collection of setlists and lyrics to songs, and other more or less factual information about what this band has been doing for <%= distance_of_time_in_words_to_now(@first_show.date) %> now.  This will most likely change over time to include stuff that's a little more interesting and relevant to <strong>you</strong>.  Of course, to tap into all this wonderful goodness, at some point, you're going to have to <%= link_to "sign up", "#modal-signup", :class => "btn btn-mini btn-success", :data => { :toggle => "modal" } %>.</p>
-  <p>Thanks for stopping by,<br />
-  Us Hobos</p>
-
+<div class="row">
+  <div class="well" id="welcome">
+    <% if current_user %>
+      <div class="span3">
+        <h4>
+          Your last show was<br />
+          <em class="muted"><%= (Date.today - @user_last_show.date).to_i %> days ago</em> in<br />
+          <%= "#{@user_last_show.venue.city}, #{@user_last_show.venue.state}" %>.</h4>
+          <%= link_to "take me there...", @user_last_show, :class => "btn btn-small" %>
+      </div>
+    <% else %>
+    <p>Hello, Railroad Earth fan.  Welcome to this work in progress.</p>
+    <p>The idea here is...</p>
+    <p>Actually, the idea here is as widely varied as the music this band makes.  Currently it's a collection of setlists and lyrics to songs, and other more or less factual information about what this band has been doing for <%= distance_of_time_in_words_to_now(@first_show.date) %> now.  This will most likely change over time to include stuff that's a little more interesting and relevant to <strong>you</strong>.  Of course, to tap into all this wonderful goodness, at some point, you're going to have to <%= link_to "sign up", "#modal-signup", :class => "btn btn-mini btn-success", :data => { :toggle => "modal" } %>.</p>
+    <p>Thanks for stopping by,<br />
+    Us Hobos</p>
+    <% end %>
+  </div>
 </div>
 
 <div class="row">
