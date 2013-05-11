@@ -9,7 +9,7 @@ class ShowsController < ApplicationController
                   .joins('left outer join users on users.id = shows_users.user_id')
                   .joins(:venue)
                   .select('shows.*, venues.name, venues.city, venues.state, shows_users.user_id')
-                  .where('users.id = ? or users.id <> ?', current_user.id, current_user.id)
+                  .where('users.id = ? or users.id is NULL or users.id <> ?', current_user.id, current_user.id)
                   .order('shows.date desc')
     else
       @shows = Show.joins(:venue).select('shows.*, venues.name, venues.city, venues.state').order('shows.date desc')
@@ -117,7 +117,7 @@ class ShowsController < ApplicationController
                   .joins('left outer join users on users.id = shows_users.user_id')
                   .joins(:venue)
                   .select('shows.*, venues.name, venues.city, venues.state, shows_users.user_id')
-                  .where('users.id = ? or users.id is NULL', current_user.id)
+                  .where('users.id = ? or users.id is NULL or users.id <> ?', current_user.id, current_user.id)
                   .order('shows.date desc')
     else
       @shows = Show.joins(:venue).select('shows.*, venues.name, venues.city, venues.state').order('shows.date desc')
