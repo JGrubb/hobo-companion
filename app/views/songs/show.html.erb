@@ -43,7 +43,7 @@
     <% @years_played.each do |year| %>
     <div class="accordion-group">
       <div class="accordion-heading">
-        <%= link_to year, "#collapse#{year}", :class => "accordion-toggle", :data => { :toggle => "collapse", :parent => "shows-played" } %>
+        <%= link_to "#{year} - #{@versions.select { |v| v.date.year == year }.count } plays", "#collapse#{year}", :class => "accordion-toggle", :data => { :toggle => "collapse", :parent => "shows-played" } %>
       </div>
       <div class="accordion-body collapse" id="collapse<%= year %>">
         <table class="table accordion-inner">
