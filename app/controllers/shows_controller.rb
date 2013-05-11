@@ -4,15 +4,12 @@ class ShowsController < ApplicationController
   require 'yaml'
   
   def index
-    if current_user
-      @shows = Show.joins('left outer join shows_users on shows_users.show_id = shows.id')
-                  .joins('left outer join users on users.id = shows_users.user_id')
-                  .joins(:venue)
-                  .select('shows.*, venues.name, venues.city, venues.state, shows_users.user_id')
-                  .where('users.id = ? or users.id is NULL or users.id <> ?', current_user.id, current_user.id)
-                  .order('shows.date desc')
-    else
-      @shows = Show.joins(:venue).select('shows.*, venues.name, venues.city, venues.state').order('shows.date desc')
+    @shows = Show.joins(:venue).select('shows.*, venues.name, venues.city, venues.state').order('shows.date desc')
+    @user_shows = []
+    if current_user 
+      current_user.shows.each do |show|
+        @user_shows << show.id
+      end
     end
     @description = "The definitive site for Railroad Earth community, RRE lyrics, show and setlist information, an who knows what else to come..."
     respond_to do |format|
@@ -112,15 +109,12 @@ class ShowsController < ApplicationController
   end
 
   def welcome
-    if current_user
-      @shows = Show.joins('left outer join shows_users on shows_users.show_id = shows.id')
-                  .joins('left outer join users on users.id = shows_users.user_id')
-                  .joins(:venue)
-                  .select('shows.*, venues.name, venues.city, venues.state, shows_users.user_id')
-                  .where('users.id = ? or users.id is NULL or users.id <> ?', current_user.id, current_user.id)
-                  .order('shows.date desc')
-    else
-      @shows = Show.joins(:venue).select('shows.*, venues.name, venues.city, venues.state').order('shows.date desc')
+    @shows = Show.joins(:venue).select('shows.*, venues.name, venues.city, venues.state').order('shows.date desc')
+    @user_shows = []
+    if current_user 
+      current_user.shows.each do |show|
+        @user_shows << show.id
+      end
     end
     @most_recent = @shows.first
     @recently_added = @shows.select { |s| s.created_at }.sort { |s, t| s.created_at <=> t.created_at}.slice(-5..-1).reverse
