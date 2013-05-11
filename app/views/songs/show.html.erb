@@ -4,11 +4,11 @@
 <% if @versions.count > 1 %>
   <div class="span3 song-stat">
     <h3>First played</h3>
-    <p><%= link_to(@versions.first.show.date.strftime('%B %d, %Y'), @versions.first.show) %></p>
+    <p><%= link_to(@versions.first.date.strftime('%B %d, %Y'), show_path(@versions.first.show_id)) %></p>
   </div>
   <div class="span3 song-stat">
     <h3>Last played</h3>
-    <p><%= link_to(@versions.last.show.date.strftime('%B %d, %Y'), @versions.last.show) %></p>
+    <p><%= link_to(@versions.last.date.strftime('%B %d, %Y'), show_path(@versions.last.show_id)) %></p>
   </div>
   <div class="span3 song-stat">
     <h3>Times played</h3>
@@ -24,20 +24,8 @@
 </div>
 
 <div class="row">
-  <div id="shows-played" class="span6">
-    <h4>Shows played</h4>
-    <% @versions.each do |v| %>
-      <div>
-        <%= v.show.date %> - <%= link_to v.venue_name, v.show %>
-        <% if current_user && @user_shows.include?(v.show_id) %>
-          <em class="muted">You were there!</em>
-        <% end %>
-      </div>
-    <% end %>
-  </div>
-
-  <div id="lyrics" class="span5 well">
-    <h4><%= "Lyrics/Notes" unless @song.instrumental %><%= raw("<em>Instrumental</em> | Notes") if @song.instrumental %></h4>
+  <div id="lyrics" class="span6">
+    <h3><%= "Lyrics/Notes" unless @song.instrumental %><%= raw("<em>Instrumental</em> | Notes") if @song.instrumental %></h3>
     <% if @song.notes %>
       <%= simple_format @song.notes %>
     <% else %>
@@ -45,6 +33,32 @@
     <% end %>
     <% if current_user %>
       <%= link_to "Edit", edit_song_path(@song), :class => "btn btn-small btn-success" %>
+    <% end %>
+  </div>
+
+  <div id="shows-played" class="span6 accordion">
+    <h3>Shows played</h3>
+    <% @years_played.each do |year| %>
+    <div class="accordion-group">
+      <div class="accordion-heading">
+        <%= link_to year, "#collapse#{year}", :class => "accordion-toggle", :data => { :toggle => "collapse", :parent => "shows-played" } %>
+      </div>
+      <div class="accordion-body collapse" id="collapse<%= year %>">
+        <table class="table accordion-inner">
+            <% @versions.select { |v| v.date.year == year }.each do |v| %>
+              <tr>
+                <td class="date"><%= v.date %></td>
+                <td><%= link_to v.venue_name, show_path(v.show_id) %></td>
+                <td>
+                  <% if current_user && @user_shows.include?(v.show_id) %>
+                    <em class="muted">You were there!</em>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </table>
+        </div>
+      </div>
     <% end %>
   </div>
 </div>
