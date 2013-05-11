@@ -1,5 +1,5 @@
 <h4><em>Total shows</em> - <strong><%= @shows.count %></strong></h4>
-  <% if current_user %><p class="alert alert-info">Obviously, I'm having some issues with the show tagging feature for logged in users right now.  Top men are on it.</p><% end %>
+  <% if current_user %><p class="alert alert-info">Obviously, I'm having some issues with the show tagging feature for logged in users right now, and that's what's causing shows to "disappear".  Don't worry, they haven't actually disappeared.  Top men are on it. <em><small>-mgmt</small></em></p><% end %>
 <table class="table">
 <% @shows.each do |show| %>
 <tr>
