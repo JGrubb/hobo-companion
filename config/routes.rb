@@ -10,6 +10,7 @@ RRE::Application.routes.draw do
   resources :songs
   post 'shows/tag_show/:id', :to => "shows#tag_show", :as => :tag_show
   delete 'shows/tag_show/:id', :to => "shows#delete_tag", :as => :delete_show_tag
+  get 'shows/tabs', :to => 'shows#tabs'
   
   resources :venues
 

@@ -1,6 +1,6 @@
 class ShowsController < ApplicationController
   before_filter :require_user, :except => [:show, :index, :welcome]
-  before_filter :get_user_shows, :only => [:index, :welcome]
+  before_filter :get_user_shows, :only => [:index, :welcome, :tabs]
  
   require 'yaml'
   
@@ -111,12 +111,16 @@ class ShowsController < ApplicationController
     @recently_added = @shows.select { |s| s.created_at }.sort { |s, t| s.created_at <=> t.created_at}.slice(-5..-1).reverse
     @first_show = @shows.first
     @recently_updated_songs = Song.order('updated_at desc').where(:is_song => true).limit(5)
-    @years = @shows.map { |s| s.date.year }.uniq.sort
     @user = User.new
     respond_to do |format|
       format.html
       format.json { render :json => @shows}
     end
+  end
+
+  def tabs
+    @years = @shows.map { |s| s.date.year }.uniq.sort
+    render :layout => false
   end
   
   private
