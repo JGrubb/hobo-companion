@@ -12,7 +12,7 @@
         <h4><%= x = set.to_i > 0 ? "Set #{set}" : "#{set}" %></h4>
         <% @songs.select { |s| s.set_number == set }.each do |song| %>
           <% if song.is_song %>
-            <li><%= link_to song.title, song_path(song.id) %> <%= "->" if song.transition %> <%= song.song_notes %></li>
+            <li><%= link_to song.title, "/songs/#{song.slug}" %> <%= "->" if song.transition %> <%= song.song_notes %></li>
           <% else %>
             <li><%= song.title %></li>
           <% end %>  

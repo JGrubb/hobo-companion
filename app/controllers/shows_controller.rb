@@ -36,7 +36,7 @@ class ShowsController < ApplicationController
     @possible_sets = Show.possible_sets
     @songs = SongInstance.joins(:song)
               .order('song_instances.position ASC')
-              .select('song_instances.position, song_instances.set_number, song_instances.transition, song_instances.song_notes, songs.title, songs.is_song, songs.id')
+              .select('song_instances.position, song_instances.set_number, song_instances.transition, song_instances.song_notes, songs.title, songs.is_song, songs.id, songs.slug')
               .where(:show_id => @show.id)
     @title = "Setlist for #{@show.date}"
     @description = "Show and setlist info for Railroad Earth on #{@show.date} at #{@show.name} - #{@show.city}, #{@show.state}"
