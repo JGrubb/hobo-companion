@@ -8,7 +8,7 @@
     <div class="row">
     <% @possible_sets.each do |set| %>
       <% unless @songs.select { |s| s.set_number == set }.empty? %>
-        <ol class="span3">
+        <ol class="span3<%= cycle(' clear-left', '')%>">
         <h4><%= x = set.to_i > 0 ? "Set #{set}" : "#{set}" %></h4>
         <% @songs.select { |s| s.set_number == set }.each do |song| %>
           <% if song.is_song %>
