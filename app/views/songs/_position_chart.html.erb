@@ -17,6 +17,7 @@
     data.addColumn('number', 'Position');
     data.addColumn('number', '# of times in that slot in the list');
     data.addRows([
+        [0, 0],
       <% @position_info.each do |pos| %>
         <%= "[#{pos[:position]}, #{pos[:count]}]," %>
       <% end %>
