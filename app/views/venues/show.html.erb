@@ -1,9 +1,11 @@
-<h2><%= @venue.name %><small> - <%= "#{@venue.city}, #{@venue.state}" %></small></h2>
-<div id="dates-played">
-  <h5>Dates played</h5>
-  <% @shows.each do |show| %>
-  <div class="show">
-    <%= link_to show.date, show %>
+<div class="row">
+  <h2><%= @venue.name %><small> - <%= "#{@venue.city}, #{@venue.state}" %></small></h2>
+  <div id="dates-played">
+    <h3>Dates played</h3>
+    <% @shows.each do |show| %>
+    <div class="show span3">
+      <h4><%= link_to show.date.strftime('%b %d, %Y'), show %></h4>
+    </div>
+    <% end %>
   </div>
-  <% end %>
 </div>

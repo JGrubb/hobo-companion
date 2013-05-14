@@ -18,7 +18,7 @@ class SongsController < ApplicationController
     @you_saw = 0
     @years_played = @versions.map { |v| v.date.year }.uniq.sort
     @position_info = Song.joins(:song_instances).select('song_instances.position, count(*) as count').where('songs.id = ?', @song.id).group('song_instances.position')
-    logger.debug @position_info.to_json
+#    logger.debug @position_info.to_json
     if current_user
       @versions.each do |v|
         if @user_shows.include?(v.show_id)
