@@ -113,6 +113,8 @@ class ShowsController < ApplicationController
     @first_show = @shows.last
     @recently_updated_songs = Song.order('updated_at desc').where(:is_song => true).limit(5)
     @user = User.new
+    @users = User.joins(:shows).select('users.id as user_id, shows.id as show_id')
+    @tagging_users_count = @users.uniq! { |u| u[:user_id]}.count
     respond_to do |format|
       format.html
       format.json { render :json => @shows}

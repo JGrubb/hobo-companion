@@ -19,26 +19,35 @@
 </div>
 
 <div class="row">
-  <div id="recently-added" class="span4">
-    <h3>Recently added setlists</h3>
+  <div id="recently-added" class="span3">
+    <h4 class="muted">Recently added setlists</h4>
     <% @recently_added.each do |show| %>
-      <h5><%= link_to "#{show.date.strftime('%D')} - #{show.city}, #{show.state}", show %></h5>
+      <p><%= link_to "#{show.date.strftime('%D')} - #{show.city}, #{show.state}", show %></p>
     <% end %>
   </div>
 
-  <div id="recent-songs" class="span4">
-    <h3>Recently added lyrics</h3>
+  <div id="recent-songs" class="span3">
+    <h4 class="muted">Recently added lyrics</h4>
     <% @recently_updated_songs.each do |song| %>
-      <h5><%= link_to song.title, song %></h5>
+      <p><%= link_to song.title, song %></p>
     <% end %>
   </div>
 
-  <div id="most-recent" class="span4">
-    <h3>Last show</h3>
+  <div id="most-recent" class="span3">
+    <h4 class="muted">Last show</h4>
     <h4><em><%= link_to "#{@most_recent.name}", @most_recent %></em></h4>
     <h5><em><%= "#{@most_recent.city}, #{@most_recent.state}" %></em><br />
       <%= @most_recent.date.strftime('%D') %>
     </h5>
+  </div>
+
+  <div id="user-stats" class="span3">
+    <h4 class="muted">Some stats</h4>
+    <ul>
+      <li><%= User.count %> registered hobos</li>
+      <li><%= Show.count %> total setlists</li>
+      <li><%= @tagging_user_count %></li>
+    </ul>
   </div>
 </div>
 
