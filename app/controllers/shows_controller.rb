@@ -1,6 +1,6 @@
 class ShowsController < ApplicationController
   before_filter :require_user, :except => [:show, :index, :welcome, :tabs]
-  before_filter :get_user_shows, :only => [:index, :welcome, :tabs]
+  before_filter :get_user_shows, :only => [:index, :tabs]
  
   require 'yaml'
   
@@ -104,14 +104,17 @@ class ShowsController < ApplicationController
   end
 
   def welcome
+    @shows = Show.joins(:venue).select('shows.*, venues.*').order('shows.date desc')
     if current_user
       @user_last_show = current_user.shows.order('date desc').first
     end
     @most_recent = @shows.first
     @recently_added = @shows.select { |s| s.created_at }.sort { |s, t| s.created_at <=> t.created_at}.slice(-5..-1).reverse
-    @first_show = @shows.first
+    @first_show = @shows.last
     @recently_updated_songs = Song.order('updated_at desc').where(:is_song => true).limit(5)
     @user = User.new
+    @users = User.joins(:shows).select('users.id as user_id, shows.id as show_id')
+    @tagging_users_count = @users.uniq! { |u| u[:user_id]}.count
     respond_to do |format|
       format.html
       format.json { render :json => @shows}
