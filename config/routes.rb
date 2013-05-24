@@ -1,5 +1,7 @@
 RRE::Application.routes.draw do
 
+  get "sitemap" => "sitemaps#sitemap"
+
   get "users", :to => 'users#index'
   post "users/editor", :to => 'users#make_editor', :as => :make_editor
 
