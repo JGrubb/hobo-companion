@@ -1,5 +1,5 @@
 class SongsController < ApplicationController
-  before_filter :require_editor, :except => [:index, :show]
+  before_filter :require_editor, :except => [:index, :show, :position_info]
   before_filter :user_shows, :only => :show
   
   def index
@@ -17,7 +17,8 @@ class SongsController < ApplicationController
     @versions = SongInstance.where(:song_id => @song.id).joins(:show => :venue).select("venues.name as venue_name, shows.date as date, shows.id as show_id").order('shows.date asc').uniq { |v| v.show_id }
     @you_saw = 0
     @years_played = @versions.map { |v| v.date.year }.uniq.sort
-    @position_info = Song.joins(:song_instances).select('song_instances.position, count(*) as count').where('songs.id = ?', @song.id).group('song_instances.position')
+    @position_info = Song.joins(:song_instances).select('song_instances.position, count(*) as count')
+                        .where('songs.id = ?', @song.id).group('song_instances.position').to_json
 #    logger.debug @position_info.to_json
     if current_user
       @versions.each do |v|
@@ -26,6 +27,13 @@ class SongsController < ApplicationController
         end
       end
     end
+  end
+  
+  def position_info
+    song_id = params[:id]
+    @position_info = Song.joins(:song_instances).select('song_instances.position, count(*) as count')
+                        .where('songs.id = ?', song_id).group('song_instances.position')
+    render json: @position_info
   end
 
   def new
