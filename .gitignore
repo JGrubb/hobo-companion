@@ -25,3 +25,4 @@ config/initializers/smtp.rb
 config/initializers/rpx.rb
 *.swp
 public/*
+dump.rdb
