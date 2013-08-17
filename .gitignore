@@ -26,3 +26,4 @@ config/initializers/rpx.rb
 *.swp
 public/*
 dump.rdb
+*.un~

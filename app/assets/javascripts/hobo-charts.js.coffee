@@ -2,12 +2,12 @@ jQuery ($) ->
   positionChart = ->
     $chartDiv = $('#position-chart')
     margin =
-      top: 30
+      top: 50
       right: 0
       bottom: 30
       left: 50
     divWidth = $chartDiv.width()
-    divHeight = Math.floor(divWidth * 0.5)
+    divHeight = Math.floor(divWidth * 0.6)
     width = divWidth - margin.left - margin.right
     height = divHeight - margin.top - margin.bottom
     x = d3.scale.linear().range [0, width]
@@ -26,7 +26,7 @@ jQuery ($) ->
       y.domain [0, d3.max(data, (d) -> return d.count)]
       svg.append("g").attr("class", "x axis")
         .attr("transform", "translate(0, #{height})")
-        #.attr("display", "none")
+        .attr("display", "none")
         .call xAxis
         
       svg.append("g").attr("class", "y axis")
@@ -42,15 +42,15 @@ jQuery ($) ->
         .attr("x", (d, i) -> return i * (width / data.length))
         .attr("width", Math.floor (width / data.length) - 2)
         .attr("y", (d) -> return y(d.count))
-        .attr("fill", (d) -> 
+        .attr("fill", (d) ->
           return "rgb(#{Math.floor(d.count * fit)}, 0, 0)")
         .attr("height", (d) -> return height - y(d.count))
 
-      svg.selectAll("text").data(data).enter().append("text")
-        .text((d) -> d.count)
-        .attr("x", (d, i) -> i * (Math.floor(width / data.length)))
-        .attr("y", height - 10)
-        .attr("fill", "white")
+        #svg.selectAll("text").data(data).enter().append("text")
+        #  .text((d) -> d.count)
+        #  .attr("x", (d, i) -> i * (Math.floor(width / data.length)))
+        #  .attr("y", height - 10)
+        #  .attr("fill", "white")
       
       svg.append("text")
         .attr("x", width / 2)
