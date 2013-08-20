@@ -35,7 +35,7 @@ class SongsController < ApplicationController
                         .where('songs.id = ?', song_id).group('song_instances.position')
     render json: @position_info
   end
-  
+
   def new
     @song = Song.new
   end
