@@ -22,7 +22,7 @@ jQuery ($) ->
     d3.json "/songs/position_info/#{HOBO.song_id}", (error, data) ->
       max = d3.max(data, (f) -> return f.count)
       fit = 255 / max
-      x.domain d3.extent(data, (d) -> return d.position)
+      x.domain data.map (d) -> return d.position
       y.domain [0, d3.max(data, (d) -> return d.count)]
       svg.append("g").attr("class", "x axis")
         .attr("transform", "translate(0, #{height})")
