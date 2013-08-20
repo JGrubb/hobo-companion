@@ -2,7 +2,7 @@ jQuery ($) ->
   positionChart = ->
     $chartDiv = $('#position-chart')
     margin =
-      top: 50
+      top: 20
       right: 0
       bottom: 30
       left: 50
@@ -12,7 +12,7 @@ jQuery ($) ->
     height = divHeight - margin.top - margin.bottom
     x = d3.scale.linear().range [0, width]
     y = d3.scale.linear().range [height, 0]
-    xAxis = d3.svg.axis().scale(x).orient("bottom").ticks(5)
+    xAxis = d3.svg.axis().scale(x).orient("bottom")
     yAxis = d3.svg.axis().scale(y).orient("left").ticks(5)
     svg = d3.select('#position-chart').append("svg")
       .attr("width", divWidth)
@@ -20,13 +20,14 @@ jQuery ($) ->
       .append("g").attr("transform", "translate(#{margin.left}, #{margin.top})")
       
     d3.json "/songs/position_info/#{HOBO.song_id}", (error, data) ->
+      console.log data
       max = d3.max(data, (f) -> return f.count)
       fit = 255 / max
-      x.domain d3.extent(data, (d) -> return d.position)
-      y.domain [0, d3.max(data, (d) -> return d.count)]
+      x.domain [1, d3.max(data, (d) -> return d.position)]
+      y.domain [0, d3.max(data, (d) -> return d.count) + 5]
       svg.append("g").attr("class", "x axis")
         .attr("transform", "translate(0, #{height})")
-        .attr("display", "none")
+        #.attr("display", "none")
         .call xAxis
         
       svg.append("g").attr("class", "y axis")
@@ -42,15 +43,14 @@ jQuery ($) ->
         .attr("x", (d, i) -> return i * (width / data.length))
         .attr("width", Math.floor (width / data.length) - 2)
         .attr("y", (d) -> return y(d.count))
-        .attr("fill", (d) ->
-          return "rgb(#{Math.floor(d.count * fit)}, 0, 0)")
+        .attr("fill", (d) -> return "rgb(#{Math.floor(d.count * fit)}, 0, 0)")
         .attr("height", (d) -> return height - y(d.count))
 
-        #svg.selectAll("text").data(data).enter().append("text")
-        #  .text((d) -> d.count)
-        #  .attr("x", (d, i) -> i * (Math.floor(width / data.length)))
-        #  .attr("y", height - 10)
-        #  .attr("fill", "white")
+      svg.selectAll("text").data(data).enter().append("text")
+        .text((d) -> d.count)
+        .attr("x", (d, i) -> return i * (Math.floor(width / data.length)))
+        .attr("y", height - 10)
+        .attr("fill", "white")
       
       svg.append("text")
         .attr("x", width / 2)
