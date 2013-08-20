@@ -10,7 +10,7 @@ jQuery ($) ->
     divHeight = Math.floor(divWidth * 0.6)
     width = divWidth - margin.left - margin.right
     height = divHeight - margin.top - margin.bottom
-    x = d3.scale.linear().range [0, width]
+    x = d3.scale.ordinal().rangeBands [0, width]
     y = d3.scale.linear().range [height, 0]
     xAxis = d3.svg.axis().scale(x).orient("bottom")
     yAxis = d3.svg.axis().scale(y).orient("left").ticks(5)
@@ -20,7 +20,6 @@ jQuery ($) ->
       .append("g").attr("transform", "translate(#{margin.left}, #{margin.top})")
       
     d3.json "/songs/position_info/#{HOBO.song_id}", (error, data) ->
-      console.log data
       max = d3.max(data, (f) -> return f.count)
       fit = 255 / max
       x.domain [1, d3.max(data, (d) -> return d.position)]
@@ -41,14 +40,14 @@ jQuery ($) ->
       svg.selectAll("bar").data(data).enter().append("rect")
         .attr("class", "bar")
         .attr("x", (d, i) -> return i * (width / data.length))
-        .attr("width", Math.floor (width / data.length) - 2)
+        .attr("width", Math.floor(width / data.length) - 2)
         .attr("y", (d) -> return y(d.count))
         .attr("fill", (d) -> return "rgb(#{Math.floor(d.count * fit)}, 0, 0)")
         .attr("height", (d) -> return height - y(d.count))
 
       svg.selectAll("text").data(data).enter().append("text")
         .text((d) -> d.count)
-        .attr("x", (d, i) -> return i * (Math.floor(width / data.length)))
+        .attr("x", (d, i) -> return i * (width / data.length))
         .attr("y", height - 10)
         .attr("fill", "white")
       
@@ -62,4 +61,25 @@ jQuery ($) ->
   positionChart() if $('#position-chart').length
   
   playsPerYear = ->
+
+  showsPerYear = ->
+    $chartDiv = $('#shows-per-year')
+    margin =
+      top: 20
+      right: 0
+      bottom: 30
+      left: 50
+    divWidth = $chartDiv.width()
+    divHeight = Math.floor(divWidth * 0.6)
+    width = divWidth - margin.left - margin.right
+    height = divHeight - margin-top - margin.bottom
+    x = d3.scale.ordinal().rangeBands [0, width]
+    y = d3.scale.linear().range [height, 0]
     
+    d3.json "/shows/shows_by_year", (error, data) ->
+      line = d3.svg.line()
+        .x((d, i) -> x(i))
+        .y((d) -> y(d.count))
+
+      graph.select('#shows-per-year').append("svg:svg")
+        .attr("width", width)
