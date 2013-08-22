@@ -7,17 +7,28 @@ jQuery ($) ->
   positionChart = ->
     drawChart = (data) ->
       m = chartMargin
-      @width = $('#position-chart').width()
-      @height = Math.floor(@width / 1.618)
-      @w = @width - m.left - m.right
-      @h = @height - m.top - m.bottom
+      width = $('#position-chart').width()
+      height = Math.floor(width / 1.618)
+      w = Math.floor(width - m.left - m.right)
+      h = Math.floor(height - m.top - m.bottom)
+      console.log w
       x = d3.scale.linear().domain([0, d3.max((d) -> d.position)]).range [0, @w]
       y = d3.scale.linear().domain([0, d3.max((d) -> d.count)]).range [@h, 0]
       xAxis = d3.svg.axis().scale(x).orient "bottom"
       yAxis = d3.svg.axis().scale(y).orient "left"
       svg = d3.select("#position-chart").append("svg")
-        .attr("width", @width)
-        .attr("height", @height)
+        .attr("width", width)
+        .attr("height", height)
+      svg.selectAll("rect")
+        .data(data)
+        .enter()
+        .append("rect")
+        .attr("x", (d, i) -> return i * (w / data.length))
+        .attr("y", (d) -> return h - d.count)
+        .attr("fill", "steelblue")
+        .attr("width", w / data.length - 2)
+        .attr("height", (d) -> return d.count)
+        
     d3.json "/songs/position_info/#{HOBO.song_id}", (err, data) ->
       drawChart data
 
@@ -79,9 +90,8 @@ jQuery ($) ->
       )
       d3.select("svg").append("g").attr("class", "x axis").attr("transform", "translate(0," + height + ")").call time_axis
       d3.select("svg").append("g").attr("class", "y axis").attr("transform", "translate(" + margin + ",0)").call count_axis
-      d3.select(".y.axis").append("text").text("Number of Shows").attr("transform", "rotate (90, " + -margin + ", 0)").attr("x", 20).attr "y", 0
-      d3.select(".x.axis").append("text").text("#{period}").attr("x", ->
+      d3.select("#shows-per-year").append("text").text("Number of shows per year").attr("x", ->
         (width / 1.6) - margin
-      ).attr "y", margin / 1.5
+      ).attr "y", 0
     d3.json "/shows/shows_per_year", draw
   showsPerYear() if document.querySelector('#shows-per-year')
