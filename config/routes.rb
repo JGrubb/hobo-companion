@@ -15,6 +15,8 @@ RRE::Application.routes.draw do
   get 'shows/tabs', :to => 'shows#tabs'
   get 'songs/position_info/:id', :to => 'songs#position_info'
   get 'shows/shows_per_year', to: 'shows#shows_per_year'
+  get 'shows/shows_per_month', to: 'shows#shows_per_month'
+  get 'shows/:year', :to => 'shows#year'
   
   resources :venues
 
