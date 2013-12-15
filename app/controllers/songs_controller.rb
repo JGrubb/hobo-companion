@@ -41,12 +41,12 @@ class SongsController < ApplicationController
   end
 
   def create
-    @song.new(params[:song])
+    @song = Song.new(params[:song])
     karma_check(@song, current_user, 50)
     @song.updated_by = current_user.id
     respond_to do |format|
       if @song.save
-        format.html { redirect_to @song, notice:  "#{@song.title} was successfully updated." }
+        format.html { redirect_to @song, notice:  "#{@song.title} was successfully created." }
         format.json { render json: @song }
       else
         format.html { render action: "new" }
