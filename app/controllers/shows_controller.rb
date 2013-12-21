@@ -1,6 +1,6 @@
 class ShowsController < ApplicationController
-  before_filter :require_user, :except => [:show, :index, :welcome, :tabs]
-  before_filter :get_user_shows, :only => [:index, :tabs]
+  before_filter :require_user, :except => [:show, :index, :welcome, :tabs, :shows_per_year, :shows_per_month, :year]
+  before_filter :get_user_shows, :only => [:index, :tabs, :year]
  
   require 'yaml'
   
@@ -124,6 +124,16 @@ class ShowsController < ApplicationController
   def tabs
     @years = @shows.map { |s| s.date.year }.uniq.sort
     render :layout => false
+  end
+  
+  def shows_per_year
+    @shows = Show.select('YEAR(date) as year, count(*) as count').group('YEAR(date)')
+    render json: @shows
+  end
+  
+  def shows_per_month
+    @shows = Show.select('YEAR(date) as year, MONTH(date) as month, count(*) as count').group('YEAR(date), MONTH(date)')
+    render json: @shows
   end
   
   private

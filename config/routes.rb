@@ -14,6 +14,9 @@ RRE::Application.routes.draw do
   delete 'shows/tag_show/:id', :to => "shows#delete_tag", :as => :delete_show_tag
   get 'shows/tabs', :to => 'shows#tabs'
   get 'songs/position_info/:id', :to => 'songs#position_info'
+  get 'shows/shows_per_year', to: 'shows#shows_per_year'
+  get 'shows/shows_per_month', to: 'shows#shows_per_month'
+  get 'shows/:year', :to => 'shows#year'
   
   resources :venues
 
