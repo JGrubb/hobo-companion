@@ -16,11 +16,10 @@ RRE::Application.routes.draw do
   get 'songs/position_info/:id', :to => 'songs#position_info'
   get 'shows/shows_per_year', to: 'shows#shows_per_year'
   get 'shows/shows_per_month', to: 'shows#shows_per_month'
-  get 'shows/:year', :to => 'shows#year'
   
+  resources :shows
   resources :venues
 
-  resources :shows
 
   get 'shows/year/:year', :to => 'shows#year'
   # The priority is based upon order of creation:

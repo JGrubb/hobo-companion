@@ -23,6 +23,7 @@
 <% end %>
 </div>
 
+<% if @versions.count > 1 %>
 <div class="row">
   <div class="span6">
     <%= render 'position_chart' %>
@@ -31,6 +32,7 @@
     <%= render 'song_by_year' %>
   </div>
 </div>
+<% end %>
 
 <div class="row">
   <div id="lyrics" class="span6">
