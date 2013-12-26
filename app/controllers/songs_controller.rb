@@ -18,7 +18,7 @@ class SongsController < ApplicationController
     @you_saw = 0
     @years_played = @versions.map { |v| v.date.year }.uniq.sort
     @position_info = Song.joins(:song_instances).select('song_instances.position, count(*) as count')
-                        .where('songs.id = ?', @song.id).group('song_instances.position').to_json
+                        .where('songs.id = ?', @song.id).group('song_instances.position')
 #    logger.debug @position_info.to_json
     if current_user
       @versions.each do |v|
@@ -41,12 +41,12 @@ class SongsController < ApplicationController
   end
 
   def create
-    @song.new(params[:song])
+    @song = Song.new(params[:song])
     karma_check(@song, current_user, 50)
     @song.updated_by = current_user.id
     respond_to do |format|
       if @song.save
-        format.html { redirect_to @song, notice:  "#{@song.title} was successfully updated." }
+        format.html { redirect_to @song, notice:  "#{@song.title} was successfully created." }
         format.json { render json: @song }
       else
         format.html { render action: "new" }

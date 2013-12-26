@@ -1,2 +1,8 @@
-<h1>Songs#new</h1>
-<p>Find me in app/views/songs/new.html.erb</p>
+<h2>New Song</h2>
+<%= simple_form_for(@song, :defaults => { :input_html => { :class => 'input-xlarge' } }, :html => { :class => 'form-vertical' }) do |f| %>
+  <%= f.input :title %>
+  <%= f.input :author %>
+  <%= f.input :is_song %>
+  <%= f.input :notes, :label => "Lyrics / Notes", :input_html => { :class => "input-xxlarge"} %>
+  <%= f.button :submit, :class => "btn-primary" %>
+<% end %>
