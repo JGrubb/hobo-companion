@@ -66,14 +66,14 @@ class ShowsController < ApplicationController
   end
 
   def edit
-    @show = Show.find(params[:id])
+    @show = Show.friendly.find(params[:id])
     @venue = @show.venue
     @show.versions.build
     load_sets
   end
 
   def update
-    @show = Show.find(params[:id])
+    @show = Show.friendly.find(params[:id])
     songs = params[:show][:versions_attributes]
     check_song_id_for_new(songs, params)
     karma_check(@show, current_user, 25)

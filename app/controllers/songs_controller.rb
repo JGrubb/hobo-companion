@@ -56,11 +56,11 @@ class SongsController < ApplicationController
   end
 
   def edit
-    @song = Song.find(params[:id])
+    @song = Song.friendly.find(params[:id])
   end
 
   def update
-    @song = Song.find(params[:id])
+    @song = Song.friendly.find(params[:id])
     karma_check(@song, current_user, 25)
     respond_to do |format|
       if @song.update_attributes(params[:song])
