@@ -240,7 +240,7 @@ DEPENDENCIES
   coffee-rails
   debugger
   devise
-  exception_notification
+  exception_notification (~> 4.0.0)
   factory_girl_rails
   foundation-rails
   friendly_id (~> 5.0.0)

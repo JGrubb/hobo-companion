@@ -20,6 +20,8 @@ RRE::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
 
+
+  config.eager_load = true
   # Defaults to nil and saved in location specified by config.assets.prefix
   # config.assets.manifest = YOUR_PATH
 
@@ -68,8 +70,9 @@ RRE::Application.configure do
   
   config.action_mailer.delivery_method = :smtp
   
-  config.middleware.use ExceptionNotifier,
-    sender_address: 'noreply@hobocompanion.org',
-    exception_recipients: 'therealjohnnygrubb@gmail.com',
-    ignore_exceptions: ExceptionNotifier.default_ignore_exceptions
+  config.middleware.use ExceptionNotification::Rack,
+    email: {
+      sender_address: 'noreply@hobocompanion.org',
+      exception_recipients: 'therealjohnnygrubb@gmail.com',
+    }
 end
