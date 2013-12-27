@@ -11,7 +11,6 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
-//= require jquery_ujs
 //= require cocoon
 //= require chosen-jquery
 //= require jquery.nested-fields

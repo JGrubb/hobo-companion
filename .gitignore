@@ -27,3 +27,4 @@ config/initializers/rpx.rb
 public/*
 dump.rdb
 *.un~
+config/initializers/devise.rb
