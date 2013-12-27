@@ -61,7 +61,7 @@
             <% @versions.select { |v| v.date.year == year }.each do |v| %>
               <tr>
                 <td class="date"><%= v.date %></td>
-                <td><%= link_to v.venue_name, show_path(v.show_id) %></td>
+                <td><%= link_to v.venue_name, "/shows/#{v.show_slug}" %></td>
                 <td>
                   <% if current_user && @user_shows.include?(v.show_id) %>
                     <em class="muted">You were there!</em>

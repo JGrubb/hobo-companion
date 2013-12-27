@@ -22,7 +22,7 @@ jQuery ->
         console.log(this)
         $('input.order', this).val(index + 1)
   $('table#setlist').bind 'cocoon:after-insert', (e, insertedItem) ->
-    $('.show_song_instances_song select', insertedItem).chosen
+    $('.show_versions_song select', insertedItem).chosen
       create_option: true
     set = $(insertedItem).prev('tr').find('select.set').val()
     $('select.set', insertedItem).val(set)

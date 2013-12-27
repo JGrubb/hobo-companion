@@ -9,32 +9,22 @@
 # from scratch. The latter is a flawed and unsustainable approach (the more migrations
 # you'll amass, the slower it'll run and the greater likelihood for issues).
 #
-# It's strongly recommended to check this file into your version control system.
+# It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130509131920) do
+ActiveRecord::Schema.define(version: 20131227192417) do
 
-  create_table "posts", :force => true do |t|
-    t.string   "title"
-    t.text     "body"
-    t.integer  "user_id"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
-  end
-
-  add_index "posts", ["user_id"], :name => "index_posts_on_user_id"
-
-  create_table "recordings", :force => true do |t|
+  create_table "recordings", force: true do |t|
     t.integer  "show_id"
     t.text     "playlist"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table "shows", :force => true do |t|
+  create_table "shows", force: true do |t|
     t.date     "date"
     t.integer  "venue_id"
-    t.string   "show_notes",   :limit => 1000
-    t.boolean  "verified",                     :default => false
+    t.string   "show_notes",   limit: 1000
+    t.boolean  "verified",                  default: false
     t.integer  "updated_by"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -43,40 +33,24 @@ ActiveRecord::Schema.define(:version => 20130509131920) do
     t.string   "slug"
   end
 
-  add_index "shows", ["slug"], :name => "index_shows_on_slug", :unique => true
-  add_index "shows", ["venue_id"], :name => "index_shows_on_venue_id"
-  add_index "shows", ["verified"], :name => "index_shows_on_verified"
+  add_index "shows", ["slug"], name: "index_shows_on_slug", unique: true, using: :btree
+  add_index "shows", ["venue_id"], name: "index_shows_on_venue_id", using: :btree
+  add_index "shows", ["verified"], name: "index_shows_on_verified", using: :btree
 
-  create_table "shows_users", :id => false, :force => true do |t|
+  create_table "shows_users", id: false, force: true do |t|
     t.integer "show_id"
     t.integer "user_id"
   end
 
-  add_index "shows_users", ["show_id", "user_id"], :name => "index_shows_users_on_shows_id_and_users_id"
+  add_index "shows_users", ["show_id", "user_id"], name: "index_shows_users_on_shows_id_and_users_id", using: :btree
 
-  create_table "song_instances", :force => true do |t|
-    t.integer  "show_id"
-    t.integer  "position"
-    t.string   "set_number",                :default => "1"
-    t.integer  "song_id"
-    t.boolean  "transition"
-    t.string   "song_notes", :limit => 500
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "created_by"
-    t.integer  "updated_by"
-  end
-
-  add_index "song_instances", ["show_id"], :name => "index_on_show_id"
-  add_index "song_instances", ["song_id"], :name => "index_on_song_id"
-
-  create_table "songs", :force => true do |t|
-    t.string   "SongID",       :limit => 15
+  create_table "songs", force: true do |t|
+    t.string   "SongID",       limit: 15
     t.string   "title"
     t.string   "author"
-    t.boolean  "is_song",                    :default => true
+    t.boolean  "is_song",                 default: true
     t.text     "notes"
-    t.boolean  "deleted",                    :default => false
+    t.boolean  "deleted",                 default: false
     t.integer  "updated_by"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -85,15 +59,15 @@ ActiveRecord::Schema.define(:version => 20130509131920) do
     t.boolean  "instrumental"
   end
 
-  add_index "songs", ["slug"], :name => "index_songs_on_slug", :unique => true
+  add_index "songs", ["slug"], name: "index_songs_on_slug", unique: true, using: :btree
 
-  create_table "users", :force => true do |t|
-    t.string   "email",                  :default => "", :null => false
-    t.string   "encrypted_password",     :default => "", :null => false
+  create_table "users", force: true do |t|
+    t.string   "email",                  default: "", null: false
+    t.string   "encrypted_password",     default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          :default => 0
+    t.integer  "sign_in_count",          default: 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -102,28 +76,44 @@ ActiveRecord::Schema.define(:version => 20130509131920) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "unconfirmed_email"
-    t.datetime "created_at",                             :null => false
-    t.datetime "updated_at",                             :null => false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
     t.boolean  "is_admin"
     t.boolean  "is_editor"
-    t.integer  "karma",                  :default => 10
+    t.integer  "karma",                  default: 10
     t.string   "rpx_identifier"
     t.string   "first_name"
   end
 
-  add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true
-  add_index "users", ["email"], :name => "index_users_on_email", :unique => true
-  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+  add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  create_table "venues", :force => true do |t|
+  create_table "venues", force: true do |t|
     t.string   "name"
     t.string   "city"
     t.string   "state"
-    t.string   "country",    :default => "USA"
+    t.string   "country",    default: "USA"
     t.integer  "updated_by"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "created_by"
   end
+
+  create_table "versions", force: true do |t|
+    t.integer  "show_id"
+    t.integer  "position"
+    t.string   "set_number",             default: "1"
+    t.integer  "song_id"
+    t.boolean  "transition"
+    t.string   "song_notes", limit: 500
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "created_by"
+    t.integer  "updated_by"
+  end
+
+  add_index "versions", ["show_id"], name: "index_on_show_id", using: :btree
+  add_index "versions", ["song_id"], name: "index_on_song_id", using: :btree
 
 end

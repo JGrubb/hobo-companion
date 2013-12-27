@@ -26,12 +26,12 @@
         </tr>
       </thead>
       <tbody>
-        <%= f.simple_fields_for :song_instances do |f| %>
+        <%= f.simple_fields_for :versions do |f| %>
           <%= render 'song_instance_fields', :f => f %>
         <% end %>
       </tbody>
     </table>
-    <%= link_to_add_association "Add song", f, :song_instances, 
+    <%= link_to_add_association "Add song", f, :versions, 
     :"data-association-insertion-node" => "table.table tr:last",
     :"data-association-insertion-method" => "after", 
     :partial => "song_instance_fields", :class => "btn btn-info btn-small" %>

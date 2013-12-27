@@ -6,6 +6,7 @@ gem 'rails', '4.0.2'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'mysql2'
+gem 'pg'
 gem 'devise'
 gem 'simple_form'
 gem 'jquery-ui-rails', '~> 4.0.2'
@@ -16,8 +17,9 @@ gem 'acts_as_list'
 gem 'sidekiq'
 gem 'exception_notification'
 #gem 'devise_rpx_connectable'
-gem 'friendly_id', '~> 4.0.9'
+gem 'friendly_id', '~> 5.0.0'
 gem 'protected_attributes'
+gem 'foundation-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.
