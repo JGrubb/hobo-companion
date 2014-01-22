@@ -1,5 +1,5 @@
 <div class="row">
-<h2 class="span12"><%= @song.title %> <small><%= @song.author %>)</small></h2>
+<h2 class="span12"><%= @song.title %><% unless @song.author.blank? %><small> (<%= @song.author %>)</small><% end %></h2>
 
 <% if @versions.count > 1 %>
   <div class="span3 song-stat">
