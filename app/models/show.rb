@@ -5,7 +5,7 @@ class Show < ActiveRecord::Base
 
   belongs_to :venue
   
-  has_many :versions, :dependent => :destroy, :order => :position
+  has_many :versions, :dependent => :destroy
   has_many :songs, :through => :versions
   has_and_belongs_to_many :users
 
