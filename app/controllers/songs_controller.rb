@@ -3,11 +3,7 @@ class SongsController < ApplicationController
   before_filter :user_shows, :only => :show
   
   def index
-    @songs = Song.joins(:versions)
-                .select('songs.title, songs.slug, songs.notes, songs.instrumental, count(*) as count')
-                .where(:is_song => true)
-                .group('songs.id')
-                .order('songs.title asc')
+    @songs = Song.where(:is_song => true).order('songs.title asc')
   end
 
   def show

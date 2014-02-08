@@ -36,7 +36,7 @@ group :development do
   gem 'bullet'
 end
 
-group :test do
+group :test, :development do
   gem "rb-fsevent", "~> 0.9.1"
   gem "guard", "1.6.2"
   gem "guard-rspec", "2.5.1"

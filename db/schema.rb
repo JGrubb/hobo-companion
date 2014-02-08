@@ -13,33 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20140207212833) do
 
-  create_table "comments", force: true do |t|
-    t.integer  "commentable_id",   default: 0
-    t.string   "commentable_type", default: ""
-    t.string   "title",            default: ""
-    t.text     "body"
-    t.string   "subject",          default: ""
-    t.integer  "user_id",          default: 0,  null: false
-    t.integer  "parent_id"
-    t.integer  "lft"
-    t.integer  "rgt"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-  end
-
-  add_index "comments", ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type", using: :btree
-  add_index "comments", ["user_id"], name: "index_comments_on_user_id", using: :btree
-
-  create_table "posts", force: true do |t|
-    t.string   "title"
-    t.text     "body"
-    t.integer  "user_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "posts", ["user_id"], name: "index_posts_on_user_id", using: :btree
-
   create_table "recordings", force: true do |t|
     t.integer  "show_id"
     t.text     "playlist"
@@ -72,19 +45,19 @@ ActiveRecord::Schema.define(version: 20140207212833) do
   add_index "shows_users", ["show_id", "user_id"], name: "index_shows_users_on_shows_id_and_users_id", using: :btree
 
   create_table "songs", force: true do |t|
-    t.string   "SongID",        limit: 15
+    t.string   "SongID",         limit: 15
     t.string   "title"
     t.string   "author"
-    t.boolean  "is_song",                  default: true
+    t.boolean  "is_song",                   default: true
     t.text     "notes"
-    t.boolean  "deleted",                  default: false
+    t.boolean  "deleted",                   default: false
     t.integer  "updated_by"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "created_by"
     t.string   "slug"
     t.boolean  "instrumental"
-    t.integer  "version_count",            default: 0
+    t.integer  "versions_count",            default: 0
   end
 
   add_index "songs", ["slug"], name: "index_songs_on_slug", unique: true, using: :btree
@@ -143,21 +116,5 @@ ActiveRecord::Schema.define(version: 20140207212833) do
 
   add_index "versions", ["show_id"], name: "index_on_show_id", using: :btree
   add_index "versions", ["song_id"], name: "index_on_song_id", using: :btree
-
-  create_table "votes", force: true do |t|
-    t.integer  "votable_id"
-    t.string   "votable_type"
-    t.integer  "voter_id"
-    t.string   "voter_type"
-    t.boolean  "vote_flag"
-    t.string   "vote_scope"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-  end
-
-  add_index "votes", ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope", using: :btree
-  add_index "votes", ["votable_id", "votable_type"], name: "index_votes_on_votable_id_and_votable_type", using: :btree
-  add_index "votes", ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope", using: :btree
-  add_index "votes", ["voter_id", "voter_type"], name: "index_votes_on_voter_id_and_voter_type", using: :btree
 
 end
