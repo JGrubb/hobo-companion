@@ -28,3 +28,5 @@ public/*
 dump.rdb
 *.un~
 config/initializers/devise.rb
+doc
+bin

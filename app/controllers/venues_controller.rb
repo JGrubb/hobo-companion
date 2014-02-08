@@ -1,6 +1,7 @@
 class VenuesController < ApplicationController
+  before_action :require_user, except: [:index, :show]
   def index
-    @venues = Venue.where(:country => 'USA').order(:state, :city)
+    @venues = Venue.order(:state, :city)
     @states = Venue.select(:state).uniq.order(:state)
   end
 
@@ -13,6 +14,7 @@ class VenuesController < ApplicationController
       flash[:notice] = "Nice job #{current_user.email}. You added #{@venue.name}"
       redirect_to new_show_path
     else
+      flash[:error] = "For some reason there was a problem there."
       redirect_to new_show_path
     end
   end

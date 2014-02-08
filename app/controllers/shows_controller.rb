@@ -142,9 +142,7 @@ class ShowsController < ApplicationController
     @shows = Show.joins(:venue).select('shows.*, venues.name, venues.city, venues.state').order('shows.date desc')
     @user_shows = []
     if current_user 
-      current_user.shows.each do |show|
-        @user_shows << show.id
-      end
+      @user_shows = current_user.shows.pluck :id
     end
   end
 

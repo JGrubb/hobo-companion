@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131227192417) do
+ActiveRecord::Schema.define(version: 20140207212833) do
 
   create_table "comments", force: true do |t|
     t.integer  "commentable_id",   default: 0
@@ -72,18 +72,19 @@ ActiveRecord::Schema.define(version: 20131227192417) do
   add_index "shows_users", ["show_id", "user_id"], name: "index_shows_users_on_shows_id_and_users_id", using: :btree
 
   create_table "songs", force: true do |t|
-    t.string   "SongID",       limit: 15
+    t.string   "SongID",        limit: 15
     t.string   "title"
     t.string   "author"
-    t.boolean  "is_song",                 default: true
+    t.boolean  "is_song",                  default: true
     t.text     "notes"
-    t.boolean  "deleted",                 default: false
+    t.boolean  "deleted",                  default: false
     t.integer  "updated_by"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "created_by"
     t.string   "slug"
     t.boolean  "instrumental"
+    t.integer  "version_count",            default: 0
   end
 
   add_index "songs", ["slug"], name: "index_songs_on_slug", unique: true, using: :btree

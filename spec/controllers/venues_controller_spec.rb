@@ -5,8 +5,9 @@ describe VenuesController do
   describe "GET index" do
     it "assigns all venues as @venues" do
       venue = create :venue
+      venue2 = create :venue, state: "Alabama"
       get :index
-      expect(assigns(:venues)).to eq([venue])
+      expect(assigns(:venues)).to eq([venue2, venue])
     end
 
     it "renders the index template" do
@@ -24,15 +25,31 @@ describe VenuesController do
   end
 
   describe "POST create" do
-    describe "Unauthorized users" do
-      it "prevents anonymous users from creating new venues"
-      it "redirects to the login page"
+    context "Unauthorized users" do
+      it "prevents anonymous users from creating new venues" do
+        post :create, { venue: FactoryGirl.attributes_for(:venue) }
+        expect(assigns(:venue)).to be_nil
+      end
+
+      it "redirects to the login page" do
+        post :create, { venue: FactoryGirl.attributes_for(:venue) }
+        expect(response).to redirect_to new_user_session_path
+      end
     end
 
-    describe "Authorized users" do
-      it "allows registered users to create new venues"
-      it "redirects to the new show page"
+    context "Authorized users" do
+      login_user
+
+      it "allows registered users to create new venues" do
+        expect {
+          post :create, { venue: FactoryGirl.attributes_for(:venue) }
+        }.to change(Venue, :count).by 1
+      end
+
+      it "redirects to the new show page" do
+        post :create, { venue: FactoryGirl.attributes_for(:venue) }
+        expect(response).to redirect_to new_show_path
+      end
     end
   end
-
 end
