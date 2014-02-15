@@ -39,7 +39,7 @@
     <h3><%= "Lyrics/Notes" unless @song.instrumental %><%= raw("<em>Instrumental</em> | Notes") if @song.instrumental %></h3>
     <div class="well"
     <% if @song.notes %>
-      <%= simple_format @song.notes %>
+      <%= simple_format(@song.notes) %>
     <% else %>
       <p>There are none!  <%= link_to "Please add some!", edit_song_path(@song), :class => "btn btn-mini" %></p>
     <% end %>
