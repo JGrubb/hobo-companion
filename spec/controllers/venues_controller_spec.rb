@@ -17,11 +17,19 @@ describe VenuesController do
   end
 
   describe "GET show" do
-    it "assigns the requested venue as @venue" do
-      venue = create :venue
-      get :show, {id: venue.id}
-      expect(assigns(:venue)).to eq(venue)
+    before :each do
+      @venue = create :venue
     end
+
+    it "assigns the requested venue as @venue" do
+      get :show, { id: @venue.id }
+      expect(assigns(:venue)).to eq(@venue)
+    end
+     
+     it "renders the show template" do
+       get :show, { id: @venue.id }
+       expect(response).to render_template(:show)
+     end
   end
 
   describe "POST create" do
