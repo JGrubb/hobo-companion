@@ -13,6 +13,7 @@ describe ShowsController do
     it "assigns the setlist as @songs"
     it "assigns the title as @title"
     it "assigns the description as @description"
+    it "correctly orders the setlist"
   end
 
   describe "GET new" do
@@ -67,5 +68,25 @@ describe ShowsController do
     it "gracefully prevents improper tag deletions"
     it "prevents users from deleting each other's tags"
     it "prevents unauthorized users from deleting anyone's tags"
+  end
+
+  describe "POST create" do
+    context "as unauthorized user" do
+      it "prevents unauthorized users from creating new shows" do
+        post :create, { show: attributes_for(:show) }
+        expect(response.status).to eq 302
+      end
+      it "redirects unauthorized users to the new session path" do
+        post :create, { show: attributes_for(:show) }
+        expect(response).to redirect_to new_user_session_path
+      end
+    end
+
+    context "as authorized user" do
+      login_user
+      it "assigns the updating_user"
+      it "creates new songs if they don't already exist"
+      it "redirects to the show path"
+    end
   end
 end
