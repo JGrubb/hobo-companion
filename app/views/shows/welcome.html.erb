@@ -45,7 +45,9 @@
     <h4 class="muted">Some stats</h4>
     <ul>
       <li><%= User.count %> registered hobos</li>
-      <li><%= Show.count %> total setlists</li>
+      <li><%= link_to "#{Show.count} total setlists", shows_path %></li>
+      <li><%= link_to "#{Song.where(is_song: true).count} songs", songs_path %></li>
+      <li><%= Version.count %> total songs played</li>
     </ul>
   </div>
 </div>
