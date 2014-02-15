@@ -58,7 +58,7 @@ class ShowsController < ApplicationController
     karma_check(@show, current_user, 100)
     @show.updated_by = current_user.id
     if @show.save
-      ArchiveWorker.perform_async(@show.id)
+      #ArchiveWorker.perform_async(@show.id)
       redirect_to @show
     else
       redirect_to shows_path

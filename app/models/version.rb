@@ -4,7 +4,7 @@ class Version < ActiveRecord::Base
   belongs_to :song, counter_cache: true
   acts_as_list scope: :show
 
-  validates :show_id, :song_id, presence: true
+#  validates :show_id, :song_id, presence: true
   validates :position, uniqueness: { scope: :show_id }
 
 end
