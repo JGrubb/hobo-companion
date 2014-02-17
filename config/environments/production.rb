@@ -20,7 +20,7 @@ RRE::Application.configure do
   # Generate digests for assets URLs
   config.assets.digest = true
   config.eager_load = true
-  config.cache_store = :dalli_store
+  config.cache_store = :redis_store
 
 
   config.eager_load = true

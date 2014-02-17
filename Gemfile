@@ -21,6 +21,7 @@ gem 'friendly_id', '~> 5.0.0'
 gem 'protected_attributes'
 gem 'foundation-rails'
 gem 'dalli'
+gem 'redis-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.
