@@ -1,3 +1,4 @@
+<% cache [ "songs", key_maker(@songs.to_s) ] do %>
 <h2>All songs</h2>
 <div class="row-fluid">
   <table id="songs" class="table">
@@ -17,3 +18,4 @@
     <% end %>
   </table>
 </div>
+<% end %>

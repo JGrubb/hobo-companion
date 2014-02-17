@@ -1,3 +1,4 @@
+<% cache [ "shows", @show ] do %>
 <div class="row">
   <div class="span12">
     <h2><%= @show.date.strftime '%B %d, %Y' %></h2>
@@ -32,8 +33,9 @@
       <h4>Show notes</h4>
       <p><%= simple_format @show.show_notes %></p>
       
-      <%= render 'admin_links' %>
     </div>
   </div>
 
 </div>
+<% end %>
+<%= render 'admin_links' %>
