@@ -5,11 +5,11 @@
 <% if @versions.count > 1 %>
   <div class="span3 song-stat">
     <h3>First played</h3>
-    <p><%= link_to(@versions.first.date.strftime('%B %d, %Y'), show_path(@versions.first.show_id)) %></p>
+    <p><%= link_to(@versions.first.date.strftime('%B %d, %Y'), show_path(@versions.first.show_slug)) %></p>
   </div>
   <div class="span3 song-stat">
     <h3>Last played</h3>
-    <p><%= link_to(@versions.last.date.strftime('%B %d, %Y'), show_path(@versions.last.show_id)) %></p>
+    <p><%= link_to(@versions.last.date.strftime('%B %d, %Y'), show_path(@versions.last.show_slug)) %></p>
   </div>
   <div class="span3 song-stat">
     <h3>Times played</h3>
