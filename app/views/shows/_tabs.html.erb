@@ -1,3 +1,4 @@
+<% cache [ "tabs", key_maker(@shows.to_s), current_user || "anon" ] do %>
   <div id="all-tabbed" class="span12">
     <h3>All shows</h3>
     <ul class="nav nav-tabs">
@@ -7,6 +8,7 @@
     </ul>
     <div class="tab-content">
       <% @years.each do |year| %>
+      <% cache [ "tabs", key_maker(year.to_s), current_user || "anon" ] do %>
       <table id="<%= year %>" class="hide table">
         <% @shows.select {|s| s.date.year == year }.each do |show| %>
         <tr>
@@ -29,4 +31,6 @@
         </div>
       <% end %>
     </table>
+    <% end %>
   </div>
+<% end %>

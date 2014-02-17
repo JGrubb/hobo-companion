@@ -20,6 +20,7 @@ gem 'exception_notification', '~> 4.0.0'
 gem 'friendly_id', '~> 5.0.0'
 gem 'protected_attributes'
 gem 'foundation-rails'
+gem 'dalli'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -34,6 +35,8 @@ gem 'uglifier', '>= 1.0.3'
 group :development do
   gem 'rack-mini-profiler'
   gem 'bullet'
+  gem 'quiet_assets'
+  gem 'thin'
 end
 
 group :test, :development do

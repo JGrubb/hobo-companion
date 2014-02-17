@@ -9,11 +9,11 @@
           <%= link_to "take me there...", @user_last_show, :class => "btn btn-small" %>
       </div>
     <% else %>
-    <p>Hello, Railroad Earth fan.  Welcome to this work in progress.</p>
-    <p>The idea here is...</p>
-    <p>Actually, the idea here is as widely varied as the music this band makes.  Currently it's a collection of setlists and lyrics to songs, and other more or less factual information about what this band has been doing for <%= distance_of_time_in_words_to_now(@first_show.date) %> now.  This will most likely change over time to include stuff that's a little more interesting and relevant to <strong>you</strong>.  Of course, to tap into all this wonderful goodness, at some point, you're going to have to <%= link_to "sign up", "#modal-signup", :class => "btn btn-mini btn-success", :data => { :toggle => "modal" } %>.</p>
-    <p>Thanks for stopping by,<br />
-    Us Hobos</p>
+      <p>Hello, Railroad Earth fan.  Welcome to this work in progress.</p>
+      <p>The idea here is...</p>
+      <p>Actually, the idea here is as widely varied as the music this band makes.  Currently it's a collection of setlists and lyrics to songs, and other more or less factual information about what this band has been doing for <%= distance_of_time_in_words_to_now(@first_show.date) %> now.  This will most likely change over time to include stuff that's a little more interesting and relevant to <strong>you</strong>.  Of course, to tap into all this wonderful goodness, at some point, you're going to have to <%= link_to "sign up", "#modal-signup", :class => "btn btn-mini btn-success", :data => { :toggle => "modal" } %>.</p>
+      <p>Thanks for stopping by,<br />
+      Us Hobos</p>
     <% end %>
   </div>
 </div>
@@ -21,24 +21,30 @@
 <div class="row">
   <div id="recently-added" class="span3">
     <h4 class="muted">Recently added setlists</h4>
+    <% cache [ "welcome", key_maker(@recently_added.to_s)] do %>
     <% @recently_added.each do |show| %>
       <p><%= link_to "#{show.date.strftime('%D')} - #{show.city}, #{show.state}", show %></p>
+    <% end %>
     <% end %>
   </div>
 
   <div id="recent-songs" class="span3">
     <h4 class="muted">Recently added lyrics</h4>
-    <% @recently_updated_songs.each do |song| %>
-      <p><%= link_to song.title, song %></p>
+    <% cache [ "welcome", key_maker(@recently_updated_songs.to_s) ] do %>
+      <% @recently_updated_songs.each do |song| %>
+        <p><%= link_to song.title, song %></p>
+      <% end %>
     <% end %>
   </div>
 
   <div id="most-recent" class="span3">
     <h4 class="muted">Last show</h4>
+    <% cache [ "welcome", key_maker(@most_recent_show.to_s)] do %>
     <h4><em><%= link_to "#{@most_recent_show.name}", @most_recent_show %></em></h4>
     <h5><em><%= "#{@most_recent_show.city}, #{@most_recent_show.state}" %></em><br />
       <%= @most_recent_show.date.strftime('%D') %>
     </h5>
+    <% end %>
   </div>
 
   <div id="user-stats" class="span3">
@@ -57,6 +63,6 @@
 </div>
 
 <div class="row" id="tabs">
-  <p class="muted">Loading...</p>
+  <%= render 'tabs' %>
 </div>
 <%= render "modal_signup" %>

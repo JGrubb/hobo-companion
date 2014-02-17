@@ -1,7 +1,7 @@
 jQuery(function() {
-  $('#tabs').load('/shows/tabs', function() {
-    return $('.nav-tabs li:first a').click();
-  });
+//  $('#tabs').load('/shows/tabs', function() {
+    $('.nav-tabs li:first a').click();
+//  });
   $('.datepicker').datepicker({
     dateFormat: "yy-mm-dd",
     changeMonth: true,

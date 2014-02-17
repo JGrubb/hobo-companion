@@ -115,6 +115,11 @@ class ShowsController < ApplicationController
     @user = User.new
     @users = User.joins(:shows).select('users.id as user_id, shows.id as show_id')
     @tagging_users_count = @users.uniq! { |u| u[:user_id]}.count
+    @years = @shows.map { |s| s.date.year }.uniq.sort
+    @user_shows = []
+    if current_user 
+      @user_shows = current_user.shows.pluck :id
+    end
     respond_to do |format|
       format.html
       format.json { render :json => @shows}
