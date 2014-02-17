@@ -1,4 +1,4 @@
-<% cache [ "songs", key_maker(@songs.to_s) ] do %>
+<% cache [ "songs", @songs.maximum(:updated_at).to_s.gsub(/ /, '') ] do %>
 <h2>All songs</h2>
 <div class="row-fluid">
   <table id="songs" class="table">
@@ -9,12 +9,14 @@
       <th></th>
     </tr>
     <% @songs.each do |song| %>
+    <% cache [ "songs", song ] do %>
     <tr class="song">
       <td><%= link_to song.title, song %></td>
       <td><%= song.versions_count %></td>
       <td><%= link_to("Needs lyrics!", song) unless (song.notes || song.instrumental?) %></td>
       <td><%= raw("<em>Instrumental</em>") if song.instrumental? %></td>
     </tr>
+    <% end %>
     <% end %>
   </table>
 </div>
