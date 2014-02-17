@@ -104,12 +104,12 @@ class ShowsController < ApplicationController
   end
 
   def welcome
-    @shows = Show.with_venue.to_ary
+    @shows = Show.with_venue
     if current_user
       @user_last_show = current_user.shows.order('date desc').first
     end
     @most_recent_show = @shows.first
-    @recently_added = @shows[1..5]
+    @recently_added = @shows.limit(5).offset(1)
     @first_show = @shows.last
     @recently_updated_songs = Song.where(is_song: true).order(:updated_at).reverse_order.limit(5)
     @user = User.new
