@@ -3,6 +3,8 @@ class Show < ActiveRecord::Base
   extend FriendlyId
   friendly_id :date, use: :slugged
 
+  scope :with_venue, -> { joins(:venue).select('shows.*, venues.name, venues.city, venues.state').order('shows.date, shows.created_at').reverse_order }
+
   belongs_to :venue
   
   has_many :versions, :dependent => :destroy

@@ -1,14 +1,54 @@
 require 'spec_helper'
 
 describe ShowsController do
-  describe "GET index" do
-    it "assigns all shows as @shows"
-    it "renders the index template"
-    it "assigns the description as @description"
+  describe "GET welcome" do
+    before :each do
+      @show1 = create :show
+      @show2 = create(:show, date: 1.week.ago)
+      @show3 = create(:show, date: 2.weeks.ago)
+      @show4 = create(:show, date: 3.weeks.ago)
+      @show5 = create(:show, date: 4.weeks.ago)
+      @show6 = create(:show, date: 5.weeks.ago)
+    end
+
+    it "assigns the shows as @shows" do
+      get :welcome
+      expect(assigns(:shows)).to eq([@show1, @show2, @show3, @show4, @show5, @show6])
+    end
+
+    it "assigns the current_user's last show as @user_last_show"
+
+    it "assigns the most recent show as @most_recent_show" do
+      get :welcome
+      expect(assigns(:most_recent_show)).to eq(@show1)
+    end
+
+    it "assigns the first show as @first_show" do
+      get :welcome
+      expect(assigns(:first_show)).to eq(@show6)
+    end
+
+    it "assigns recently updated lyrics as @recently_updated_songs" do
+      song_batch = []
+      5.times { |n| song_batch << Song.create(title: "Song #{n}") }
+      get :welcome
+      expect(assigns(:recently_updated_songs)).to eq(song_batch)
+    end
+
+    it "assigns a new user to @user"
+    it "assigns the number of users who have tagged their shows as @tagging_users_count"
   end
 
   describe "GET show" do
-    it "assigns the possible sets as @sets"
+    before :each do
+      @show = create :show
+    end
+
+    it "assigns the possible sets as @possible_sets" do
+      get :show, { id: @show.id }
+      expect(assigns(:possible_sets)).to eq(Show::possible_sets)
+    end
+
     it "assigns the show as @show"
     it "assigns the setlist as @songs"
     it "assigns the title as @title"

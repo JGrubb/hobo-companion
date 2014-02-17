@@ -104,14 +104,14 @@ class ShowsController < ApplicationController
   end
 
   def welcome
-    @shows = Show.joins(:venue).select('shows.*, venues.*').order('shows.date desc')
+    @shows = Show.with_venue.to_ary
     if current_user
       @user_last_show = current_user.shows.order('date desc').first
     end
-    @most_recent = @shows.first
-    @recently_added = @shows.select { |s| s.created_at }.sort { |s, t| s.created_at <=> t.created_at}.slice(-5..-1).reverse
+    @most_recent_show = @shows.first
+    @recently_added = @shows[1..5]
     @first_show = @shows.last
-    @recently_updated_songs = Song.order('updated_at desc').where(:is_song => true).limit(5)
+    @recently_updated_songs = Song.where(is_song: true).order(:updated_at).reverse_order.limit(5)
     @user = User.new
     @users = User.joins(:shows).select('users.id as user_id, shows.id as show_id')
     @tagging_users_count = @users.uniq! { |u| u[:user_id]}.count

@@ -35,9 +35,9 @@
 
   <div id="most-recent" class="span3">
     <h4 class="muted">Last show</h4>
-    <h4><em><%= link_to "#{@most_recent.name}", @most_recent %></em></h4>
-    <h5><em><%= "#{@most_recent.city}, #{@most_recent.state}" %></em><br />
-      <%= @most_recent.date.strftime('%D') %>
+    <h4><em><%= link_to "#{@most_recent_show.name}", @most_recent_show %></em></h4>
+    <h5><em><%= "#{@most_recent_show.city}, #{@most_recent_show.state}" %></em><br />
+      <%= @most_recent_show.date.strftime('%D') %>
     </h5>
   </div>
 
