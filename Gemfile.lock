@@ -145,10 +145,10 @@ GEM
     mini_portile (0.5.2)
     minitest (4.7.5)
     multi_json (1.8.2)
-    mysql2 (0.3.14)
     nokogiri (1.6.1)
       mini_portile (~> 0.5.0)
     orm_adapter (0.5.0)
+    pg (0.17.1)
     polyglot (0.3.3)
     protected_attributes (1.0.5)
       activemodel (>= 4.0.1, < 5.0)
@@ -303,7 +303,7 @@ DEPENDENCIES
   jquery-ui-rails (~> 4.0.2)
   launchy (= 2.2.0)
   meta_request
-  mysql2
+  pg
   protected_attributes
   pry-rails
   quiet_assets

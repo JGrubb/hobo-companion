@@ -5,8 +5,8 @@ gem 'rails', '4.0.2'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-gem 'mysql2'
-#gem 'pg'
+#gem 'mysql2'
+gem 'pg'
 gem 'devise'
 gem 'simple_form'
 gem 'jquery-ui-rails', '~> 4.0.2'
