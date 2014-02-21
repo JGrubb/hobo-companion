@@ -1,4 +1,4 @@
-<% cache [ "songs", @song, current_user || "anon" ] do %>
+<% cache [ "songs", @song, user_id ] do %>
 <div class="row">
 <h2 class="span12"><%= @song.title %><% unless @song.author.blank? %><small> (<%= @song.author %>)</small><% end %></h2>
 
