@@ -50,12 +50,10 @@
   <div id="user-stats" class="span3">
     <h4 class="muted">Some stats</h4>
     <ul>
-    <% cache [ "welcome", Date.today.to_s ] do %>
-      <li><%= User.count %> registered hobos</li>
+      <li><%= User.active.count %> active hobos</li>
       <li><%= link_to "#{Show.count} total setlists", shows_path %></li>
       <li><%= link_to "#{Song.where(is_song: true).count} songs", songs_path %></li>
       <li><%= Version.count %> total songs played</li>
-    <% end %>
     </ul>
   </div>
 </div>
