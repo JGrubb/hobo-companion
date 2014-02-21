@@ -9,6 +9,9 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name
   # attr_accessible :title, :body
   has_and_belongs_to_many :shows
+
+  scope :active, -> { where('last_sign_in_at > ?', 1.year.ago) }
+
   
   def self.bump_karma(points, user)
     @user = self.find(user.id)
