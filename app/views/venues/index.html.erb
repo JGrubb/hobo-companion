@@ -1,9 +1,13 @@
 <h1>Venues#index</h1>
-<% @states.each do |state| %>
-  <%= content_tag :h4, Venue.states_abbr[state.state] %>
-  <ul>
-  <% @venues.select { |v| v.state == state.state }.each do |v| %>
-    <%= content_tag :li, link_to("#{v.city} - #{v.name}", v) %>
+<% cache [ @venues.maximum(:updated_at) ] do %>
+  <% @states.each do |state| %>
+    <%= content_tag :h4, Venue.states_abbr[state.state] %>
+    <ul>
+    <% @venues.select { |v| v.state == state.state }.each do |v| %>
+      <% cache [ v ] do %>
+        <%= content_tag :li, link_to("#{v.city} - #{v.name}", v) %>
+      <% end %>
+    <% end %>
+    </ul>
   <% end %>
-  </ul>
 <% end %>
