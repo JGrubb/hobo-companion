@@ -17,7 +17,7 @@
     <% end %>
   </div>
 </div>
-<% cache [ "welcome", @shows.maximum(:updated_at) ] do %>
+<% cache [ Show.maximum(:created_at) ] do %>
 <div class="row">
   <div id="recently-added" class="span3">
     <h4 class="muted">Recently added setlists</h4>
@@ -30,7 +30,7 @@
 
   <div id="recent-songs" class="span3">
     <h4 class="muted">Recently added lyrics</h4>
-    <% cache [ "welcome", @recently_updated_songs.maximum(:updated_at).to_s.gsub(/ /, '') ] do %>
+    <% cache [ @recently_updated_songs.maximum(:updated_at).to_s.gsub(/ /, '') ] do %>
       <% @recently_updated_songs.each do |song| %>
         <p><%= link_to song.title, song %></p>
       <% end %>
@@ -39,11 +39,11 @@
 
   <div id="most-recent" class="span3">
     <h4 class="muted">Last show</h4>
-    <% cache [ "welcome", @most_recent_show ] do %>
-    <h4><em><%= link_to "#{@most_recent_show.name}", @most_recent_show %></em></h4>
-    <h5><em><%= "#{@most_recent_show.city}, #{@most_recent_show.state}" %></em><br />
-      <%= @most_recent_show.date.strftime('%D') %>
-    </h5>
+    <% cache [ @most_recent_show ] do %>
+      <h4><em><%= link_to "#{@most_recent_show.name}", @most_recent_show %></em></h4>
+      <h5><em><%= "#{@most_recent_show.city}, #{@most_recent_show.state}" %></em><br />
+        <%= @most_recent_show.date.strftime('%D') %>
+      </h5>
     <% end %>
   </div>
 
