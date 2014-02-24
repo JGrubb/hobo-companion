@@ -111,7 +111,7 @@ class ShowsController < ApplicationController
     @most_recent_show = @shows.first
     @recently_added = @shows.limit(5).offset(1)
     @first_show = @shows.last
-    @recently_updated_songs = Song.where(is_song: true).order(:updated_at).reverse_order.limit(5)
+    @recently_updated_songs = Song.where(is_song: true).order(:created_at).reverse_order.limit(5)
     @user = User.new
     @users = User.joins(:shows).select('users.id as user_id, shows.id as show_id')
     @tagging_users_count = @users.uniq! { |u| u[:user_id]}.count

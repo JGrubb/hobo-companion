@@ -21,7 +21,7 @@
 <div class="row">
   <div id="recently-added" class="span3">
     <h4 class="muted">Recently added setlists</h4>
-    <% cache [ "welcome", @recently_added.maximum(:updated_at).to_s.gsub(/ /, '') ] do %>
+    <% cache [ @recently_added.maximum(:updated_at).to_s.gsub(/ /, '') ] do %>
     <% @recently_added.each do |show| %>
       <p><%= link_to "#{show.date.strftime('%D')} - #{show.city}, #{show.state}", show %></p>
     <% end %>
