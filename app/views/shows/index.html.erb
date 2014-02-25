@@ -2,7 +2,7 @@
 <h4><em>Total shows</em> - <strong><%= @shows.count %></strong></h4>
 <table class="table">
   <% @shows.each do |show| %>
-    <% cache [ show, @user_shows.include?(show.id) ] do %>
+    <% cache_if current_user, [ show, @user_shows.include?(show.id) ] do %>
     <tr>
       <td><%= show.date.strftime('%D') %></td>
       <td><%= "#{show.city}, #{show.state}" %></td>

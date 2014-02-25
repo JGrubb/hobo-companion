@@ -8,7 +8,7 @@
     </ul>
     <div class="tab-content">
       <% @years.each do |year| %>
-      <% cache [ user_id, year.to_s, @user_shows.count ] do %>
+      <% cache [ user_id, year.to_s, @shows.count, @user_shows.count ] do %>
       <table id="<%= year %>" class="hide table">
         <% @shows.select {|s| s.date.year == year }.each do |show| %>
         <tr>
