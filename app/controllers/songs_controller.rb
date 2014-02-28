@@ -1,5 +1,5 @@
 class SongsController < ApplicationController
-  before_filter :require_editor, :except => [:index, :show, :position_info]
+  before_filter :authenticate_user!, :except => [:index, :show, :position_info]
   before_filter :user_shows, :only => :show
   
   def index
