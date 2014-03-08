@@ -3,7 +3,7 @@ class SongsController < ApplicationController
   before_filter :user_shows, :only => :show
   
   def index
-    @songs = Song.where(:is_song => true).order('songs.title asc')
+    @songs = Song.where(:is_song => true).where(:deleted => false).order(:title)
   end
 
   def show
