@@ -41,13 +41,13 @@ group :development do
 end
 
 group :test, :development do
-  gem "rb-fsevent", "~> 0.9.1"
-  gem "guard", "1.6.2"
-  gem "guard-rspec", "2.5.1"
-  gem "rspec-rails", "2.13.1"
-  gem "shoulda-matchers", "2.1.0"
-  gem "capybara", "2.1.0"
-  gem "launchy", "2.2.0"
+  gem 'rb-fsevent', '~> 0.9.1'
+  gem 'guard'
+  gem 'guard-rspec'
+  gem 'rspec-rails', '2.13.1'
+  gem 'shoulda-matchers', '2.1.0'
+  gem 'capybara', '2.1.0'
+  gem 'launchy', '2.2.0'
   gem 'factory_girl_rails'
   gem 'better_errors'
   gem 'binding_of_caller'
@@ -70,5 +70,5 @@ gem 'unicorn'
 # gem 'capistrano'
 
 # To use debugger
-gem 'debugger'
-gem 'sdoc', require: false
+#gem 'debugger'
+#gem 'sdoc', require: false

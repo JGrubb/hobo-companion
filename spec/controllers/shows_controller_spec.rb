@@ -28,7 +28,7 @@ describe ShowsController do
       expect(assigns(:first_show)).to eq(@show6)
     end
 
-    it "assigns recently updated lyrics as @recently_updated_songs" do
+    pending "assigns recently updated lyrics as @recently_updated_songs" do
       song_batch = []
       5.times { |n| song_batch << Song.create(title: "Song #{n}") }
       get :welcome
