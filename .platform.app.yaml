@@ -1,0 +1,43 @@
+name: hobo_companion
+type: ruby:2.3
+
+web:
+    # ** This explodes when I uncomment it **
+    upstream:
+        socket_family: unix
+    # Commands are run once after deployment to start the application process.
+    commands:
+       start: "unicorn -l $SOCKET -E production config.ru"
+
+    # The folder from which to serve static assets, for this location.
+    #
+    # This is a filesystem path, relative to the application root.
+    locations:
+        "/":
+            root: "public"
+            passthru: true
+            expires: 1h
+            allow: true
+
+relationships:
+    database: "pgsql:pgsql"
+    redis: "rediscache:redis"
+
+# The mounts that will be performed when the package is deployed.
+mounts:
+   "/log": "shared:files/log"
+   "/tmp": "shared:files/tmp"
+
+# The size of the persistent disk of the application (in MB).
+disk: 2048
+
+# The hooks executed at various points in the lifecycle of the application.
+hooks:
+    # The build hook runs before the application is deployed, and is useful for
+    # assembling the codebase.
+    build: |
+        gem install bundler
+        bundle install --jobs 6 --without development test
+        bundle exec rake assets:precompile
+    # We run deploy hook after your application has been deployed and started.
+    deploy: RACK_ENV=production bundle exec rake db:migrate

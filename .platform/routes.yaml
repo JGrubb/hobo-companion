@@ -1,0 +1,6 @@
+http://www.{default}:
+  type: upstream
+  upstream: hobo_companion
+http://{default}:
+  type: redirect
+  to: http://www.{default}
