@@ -5,6 +5,8 @@ Devise.setup do |config|
   # Configure the e-mail address which will be shown in Devise::Mailer,
   # note that it will be overwritten if you use your own mailer class with default "from" parameter.
   config.mailer_sender = "admin@hobocompanion.org"
+  
+  config.secret_key = '9140f722c8e70c2b9379dc309d8fdab6c1757f428bb1dedeef10ebd7be4c6f7f1860f6872e834d25829749c0761b373e55fa6d3a111362c03a5d26bf008547c1'
 
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"
