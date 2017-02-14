@@ -68,7 +68,6 @@ GEM
     concurrent-ruby (1.0.4)
     connection_pool (2.2.1)
     daemons (1.2.4)
-    dalli (2.7.6)
     debug_inspector (0.0.2)
     devise (3.5.10)
       bcrypt (~> 3.0)
@@ -276,7 +275,6 @@ DEPENDENCIES
   chosen-rails
   cocoon
   coffee-rails
-  dalli
   devise
   factory_girl_rails
   foundation-rails

@@ -20,7 +20,7 @@ gem 'sidekiq'
 gem 'friendly_id', '~> 5.0.0'
 gem 'protected_attributes'
 gem 'foundation-rails'
-gem 'dalli'
+# gem 'dalli'
 gem 'redis-rails'
 gem 'platform_sh_rails'
 
