@@ -20,7 +20,7 @@ web:
             allow: true
 
 relationships:
-    database: "pgsql:pgsql"
+    database: "pgsqldb:postgresql"
     redis: "rediscache:redis"
 
 # The mounts that will be performed when the package is deployed.
