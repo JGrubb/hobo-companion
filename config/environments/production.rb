@@ -72,9 +72,9 @@ RRE::Application.configure do
   
   config.action_mailer.delivery_method = :smtp
   
-  config.middleware.use ExceptionNotification::Rack,
-    email: {
-      sender_address: 'noreply@hobocompanion.org',
-      exception_recipients: 'therealjohnnygrubb@gmail.com',
-    }
+  # config.middleware.use ExceptionNotification::Rack,
+  #   email: {
+  #     sender_address: 'noreply@hobocompanion.org',
+  #     exception_recipients: 'therealjohnnygrubb@gmail.com',
+  #   }
 end
