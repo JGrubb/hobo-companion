@@ -21,7 +21,7 @@ RRE::Application.configure do
   config.assets.digest = true
   config.eager_load = true
   config.cache_store = :redis_store
-
+  config.secret_key_base = ENV['PLATFORM_PROJECT_ENTROPY']
 
   config.eager_load = true
   # Defaults to nil and saved in location specified by config.assets.prefix
