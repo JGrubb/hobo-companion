@@ -22,7 +22,7 @@ gem 'protected_attributes'
 gem 'foundation-rails'
 gem 'dalli'
 gem 'redis-rails'
-gem 'platform_sh_rails'
+# gem 'platform_sh_rails'
 
 # Gems used only for assets and not required
 # in production environments by default.
