@@ -71,6 +71,7 @@ RRE::Application.configure do
   config.action_mailer.default_url_options = { :host => 'hobocompanion.org' }
   
   config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings[:port] = 465
   
   # config.middleware.use ExceptionNotification::Rack,
   #   email: {
