@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.0.2'
+gem 'rails', '4.0.6'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -15,13 +15,14 @@ gem 'chosen-rails'
 gem 'cocoon'
 gem 'acts_as_list'
 gem 'sidekiq'
-gem 'exception_notification', '~> 4.0.0'
+# gem 'exception_notification', '~> 4.0.0'
 #gem 'devise_rpx_connectable'
 gem 'friendly_id', '~> 5.0.0'
 gem 'protected_attributes'
 gem 'foundation-rails'
-gem 'dalli'
+# gem 'dalli'
 gem 'redis-rails'
+gem 'platform_sh_rails'
 
 # Gems used only for assets and not required
 # in production environments by default.
@@ -64,7 +65,7 @@ gem 'jquery-rails'
 # gem 'jbuilder'
 
 # Use unicorn as the app server
-gem 'unicorn'
+gem 'puma'
 
 # Deploy with Capistrano
 # gem 'capistrano'

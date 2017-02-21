@@ -21,7 +21,7 @@ RRE::Application.configure do
   config.assets.digest = true
   config.eager_load = true
   config.cache_store = :redis_store
-
+  config.secret_key_base = ENV['PLATFORM_PROJECT_ENTROPY']
 
   config.eager_load = true
   # Defaults to nil and saved in location specified by config.assets.prefix
@@ -70,11 +70,11 @@ RRE::Application.configure do
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
   config.action_mailer.default_url_options = { :host => 'hobocompanion.org' }
   
-  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.delivery_method = :sendmail
   
-  config.middleware.use ExceptionNotification::Rack,
-    email: {
-      sender_address: 'noreply@hobocompanion.org',
-      exception_recipients: 'therealjohnnygrubb@gmail.com',
-    }
+  # config.middleware.use ExceptionNotification::Rack,
+  #   email: {
+  #     sender_address: 'noreply@hobocompanion.org',
+  #     exception_recipients: 'therealjohnnygrubb@gmail.com',
+  #   }
 end
