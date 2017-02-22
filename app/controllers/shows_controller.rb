@@ -114,7 +114,7 @@ class ShowsController < ApplicationController
     @recently_updated_songs = Song.where(is_song: true).order(:created_at).reverse_order.limit(5)
     @user = User.new
     @users = User.joins(:shows).select('users.id as user_id, shows.id as show_id')
-    @tagging_users_count = @users.uniq! { |u| u[:user_id]}.count
+    @tagging_users_count = @users.uniq! { |u| u[:user_id]}.count(:all)
     @years = @shows.map { |s| s.date.year }.uniq.sort
     @user_shows = []
     if current_user 

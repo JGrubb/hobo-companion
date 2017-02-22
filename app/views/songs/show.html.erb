@@ -2,7 +2,7 @@
 <div class="row">
 <h2 class="span12"><%= @song.title %><% unless @song.author.blank? %><small> (<%= @song.author %>)</small><% end %></h2>
 
-<% if @versions.count > 1 %>
+<% if @versions.count(:all) > 1 %>
   <div class="span3 song-stat">
     <h3>First played</h3>
     <p><%= link_to(@versions.first.date.strftime('%B %d, %Y'), show_path(@versions.first.show_slug)) %></p>
@@ -24,7 +24,7 @@
 <% end %>
 </div>
 
-<% if @versions.count > 1 %>
+<% if @versions.count(:all) > 1 %>
 <div class="row">
   <div class="span6">
     <%= render 'position_chart' %>
