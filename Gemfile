@@ -19,7 +19,7 @@ gem 'sidekiq'
 #gem 'devise_rpx_connectable'
 gem 'friendly_id', '~> 5.0.0'
 gem 'protected_attributes'
-gem 'foundation-rails'
+# gem 'foundation-rails'
 # gem 'dalli'
 gem 'redis-rails'
 gem 'platform_sh_rails'
@@ -42,9 +42,11 @@ group :development do
 end
 
 group :test, :development do
+  gem "minitest"
+  gem 'test-unit'
   gem 'rb-fsevent', '~> 0.9.1'
-  gem 'guard'
-  gem 'guard-rspec'
+  # gem 'guard'
+  # gem 'guard-rspec'
   gem 'rspec-rails', '2.13.1'
   gem 'shoulda-matchers', '2.1.0'
   gem 'capybara', '2.1.0'
