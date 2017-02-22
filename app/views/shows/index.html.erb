@@ -1,5 +1,5 @@
-<% cache [ user_id, @shows.maximum(:created_at).to_s.gsub(/ /, ''), @user_shows.count ] do %>
-<h4><em>Total shows</em> - <strong><%= @shows.count %></strong></h4>
+<% cache [ user_id, @shows.maximum(:created_at).to_s.gsub(/ /, ''), @user_shows.count(:all) ] do %>
+<h4><em>Total shows</em> - <strong><%= @shows.count(:all) %></strong></h4>
 <table class="table">
   <% @shows.each do |show| %>
     <% cache_if current_user, [ show, @user_shows.include?(show.id) ] do %>
