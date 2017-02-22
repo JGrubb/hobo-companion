@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '4.1.8'
+gem 'rails', '4.2.5'
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
@@ -9,7 +9,7 @@ gem 'rails', '4.1.8'
 gem 'pg'
 gem 'devise'
 gem 'simple_form'
-gem 'jquery-ui-rails', '~> 4.0.2'
+gem 'jquery-ui-rails'
 gem 'awesome_nested_fields'
 gem 'chosen-rails'
 gem 'cocoon'
@@ -50,9 +50,9 @@ group :test, :development do
   gem 'rspec-rails', '2.13.1'
   gem 'shoulda-matchers', '2.1.0'
   gem 'capybara', '2.1.0'
-  gem 'launchy', '2.2.0'
+  # gem 'launchy', '2.2.0'
   gem 'factory_girl_rails'
-  gem 'better_errors'
+  # gem 'better_errors'
   gem 'binding_of_caller'
   gem 'meta_request'
   gem 'pry-rails'

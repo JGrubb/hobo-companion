@@ -15,8 +15,8 @@
 //= require cocoon
 //= require chosen-jquery
 //= require jquery.nested-fields
-//= require jquery.ui.datepicker
-//= require jquery.ui.sortable
+//= require jquery-ui/widgets/datepicker
+//= require jquery-ui/widgets/sortable
 //= require_tree .
 
 var _gaq = _gaq || [];
