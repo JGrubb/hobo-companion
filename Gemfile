@@ -44,34 +44,9 @@ end
 group :test, :development do
   gem "minitest"
   gem 'test-unit'
-  gem 'rb-fsevent', '~> 0.9.1'
-  # gem 'guard'
-  # gem 'guard-rspec'
-  gem 'rspec-rails', '2.13.1'
-  gem 'shoulda-matchers', '2.1.0'
-  gem 'capybara', '2.1.0'
-  # gem 'launchy', '2.2.0'
-  gem 'factory_girl_rails'
-  # gem 'better_errors'
-  gem 'binding_of_caller'
-  gem 'meta_request'
   gem 'pry-rails'
 end
 
 gem 'jquery-rails'
 
-# To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# To use Jbuilder templates for JSON
-# gem 'jbuilder'
-
-# Use unicorn as the app server
 gem 'puma'
-
-# Deploy with Capistrano
-# gem 'capistrano'
-
-# To use debugger
-#gem 'debugger'
-#gem 'sdoc', require: false
