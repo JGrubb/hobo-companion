@@ -1,0 +1,8 @@
+<% 10.times.do |n| %>
+song_<%= n %>:
+  title: <%= "Song #{n}" %>
+  author: <%= "Songwriter #{n}" %>
+  is_song: true
+  notes: "Lorem Ipsum"
+  slug: <%= "song-#{n}" %>
+<% end %>

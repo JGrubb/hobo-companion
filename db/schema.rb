@@ -11,100 +11,95 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140207212833) do
+ActiveRecord::Schema.define(version: 20170223143350) do
 
-  create_table "recordings", force: true do |t|
-    t.integer  "show_id"
-    t.text     "playlist"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
-  create_table "shows", force: true do |t|
+  create_table "shows", force: :cascade do |t|
     t.date     "date"
     t.integer  "venue_id"
-    t.string   "show_notes",   limit: 1000
+    t.string   "show_notes",   limit: 4000
     t.boolean  "verified",                  default: false
     t.integer  "updated_by"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "archive_info"
     t.integer  "created_by"
-    t.string   "slug"
+    t.string   "slug",         limit: 255
   end
 
   add_index "shows", ["slug"], name: "index_shows_on_slug", unique: true, using: :btree
   add_index "shows", ["venue_id"], name: "index_shows_on_venue_id", using: :btree
   add_index "shows", ["verified"], name: "index_shows_on_verified", using: :btree
 
-  create_table "shows_users", id: false, force: true do |t|
+  create_table "shows_users", id: false, force: :cascade do |t|
     t.integer "show_id"
     t.integer "user_id"
   end
 
   add_index "shows_users", ["show_id", "user_id"], name: "index_shows_users_on_shows_id_and_users_id", using: :btree
 
-  create_table "songs", force: true do |t|
-    t.string   "SongID",         limit: 15
-    t.string   "title"
-    t.string   "author"
-    t.boolean  "is_song",                   default: true
+  create_table "songs", force: :cascade do |t|
+    t.string   "title",          limit: 255
+    t.string   "author",         limit: 255
+    t.boolean  "is_song",                    default: true
     t.text     "notes"
-    t.boolean  "deleted",                   default: false
+    t.boolean  "deleted",                    default: false
     t.integer  "updated_by"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "created_by"
-    t.string   "slug"
+    t.string   "slug",           limit: 255
     t.boolean  "instrumental"
-    t.integer  "versions_count",            default: 0
+    t.integer  "versions_count",             default: 0
   end
 
   add_index "songs", ["slug"], name: "index_songs_on_slug", unique: true, using: :btree
 
-  create_table "users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
+  create_table "users", force: :cascade do |t|
+    t.string   "email",                  limit: 255,              null: false
+    t.string   "encrypted_password",     limit: 255,              null: false
+    t.string   "reset_password_token",   limit: 255
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0
+    t.integer  "sign_in_count",                      default: 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.string   "confirmation_token"
+    t.string   "current_sign_in_ip",     limit: 255
+    t.string   "last_sign_in_ip",        limit: 255
+    t.string   "confirmation_token",     limit: 255
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.string   "unconfirmed_email",      limit: 255
+    t.datetime "created_at",                                      null: false
+    t.datetime "updated_at",                                      null: false
     t.boolean  "is_admin"
     t.boolean  "is_editor"
-    t.integer  "karma",                  default: 10
-    t.string   "rpx_identifier"
-    t.string   "first_name"
+    t.integer  "karma",                              default: 10
+    t.string   "rpx_identifier",         limit: 255
+    t.string   "first_name",             limit: 255
   end
 
   add_index "users", ["confirmation_token"], name: "index_users_on_confirmation_token", unique: true, using: :btree
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  create_table "venues", force: true do |t|
-    t.string   "name"
-    t.string   "city"
-    t.string   "state"
-    t.string   "country",    default: "USA"
+  create_table "venues", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "city",       limit: 255
+    t.string   "state",      limit: 255
+    t.string   "country",    limit: 255, default: "USA"
     t.integer  "updated_by"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "created_by"
   end
 
-  create_table "versions", force: true do |t|
+  create_table "versions", force: :cascade do |t|
     t.integer  "show_id"
     t.integer  "position"
-    t.string   "set_number",             default: "1"
+    t.string   "set_number", limit: 255, default: "1"
     t.integer  "song_id"
     t.boolean  "transition"
     t.string   "song_notes", limit: 500
