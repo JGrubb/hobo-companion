@@ -6,8 +6,8 @@ web:
     upstream:
         socket_family: unix
     # Commands are run once after deployment to start the application process.
-    # commands:
-       # start: "unicorn -l $SOCKET -E production config.ru"
+    commands:
+       start: "unicorn -l $SOCKET -E production config.ru"
 
     # The folder from which to serve static assets, for this location.
     #
@@ -43,6 +43,6 @@ hooks:
     build: |
         gem install bundler
         bundle install --jobs 6 --without development test
-    #    bundle exec rake assets:precompile
+        RACK_ENV=production bundle exec rake assets:precompile
     # We run deploy hook after your application has been deployed and started.
     deploy: RACK_ENV=production bundle exec rake db:migrate
