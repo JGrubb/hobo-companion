@@ -38,6 +38,6 @@ hooks:
     build: |
         gem install bundler
         bundle install --jobs 6 --without development test
-        bundle exec rake assets:precompile
+    #    bundle exec rake assets:precompile
     # We run deploy hook after your application has been deployed and started.
     deploy: RACK_ENV=production bundle exec rake db:migrate
