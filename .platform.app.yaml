@@ -33,14 +33,13 @@ disk: 2048
 
 dependencies:
     ruby:
-        bundler: "*"
+        bundler: "~> 1.16"
 
 # The hooks executed at various points in the lifecycle of the application.
 hooks:
     # The build hook runs before the application is deployed, and is useful for
     # assembling the codebase.
     build: |
-        gem install bundler
         bundle install --jobs 6 --without development test
     #    bundle exec rake assets:precompile
     # We run deploy hook after your application has been deployed and started.
