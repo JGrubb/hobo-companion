@@ -1,5 +1,5 @@
 name: hobo_companion
-type: ruby:2.4
+type: ruby:2.5
 
 web:
     # ** This explodes when I uncomment it **
