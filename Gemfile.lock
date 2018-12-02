@@ -265,6 +265,7 @@ DEPENDENCIES
   awesome_nested_fields
   binding_of_caller
   bullet
+  bundler (~> 1.16)
   capybara (= 2.1.0)
   chosen-rails
   cocoon
@@ -296,4 +297,4 @@ DEPENDENCIES
   unicorn
 
 BUNDLED WITH
-   1.16.1
+   1.17.1
