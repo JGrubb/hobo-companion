@@ -67,7 +67,7 @@ gem 'jquery-rails'
 # gem 'jbuilder'
 
 # Use unicorn as the app server
-gem 'puma'
+gem 'unicorn'
 
 # Deploy with Capistrano
 # gem 'capistrano'
