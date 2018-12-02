@@ -33,7 +33,7 @@ disk: 2048
 
 dependencies:
     ruby:
-        bundler: "~> 1.16"
+        bundler: "*"
 
 
 # The hooks executed at various points in the lifecycle of the application.
