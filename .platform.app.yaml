@@ -6,7 +6,7 @@ web:
     upstream:
         socket_family: unix
     # Commands are run once after deployment to start the application process.
-    commands:
+    # commands:
        # start: "unicorn -l $SOCKET -E production config.ru"
 
     # The folder from which to serve static assets, for this location.
