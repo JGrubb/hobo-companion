@@ -31,6 +31,10 @@ mounts:
 # The size of the persistent disk of the application (in MB).
 disk: 2048
 
+dependencies:
+    ruby:
+        bundler: "1.17.1"
+
 # The hooks executed at various points in the lifecycle of the application.
 hooks:
     # The build hook runs before the application is deployed, and is useful for
